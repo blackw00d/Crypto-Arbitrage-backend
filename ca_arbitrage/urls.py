@@ -15,10 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
 from ca_arbitrage import views
 from ca_arbitrage.views import FiltersView
 
 urlpatterns = [
-    path('', FiltersView.as_view()),
+    path('arbitrage', FiltersView.as_view()),
 ]

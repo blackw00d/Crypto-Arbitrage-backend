@@ -6,12 +6,17 @@ from .models import *
 from .serializers import *
 
 
-def list_todo_items(request):
-    list = BinanceBittrex.objects.all()
-    return render(request, 'ca_arbitrage/index.html', {'items': list})
+class BalanceView(APIView):
+
+    def get(self, request):
+        balance = UserBalance.objects.get(user="blackw00d")
+        serializer = BalanceSerializers(balance)
+        print(serializer.data)
+        return Response(serializer.data)
 
 
-class FiltersView(APIView):
+
+class ArbitrageView(APIView):
     # permission_classes = [IsAuthenticated]
 
     def get(self, request):
@@ -97,6 +102,6 @@ class FiltersView(APIView):
         filters['huobi_coinex'] = HuobiCoinex.objects.filter(huobi_volume__gt=MinVolume, coinex_volume__gt=MinVolume, profit__gt=MinProfit, profit__lt=MaxProfit).order_by('name').order_by('-profit')
         filters['huobi_bibox'] = HuobiBibox.objects.filter(huobi_volume__gt=MinVolume, bibox_volume__gt=MinVolume, profit__gt=MinProfit, profit__lt=MaxProfit).order_by('name').order_by('-profit')
         filters['coinex_bibox'] = CoinexBibox.objects.filter(coinex_volume__gt=MinVolume, bibox_volume__gt=MinVolume, profit__gt=MinProfit, profit__lt=MaxProfit).order_by('name').order_by('-profit')
-        serializer = FiltersSerializers(filters)
+        serializer = ArbitrageSerializers(filters)
         return Response(serializer.data)
 

@@ -701,3 +701,10 @@ class CoinexBibox(models.Model):
     coinex_volume = models.CharField('Объем Binance', max_length=50, default=None, null=True)
     bibox_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
+
+
+class UserBalance(models.Model):
+    user = models.CharField('Имя', max_length=50, default=None, null=True)
+    balance = models.TextField('Баланс', default=None, null=True)
+    totalbtc = models.FloatField('TotalBTC', default=None, null=True)
+    totalusd = models.FloatField('TotalUSD', default=None, null=True)

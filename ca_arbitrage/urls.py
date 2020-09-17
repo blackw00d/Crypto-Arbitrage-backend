@@ -16,8 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from ca_arbitrage import views
-from ca_arbitrage.views import FiltersView
+from ca_arbitrage.views import ArbitrageView, BalanceView
 
 urlpatterns = [
-    path('arbitrage', FiltersView.as_view()),
+    path('arbitrage', ArbitrageView.as_view()),
+    path('balance', BalanceView.as_view()),
 ]

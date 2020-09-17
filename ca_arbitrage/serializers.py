@@ -1754,7 +1754,7 @@ class CoinexBiboxSerializer(serializers.ModelSerializer):
                   'link_b')
 
 
-class FiltersSerializers(serializers.Serializer):
+class ArbitrageSerializers(serializers.Serializer):
     binance_bittrex = BinanceBittrexSerializer(many=True)
     binance_hitbtc = BinanceHitbtcSerializer(many=True)
     binance_kucoin = BinanceKucoinSerializer(many=True)
@@ -1833,3 +1833,9 @@ class FiltersSerializers(serializers.Serializer):
     huobi_coinex = HuobiCoinexSerializer(many=True)
     huobi_bibox = HuobiBiboxSerializer(many=True)
     coinex_bibox = CoinexBiboxSerializer(many=True)
+
+
+class BalanceSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = UserBalance
+        fields = ('balance', 'totalbtc', 'totalusd')

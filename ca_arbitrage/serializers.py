@@ -22,8 +22,7 @@ class BinanceBittrexSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = BinanceBittrex
-        fields = (
-            'name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class BinanceHitbtcSerializer(serializers.ModelSerializer):
@@ -67,8 +66,7 @@ class BinanceKucoinSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = BinanceKucoin
-        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class BinanceLivecoinSerializer(serializers.ModelSerializer):
@@ -90,8 +88,7 @@ class BinanceLivecoinSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = BinanceLivecoin
-        fields = (
-            'name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class BinancePoloniexSerializer(serializers.ModelSerializer):
@@ -113,9 +110,7 @@ class BinancePoloniexSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = BinancePoloniex
-        fields = (
-            'name', 'price_a', 'binance_volume', 'price_b', 'poloniex_volume', 'profit', 'link_a',
-            'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class BinanceKrakenSerializer(serializers.ModelSerializer):
@@ -137,8 +132,7 @@ class BinanceKrakenSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = BinanceKraken
-        fields = ('name', 'price_a', 'binance_volume', 'price_b', 'kraken_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class BinanceOkexSerializer(serializers.ModelSerializer):
@@ -160,8 +154,7 @@ class BinanceOkexSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = BinanceOkex
-        fields = ('name', 'price_a', 'binance_volume', 'price_b', 'okex_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class BinanceGateioSerializer(serializers.ModelSerializer):
@@ -183,8 +176,7 @@ class BinanceGateioSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = BinanceGateio
-        fields = ('name', 'price_a', 'binance_volume', 'price_b', 'gateio_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class BinanceBitzSerializer(serializers.ModelSerializer):
@@ -206,8 +198,7 @@ class BinanceBitzSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = BinanceBitz
-        fields = ('name', 'price_a', 'binance_volume', 'price_b', 'bitz_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class BinanceHuobiSerializer(serializers.ModelSerializer):
@@ -229,8 +220,7 @@ class BinanceHuobiSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = BinanceHuobi
-        fields = ('name', 'price_a', 'binance_volume', 'price_b', 'huobi_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class BinanceCoinexSerializer(serializers.ModelSerializer):
@@ -252,8 +242,7 @@ class BinanceCoinexSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = BinanceCoinex
-        fields = ('name', 'price_a', 'binance_volume', 'price_b', 'coinex_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class BinanceBiboxSerializer(serializers.ModelSerializer):
@@ -275,8 +264,7 @@ class BinanceBiboxSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = BinanceBibox
-        fields = ('name', 'price_a', 'binance_volume', 'price_b', 'bibox_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class BittrexHitbtcSerializer(serializers.ModelSerializer):
@@ -298,8 +286,7 @@ class BittrexHitbtcSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = BittrexHitbtc
-        fields = ('name', 'price_a', 'bittrex_volume', 'price_b', 'hitbtc_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class BittrexKucoinSerializer(serializers.ModelSerializer):
@@ -321,8 +308,7 @@ class BittrexKucoinSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = BittrexKucoin
-        fields = ('name', 'price_a', 'bittrex_volume', 'price_b', 'kucoin_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class BittrexLivecoinSerializer(serializers.ModelSerializer):
@@ -345,9 +331,7 @@ class BittrexLivecoinSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = BittrexLivecoin
-        fields = (
-            'name', 'price_a', 'bittrex_volume', 'price_b', 'livecoin_volume', 'profit', 'link_a',
-            'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class BittrexPoloniexSerializer(serializers.ModelSerializer):
@@ -369,9 +353,7 @@ class BittrexPoloniexSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = BittrexPoloniex
-        fields = (
-            'name', 'price_a', 'bittrex_volume', 'price_b', 'poloniex_volume', 'profit', 'link_a',
-            'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class BittrexKrakenSerializer(serializers.ModelSerializer):
@@ -393,8 +375,7 @@ class BittrexKrakenSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = BittrexKraken
-        fields = ('name', 'price_a', 'bittrex_volume', 'price_b', 'kraken_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class BittrexOkexSerializer(serializers.ModelSerializer):
@@ -416,8 +397,7 @@ class BittrexOkexSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = BittrexOkex
-        fields = ('name', 'price_a', 'bittrex_volume', 'price_b', 'okex_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class BittrexGateioSerializer(serializers.ModelSerializer):
@@ -439,8 +419,7 @@ class BittrexGateioSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = BittrexGateio
-        fields = ('name', 'price_a', 'bittrex_volume', 'price_b', 'gateio_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class BittrexBitzSerializer(serializers.ModelSerializer):
@@ -462,8 +441,7 @@ class BittrexBitzSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = BittrexBitz
-        fields = ('name', 'price_a', 'bittrex_volume', 'price_b', 'bitz_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class BittrexHuobiSerializer(serializers.ModelSerializer):
@@ -485,8 +463,7 @@ class BittrexHuobiSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = BittrexHuobi
-        fields = ('name', 'price_a', 'bittrex_volume', 'price_b', 'huobi_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class BittrexCoinexSerializer(serializers.ModelSerializer):
@@ -508,8 +485,7 @@ class BittrexCoinexSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = BittrexCoinex
-        fields = ('name', 'price_a', 'bittrex_volume', 'price_b', 'coinex_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class BittrexBiboxSerializer(serializers.ModelSerializer):
@@ -531,8 +507,7 @@ class BittrexBiboxSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = BittrexBibox
-        fields = ('name', 'price_a', 'bittrex_volume', 'price_b', 'bibox_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class PoloniexHitbtcSerializer(serializers.ModelSerializer):
@@ -553,9 +528,7 @@ class PoloniexHitbtcSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = PoloniexHitbtc
-        fields = (
-            'name', 'price_a', 'poloniex_volume', 'price_b', 'hitbtc_volume', 'profit', 'link_a',
-            'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class PoloniexKucoinSerializer(serializers.ModelSerializer):
@@ -576,9 +549,7 @@ class PoloniexKucoinSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = PoloniexKucoin
-        fields = (
-            'name', 'price_a', 'poloniex_volume', 'price_b', 'kucoin_volume', 'profit', 'link_a',
-            'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class PoloniexLivecoinSerializer(serializers.ModelSerializer):
@@ -645,8 +616,7 @@ class PoloniexOkexSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = PoloniexOkex
-        fields = ('name', 'price_a', 'poloniex_volume', 'price_b', 'okex_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class PoloniexGateioSerializer(serializers.ModelSerializer):
@@ -667,9 +637,7 @@ class PoloniexGateioSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = PoloniexGateio
-        fields = (
-            'name', 'price_a', 'poloniex_volume', 'price_b', 'gateio_volume', 'profit', 'link_a',
-            'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class PoloniexBitzSerializer(serializers.ModelSerializer):
@@ -690,8 +658,7 @@ class PoloniexBitzSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = PoloniexBitz
-        fields = ('name', 'price_a', 'poloniex_volume', 'price_b', 'bitz_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class PoloniexHuobiSerializer(serializers.ModelSerializer):
@@ -712,8 +679,7 @@ class PoloniexHuobiSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = PoloniexHuobi
-        fields = ('name', 'price_a', 'poloniex_volume', 'price_b', 'huobi_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class PoloniexCoinexSerializer(serializers.ModelSerializer):
@@ -734,9 +700,7 @@ class PoloniexCoinexSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = PoloniexCoinex
-        fields = (
-            'name', 'price_a', 'poloniex_volume', 'price_b', 'coinex_volume', 'profit', 'link_a',
-            'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class PoloniexBiboxSerializer(serializers.ModelSerializer):
@@ -757,8 +721,7 @@ class PoloniexBiboxSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = PoloniexBibox
-        fields = ('name', 'price_a', 'poloniex_volume', 'price_b', 'bibox_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class HitbtcKucoinSerializer(serializers.ModelSerializer):
@@ -779,8 +742,7 @@ class HitbtcKucoinSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = HitbtcKucoin
-        fields = ('name', 'price_a', 'hitbtc_volume', 'price_b', 'kucoin_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class HitbtcLivecoinSerializer(serializers.ModelSerializer):
@@ -801,9 +763,7 @@ class HitbtcLivecoinSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = HitbtcLivecoin
-        fields = (
-            'name', 'price_a', 'hitbtc_volume', 'price_b', 'livecoin_volume', 'profit', 'link_a',
-            'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class HitbtckrakenSerializer(serializers.ModelSerializer):
@@ -824,8 +784,7 @@ class HitbtckrakenSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Hitbtckraken
-        fields = ('name', 'price_a', 'hitbtc_volume', 'price_b', 'kraken_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class HitbtcOkexSerializer(serializers.ModelSerializer):
@@ -846,8 +805,7 @@ class HitbtcOkexSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = HitbtcOkex
-        fields = ('name', 'price_a', 'hitbtc_volume', 'price_b', 'okex_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class HitbtcGateioSerializer(serializers.ModelSerializer):
@@ -868,8 +826,7 @@ class HitbtcGateioSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = HitbtcGateio
-        fields = ('name', 'price_a', 'hitbtc_volume', 'price_b', 'gateio_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class HitbtcBitzSerializer(serializers.ModelSerializer):
@@ -890,8 +847,7 @@ class HitbtcBitzSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = HitbtcBitz
-        fields = ('name', 'price_a', 'hitbtc_volume', 'price_b', 'bitz_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class HitbtcHuobiSerializer(serializers.ModelSerializer):
@@ -912,8 +868,7 @@ class HitbtcHuobiSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = HitbtcHuobi
-        fields = ('name', 'price_a', 'hitbtc_volume', 'price_b', 'huobi_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class HitbtcCoinexSerializer(serializers.ModelSerializer):
@@ -934,8 +889,7 @@ class HitbtcCoinexSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = HitbtcCoinex
-        fields = ('name', 'price_a', 'hitbtc_volume', 'price_b', 'coinex_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class HitbtcBiboxSerializer(serializers.ModelSerializer):
@@ -956,8 +910,7 @@ class HitbtcBiboxSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = HitbtcBibox
-        fields = ('name', 'price_a', 'hitbtc_volume', 'price_b', 'bibox_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class KucoinLivecoinSerializer(serializers.ModelSerializer):
@@ -978,8 +931,7 @@ class KucoinLivecoinSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = KucoinLivecoin
-        fields = ('name', 'price_a', 'kucoin_volume', 'price_b', 'livecoin_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class KucoinKrakenSerializer(serializers.ModelSerializer):
@@ -1000,8 +952,7 @@ class KucoinKrakenSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = KucoinKraken
-        fields = ('name', 'price_a', 'kucoin_volume', 'price_b', 'kraken_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class KucoinOkexSerializer(serializers.ModelSerializer):
@@ -1022,8 +973,7 @@ class KucoinOkexSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = KucoinOkex
-        fields = ('name', 'price_a', 'kucoin_volume', 'price_b', 'okex_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class KucoinGateioSerializer(serializers.ModelSerializer):
@@ -1044,8 +994,7 @@ class KucoinGateioSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = KucoinGateio
-        fields = ('name', 'price_a', 'kucoin_volume', 'price_b', 'gateio_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class KucoinBitzSerializer(serializers.ModelSerializer):
@@ -1066,8 +1015,7 @@ class KucoinBitzSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = KucoinBitz
-        fields = ('name', 'price_a', 'kucoin_volume', 'price_b', 'bitz_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class KucoinHuobiSerializer(serializers.ModelSerializer):
@@ -1088,8 +1036,7 @@ class KucoinHuobiSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = KucoinHuobi
-        fields = ('name', 'price_a', 'kucoin_volume', 'price_b', 'huobi_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class KucoinCoinexSerializer(serializers.ModelSerializer):
@@ -1110,8 +1057,7 @@ class KucoinCoinexSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = KucoinCoinex
-        fields = ('name', 'price_a', 'kucoin_volume', 'price_b', 'coinex_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class KucoinBiboxSerializer(serializers.ModelSerializer):
@@ -1132,8 +1078,7 @@ class KucoinBiboxSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = KucoinBibox
-        fields = ('name', 'price_a', 'kucoin_volume', 'price_b', 'bibox_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class LivecoinKrakenSerializer(serializers.ModelSerializer):
@@ -1154,9 +1099,7 @@ class LivecoinKrakenSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = LivecoinKraken
-        fields = (
-            'name', 'price_a', 'livecoin_volume', 'price_b', 'kraken_volume', 'profit', 'link_a',
-            'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class LivecoinOkexSerializer(serializers.ModelSerializer):
@@ -1177,8 +1120,7 @@ class LivecoinOkexSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = LivecoinOkex
-        fields = ('name', 'price_a', 'livecoin_volume', 'price_b', 'okex_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class LivecoinGateioSerializer(serializers.ModelSerializer):
@@ -1199,9 +1141,7 @@ class LivecoinGateioSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = LivecoinGateio
-        fields = (
-            'name', 'price_a', 'livecoin_volume', 'price_b', 'gateio_volume', 'profit', 'link_a',
-            'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class LivecoinBitzSerializer(serializers.ModelSerializer):
@@ -1222,8 +1162,7 @@ class LivecoinBitzSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = LivecoinBitz
-        fields = ('name', 'price_a', 'livecoin_volume', 'price_b', 'bitz_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class LivecoinHuobiSerializer(serializers.ModelSerializer):
@@ -1244,8 +1183,7 @@ class LivecoinHuobiSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = LivecoinHuobi
-        fields = ('name', 'price_a', 'livecoin_volume', 'price_b', 'huobi_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class LivecoinCoinexSerializer(serializers.ModelSerializer):
@@ -1266,9 +1204,7 @@ class LivecoinCoinexSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = LivecoinCoinex
-        fields = (
-            'name', 'price_a', 'livecoin_volume', 'price_b', 'coinex_volume', 'profit', 'link_a',
-            'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class LivecoinBiboxSerializer(serializers.ModelSerializer):
@@ -1289,8 +1225,7 @@ class LivecoinBiboxSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = LivecoinBibox
-        fields = ('name', 'price_a', 'livecoin_volume', 'price_b', 'bibox_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class KrakenOkexSerializer(serializers.ModelSerializer):
@@ -1311,8 +1246,7 @@ class KrakenOkexSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = KrakenOkex
-        fields = ('name', 'price_a', 'kraken_volume', 'price_b', 'okex_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class KrakenGateioSerializer(serializers.ModelSerializer):
@@ -1333,8 +1267,7 @@ class KrakenGateioSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = KrakenGateio
-        fields = ('name', 'price_a', 'kraken_volume', 'price_b', 'gateio_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class KrakenBitzSerializer(serializers.ModelSerializer):
@@ -1355,8 +1288,7 @@ class KrakenBitzSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = KrakenBitz
-        fields = ('name', 'price_a', 'kraken_volume', 'price_b', 'bitz_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class KrakenHuobiSerializer(serializers.ModelSerializer):
@@ -1377,8 +1309,7 @@ class KrakenHuobiSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = KrakenHuobi
-        fields = ('name', 'price_a', 'kraken_volume', 'price_b', 'huobi_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class KrakenCoinexSerializer(serializers.ModelSerializer):
@@ -1399,8 +1330,7 @@ class KrakenCoinexSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = KrakenCoinex
-        fields = ('name', 'price_a', 'kraken_volume', 'price_b', 'coinex_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class KrakenBiboxSerializer(serializers.ModelSerializer):
@@ -1421,8 +1351,7 @@ class KrakenBiboxSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = KrakenBibox
-        fields = ('name', 'price_a', 'kraken_volume', 'price_b', 'bibox_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class OkexGateioSerializer(serializers.ModelSerializer):
@@ -1443,8 +1372,7 @@ class OkexGateioSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = OkexGateio
-        fields = ('name', 'price_a', 'okex_volume', 'price_b', 'gateio_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class OkexBitzSerializer(serializers.ModelSerializer):
@@ -1465,8 +1393,7 @@ class OkexBitzSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = OkexBitz
-        fields = ('name', 'price_a', 'okex_volume', 'price_b', 'bitz_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class OkexHuobiSerializer(serializers.ModelSerializer):
@@ -1487,8 +1414,7 @@ class OkexHuobiSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = OkexHuobi
-        fields = ('name', 'price_a', 'okex_volume', 'price_b', 'huobi_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class OkexCoinexSerializer(serializers.ModelSerializer):
@@ -1509,8 +1435,7 @@ class OkexCoinexSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = OkexCoinex
-        fields = ('name', 'price_a', 'okex_volume', 'price_b', 'coinex_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class OkexBiboxSerializer(serializers.ModelSerializer):
@@ -1531,8 +1456,7 @@ class OkexBiboxSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = OkexBibox
-        fields = ('name', 'price_a', 'okex_volume', 'price_b', 'bibox_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class GateioBitzSerializer(serializers.ModelSerializer):
@@ -1553,8 +1477,7 @@ class GateioBitzSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = GateioBitz
-        fields = ('name', 'price_a', 'gateio_volume', 'price_b', 'bitz_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class GateioHuobiSerializer(serializers.ModelSerializer):
@@ -1575,8 +1498,7 @@ class GateioHuobiSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = GateioHuobi
-        fields = ('name', 'price_a', 'gateio_volume', 'price_b', 'huobi_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class GateioCoinexSerializer(serializers.ModelSerializer):
@@ -1597,8 +1519,7 @@ class GateioCoinexSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = GateioCoinex
-        fields = ('name', 'price_a', 'gateio_volume', 'price_b', 'coinex_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class GateioBiboxSerializer(serializers.ModelSerializer):
@@ -1619,8 +1540,7 @@ class GateioBiboxSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = GateioBibox
-        fields = ('name', 'price_a', 'gateio_volume', 'price_b', 'bibox_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class BitzHuobiSerializer(serializers.ModelSerializer):
@@ -1641,8 +1561,7 @@ class BitzHuobiSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = BitzHuobi
-        fields = ('name', 'price_a', 'bitz_volume', 'price_b', 'huobi_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class BitzCoinexSerializer(serializers.ModelSerializer):
@@ -1663,8 +1582,7 @@ class BitzCoinexSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = BitzCoinex
-        fields = ('name', 'price_a', 'bitz_volume', 'price_b', 'coinex_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class BitzBiboxSerializer(serializers.ModelSerializer):
@@ -1685,7 +1603,7 @@ class BitzBiboxSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = BitzBibox
-        fields = ('name', 'price_a', 'price_b', 'profit', 'link_b', 'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class HuobiCoinexSerializer(serializers.ModelSerializer):
@@ -1706,8 +1624,7 @@ class HuobiCoinexSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = HuobiCoinex
-        fields = ('name', 'price_a', 'huobi_volume', 'price_b', 'coinex_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class HuobiBiboxSerializer(serializers.ModelSerializer):
@@ -1728,8 +1645,7 @@ class HuobiBiboxSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = HuobiBibox
-        fields = ('name', 'price_a', 'huobi_volume', 'price_b', 'bibox_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class CoinexBiboxSerializer(serializers.ModelSerializer):
@@ -1750,8 +1666,7 @@ class CoinexBiboxSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CoinexBibox
-        fields = ('name', 'price_a', 'coinex_volume', 'price_b', 'bibox_volume', 'profit', 'link_a',
-                  'link_b')
+        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
 class ArbitrageSerializers(serializers.Serializer):
@@ -1835,7 +1750,100 @@ class ArbitrageSerializers(serializers.Serializer):
     coinex_bibox = CoinexBiboxSerializer(many=True)
 
 
-class BalanceSerializers(serializers.ModelSerializer):
+class BalanceSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserBalance
         fields = ('balance', 'totalbtc', 'totalusd')
+
+
+class CoinListingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CoinListing
+        fields = ('exchange', 'name', 'date')
+
+
+class BinanceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Binance
+        exclude = ('id', 'id_name', )
+
+
+class BittrexSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Bittrex
+        exclude = ('id', 'id_name', )
+
+
+class KucoinSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Kucoin
+        exclude = ('id', 'id_name', )
+
+
+class LivecoinSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Livecoin
+        exclude = ('id', 'id_name', )
+
+
+class HitbtcSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Hitbtc
+        fields = ('id', 'id_name', )
+
+
+class PoloniexSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Poloniex
+        exclude = ('id', 'id_name', )
+
+
+class KrakenSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Kraken
+        exclude = ('id', 'id_name', )
+
+
+class GateioSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Gateio
+        exclude = ('id', 'id_name', )
+
+
+class BitzSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Bitz
+        exclude = ('id', 'id_name', )
+
+
+class HuobiSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Huobi
+        exclude = ('id', 'id_name', )
+
+
+class CoinexSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Coinex
+        exclude = ('id', 'id_name', )
+
+
+class BiboxSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Bibox
+        exclude = ('id', 'id_name', )
+
+
+class ExchangeSerializers(serializers.Serializer):
+    binance = BinanceSerializer(many=True)
+    bittrex = BittrexSerializer(many=True)
+    hitbtc = HitbtcSerializer(many=True)
+    kucoin = KucoinSerializer(many=True)
+    livecoin = LivecoinSerializer(many=True)
+    poloniex = PoloniexSerializer(many=True)
+    kraken = KrakenSerializer(many=True)
+    gateio = GateioSerializer(many=True)
+    bitz = BitzSerializer(many=True)
+    huobi = HuobiSerializer(many=True)
+    coinex = CoinexSerializer(many=True)
+    bibox = BiboxSerializer(many=True)

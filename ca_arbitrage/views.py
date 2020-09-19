@@ -18,7 +18,6 @@ class ListingView(APIView):
     def get(self, request):
         listing = CoinListing.objects.all().order_by('date')
         serializer = CoinListingSerializer(listing, many=True)
-        print(serializer.data)
         return Response(serializer.data)
 
 
@@ -27,19 +26,19 @@ class ExchangeView(APIView):
 
     def get(self, request):
         filters = {}
-        filters['binance'] = Binance.objects.all()
-        filters['bittrex'] = Bittrex.objects.all()
-        filters['poloniex'] = Poloniex.objects.all()
-        filters['hitbtc'] = Hitbtc.objects.all()
-        filters['kucoin'] = Kucoin.objects.all()
-        filters['livecoin'] = Livecoin.objects.all()
-        filters['kraken'] = Kraken.objects.all()
-        filters['okex'] = Okex.objects.all()
-        filters['gateio'] = Gateio.objects.all()
-        filters['bitz'] = Bitz.objects.all()
-        filters['huobi'] = Huobi.objects.all()
-        filters['coinex'] = Coinex.objects.all()
-        filters['bibox'] = Bibox.objects.all()
+        filters['binance'] = Binance.objects.all().order_by('name')
+        filters['bittrex'] = Bittrex.objects.all().order_by('name')
+        filters['poloniex'] = Poloniex.objects.all().order_by('name')
+        filters['hitbtc'] = Hitbtc.objects.all().order_by('name')
+        filters['livecoin'] = Livecoin.objects.all().order_by('name')
+        filters['kucoin'] = Kucoin.objects.all().order_by('name')
+        filters['kraken'] = Kraken.objects.all().order_by('name')
+        filters['huobi'] = Huobi.objects.all().order_by('name')
+        filters['okex'] = Okex.objects.all().order_by('name')
+        filters['gateio'] = Gateio.objects.all().order_by('name')
+        filters['coinex'] = Coinex.objects.all().order_by('name')
+        filters['bitz'] = Bitz.objects.all().order_by('name')
+        filters['bibox'] = Bibox.objects.all().order_by('name')
         serializer = ExchangeSerializers(filters)
         return Response(serializer.data)
 

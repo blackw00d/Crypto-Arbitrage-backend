@@ -6,6 +6,7 @@ from .serializers import *
 
 
 class BalanceView(APIView):
+    permission_classes = (IsAuthenticated,)
 
     def get(self, request):
         balance = UserBalance.objects.get(user="blackw00d")
@@ -14,6 +15,7 @@ class BalanceView(APIView):
 
 
 class ListingView(APIView):
+    permission_classes = (IsAuthenticated,)
 
     def get(self, request):
         listing = CoinListing.objects.all().order_by('date')
@@ -22,7 +24,7 @@ class ListingView(APIView):
 
 
 class ExchangeView(APIView):
-    # permission_classes = [IsAuthenticated]
+    permission_classes = (IsAuthenticated,)
 
     def get(self, request):
         filters = {}
@@ -44,7 +46,7 @@ class ExchangeView(APIView):
 
 
 class ArbitrageView(APIView):
-    # permission_classes = [IsAuthenticated]
+    permission_classes = (IsAuthenticated,)
 
     def get(self, request):
         filters = {}

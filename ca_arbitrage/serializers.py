@@ -1804,21 +1804,21 @@ class KrakenSerializer(serializers.ModelSerializer):
         exclude = ('id', 'id_name', )
 
 
-class GateioSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Gateio
-        exclude = ('id', 'id_name', )
-
-
-class BitzSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Bitz
-        exclude = ('id', 'id_name', )
-
-
 class HuobiSerializer(serializers.ModelSerializer):
     class Meta:
         model = Huobi
+        exclude = ('id', 'id_name', )
+
+
+class OkexSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Okex
+        exclude = ('id', 'id_name', )
+
+
+class GateioSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Gateio
         exclude = ('id', 'id_name', )
 
 
@@ -1828,22 +1828,41 @@ class CoinexSerializer(serializers.ModelSerializer):
         exclude = ('id', 'id_name', )
 
 
+class BitzSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Bitz
+        exclude = ('id', 'id_name', )
+
+
 class BiboxSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bibox
         exclude = ('id', 'id_name', )
 
 
-class ExchangeSerializers(serializers.Serializer):
+class ExchangesSerializers(serializers.Serializer):
     binance = BinanceSerializer(many=True)
     bittrex = BittrexSerializer(many=True)
-    hitbtc = HitbtcSerializer(many=True)
-    kucoin = KucoinSerializer(many=True)
-    livecoin = LivecoinSerializer(many=True)
     poloniex = PoloniexSerializer(many=True)
+    hitbtc = HitbtcSerializer(many=True)
+    livecoin = LivecoinSerializer(many=True)
+    kucoin = KucoinSerializer(many=True)
     kraken = KrakenSerializer(many=True)
-    gateio = GateioSerializer(many=True)
-    bitz = BitzSerializer(many=True)
     huobi = HuobiSerializer(many=True)
+    okex = OkexSerializer(many=True)
+    gateio = GateioSerializer(many=True)
     coinex = CoinexSerializer(many=True)
+    bitz = BitzSerializer(many=True)
     bibox = BiboxSerializer(many=True)
+
+
+class TradingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Trading
+        fields = ('id', 'user', 'exchange', 'pair', 'amount', 'price', 'stoploss', 'trailingstoploss', 'takeprofit', 'trailingtakeprofit', 'trailingtakeprofitprocent', 'active', 'stoplossvalue', 'stoplosstrailingvalue', 'takeprofitvalue', 'takeprofittrailingvalue')
+
+
+class TrackingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tracking
+        fields = ('id', 'user', 'exchange', 'pair', 'price', 'pricechangevalue', 'pricechangeprocent', 'priceactive', 'volume', 'volumechangevalue', 'volumechangeprocent', 'volumeactive')

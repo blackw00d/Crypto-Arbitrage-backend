@@ -704,7 +704,7 @@ class CoinexBibox(models.Model):
 
 
 class UserBalance(models.Model):
-    user = models.CharField('Имя', max_length=50, default=None, null=True)
+    user = models.CharField('Имя', max_length=20, default=None, null=True)
     balance = models.TextField('Баланс', default=None, null=True)
     totalbtc = models.FloatField('TotalBTC', default=None, null=True)
     totalusd = models.FloatField('TotalUSD', default=None, null=True)
@@ -876,3 +876,35 @@ class Poloniex(models.Model):
     volume = models.CharField('Объем рынка', max_length=50, default=None, null=True)
     trading = models.CharField('Торговля', max_length=50, default=None, null=True)
     blocks = models.IntegerField('Блоки', default=None, null=True)
+
+
+class Trading(models.Model):
+    user = models.CharField('Имя', max_length=20, default=None, null=True)
+    exchange = models.CharField('Биржа', max_length=20, default=None, null=True)
+    pair = models.CharField('Пара', max_length=20, default=None, null=True)
+    amount = models.FloatField('Количество', default=0, null=True)
+    price = models.FloatField('Цена', default=0, null=True)
+    stoploss = models.FloatField('StopLoss', default=0, null=True)
+    trailingstoploss = models.IntegerField('TrailingStopLoss', default=0, null=True)
+    takeprofit = models.FloatField('TakeProfit', default=0, null=True)
+    trailingtakeprofit = models.IntegerField('TrailingTakeProfit', default=0, null=True)
+    trailingtakeprofitprocent = models.IntegerField('TrailingTakeProfitProcent', default=0, null=True)
+    active = models.IntegerField('TrailingTakeProfitProcent', default=0, null=True)
+    stoplossvalue = models.FloatField('StopLoss', default=0, null=True)
+    stoplosstrailingvalue = models.FloatField('StopLoss', default=0, null=True)
+    takeprofitvalue = models.FloatField('StopLoss', default=0, null=True)
+    takeprofittrailingvalue = models.FloatField('StopLoss', default=0, null=True)
+
+
+class Tracking(models.Model):
+    user = models.CharField('Имя', max_length=20, default=None, null=True)
+    exchange = models.CharField('Биржа', max_length=20, default=None, null=True)
+    pair = models.CharField('Пара', max_length=20, default=None, null=True)
+    price = models.FloatField('Цена', default=0, null=False)
+    pricechangevalue = models.FloatField('price_change_value', default=0, null=True)
+    pricechangeprocent = models.IntegerField('price_change_procent', default=0, null=True)
+    priceactive = models.IntegerField('price_active', default=0, null=True)
+    volume = models.FloatField('volume', default=0, null=False)
+    volumechangevalue = models.FloatField('volume_change_value', default=0, null=True)
+    volumechangeprocent = models.IntegerField('volume_change_procent', default=0, null=True)
+    volumeactive = models.IntegerField('volume_active', default=0, null=True)

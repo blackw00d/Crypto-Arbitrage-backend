@@ -2,6 +2,7 @@ from django.db import models
 
 
 class BinanceBittrex(models.Model):
+    """ Данные арбитражной торговли между биржами Binance - Bittrex """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     binance_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     bittrex_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -11,6 +12,7 @@ class BinanceBittrex(models.Model):
 
 
 class BinanceHitbtc(models.Model):
+    """ Данные арбитражной торговли между биржами Binance - Hitbtc """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     binance_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     hitbtc_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -20,6 +22,7 @@ class BinanceHitbtc(models.Model):
 
 
 class BinanceKucoin(models.Model):
+    """ Данные арбитражной торговли между биржами Binance - Kucoin """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     binance_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     kucoin_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -29,6 +32,7 @@ class BinanceKucoin(models.Model):
 
 
 class BinanceLivecoin(models.Model):
+    """ Данные арбитражной торговли между биржами Binance - Livecoin """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     binance_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     livecoin_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -38,6 +42,7 @@ class BinanceLivecoin(models.Model):
 
 
 class BinancePoloniex(models.Model):
+    """ Данные арбитражной торговли между биржами Binance - Poloniex """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     binance_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     poloniex_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -47,6 +52,7 @@ class BinancePoloniex(models.Model):
 
 
 class BinanceKraken(models.Model):
+    """ Данные арбитражной торговли между биржами Binance - Kraken """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     binance_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     kraken_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -56,6 +62,7 @@ class BinanceKraken(models.Model):
 
 
 class BinanceOkex(models.Model):
+    """ Данные арбитражной торговли между биржами Binance - Okex """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     binance_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     okex_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -65,6 +72,7 @@ class BinanceOkex(models.Model):
 
 
 class BinanceGateio(models.Model):
+    """ Данные арбитражной торговли между биржами Binance - Gateio """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     binance_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     gateio_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -74,6 +82,7 @@ class BinanceGateio(models.Model):
 
 
 class BinanceBitz(models.Model):
+    """ Данные арбитражной торговли между биржами Binance - Bitz """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     binance_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     bitz_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -83,6 +92,7 @@ class BinanceBitz(models.Model):
 
 
 class BinanceHuobi(models.Model):
+    """ Данные арбитражной торговли между биржами Binance - Huobi """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     binance_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     huobi_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -92,6 +102,7 @@ class BinanceHuobi(models.Model):
 
 
 class BinanceCoinex(models.Model):
+    """ Данные арбитражной торговли между биржами Binance - Coinex """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     binance_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     coinex_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -101,6 +112,7 @@ class BinanceCoinex(models.Model):
 
 
 class BinanceBibox(models.Model):
+    """ Данные арбитражной торговли между биржами Binance - Bibox """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     binance_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     bibox_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -110,6 +122,7 @@ class BinanceBibox(models.Model):
 
 
 class BittrexHitbtc(models.Model):
+    """ Данные арбитражной торговли между биржами Bittrex - Hitbtc """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     bittrex_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     hitbtc_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -119,6 +132,7 @@ class BittrexHitbtc(models.Model):
 
 
 class BittrexKucoin(models.Model):
+    """ Данные арбитражной торговли между биржами Bittrex - Kucoin """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     bittrex_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     kucoin_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -128,6 +142,7 @@ class BittrexKucoin(models.Model):
 
 
 class BittrexLivecoin(models.Model):
+    """ Данные арбитражной торговли между биржами Bittrex - Livecoin """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     bittrex_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     livecoin_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -137,6 +152,7 @@ class BittrexLivecoin(models.Model):
 
 
 class BittrexPoloniex(models.Model):
+    """ Данные арбитражной торговли между биржами Bittrex - Poloniex """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     bittrex_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     poloniex_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -146,6 +162,7 @@ class BittrexPoloniex(models.Model):
 
 
 class BittrexKraken(models.Model):
+    """ Данные арбитражной торговли между биржами Bittrex - Kraken """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     bittrex_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     kraken_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -155,6 +172,7 @@ class BittrexKraken(models.Model):
 
 
 class BittrexOkex(models.Model):
+    """ Данные арбитражной торговли между биржами Bittrex - Okex """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     bittrex_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     okex_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -164,6 +182,7 @@ class BittrexOkex(models.Model):
 
 
 class BittrexGateio(models.Model):
+    """ Данные арбитражной торговли между биржами Bittrex - Gateio """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     bittrex_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     gateio_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -173,6 +192,7 @@ class BittrexGateio(models.Model):
 
 
 class BittrexBitz(models.Model):
+    """ Данные арбитражной торговли между биржами Bittrex - Bitz """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     bittrex_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     bitz_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -182,6 +202,7 @@ class BittrexBitz(models.Model):
 
 
 class BittrexHuobi(models.Model):
+    """ Данные арбитражной торговли между биржами Bittrex - Huobi """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     bittrex_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     huobi_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -191,6 +212,7 @@ class BittrexHuobi(models.Model):
 
 
 class BittrexCoinex(models.Model):
+    """ Данные арбитражной торговли между биржами Bittrex - Coinex """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     bittrex_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     coinex_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -200,6 +222,7 @@ class BittrexCoinex(models.Model):
 
 
 class BittrexBibox(models.Model):
+    """ Данные арбитражной торговли между биржами Bittrex - Bibox """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     bittrex_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     bibox_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -209,6 +232,7 @@ class BittrexBibox(models.Model):
 
 
 class PoloniexHitbtc(models.Model):
+    """ Данные арбитражной торговли между биржами Poloniex - Hitbtc """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     poloniex_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     hitbtc_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -218,6 +242,7 @@ class PoloniexHitbtc(models.Model):
 
 
 class PoloniexKucoin(models.Model):
+    """ Данные арбитражной торговли между биржами Poloniex - Kucoin """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     poloniex_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     kucoin_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -227,6 +252,7 @@ class PoloniexKucoin(models.Model):
 
 
 class PoloniexLivecoin(models.Model):
+    """ Данные арбитражной торговли между биржами Poloniex - Livecoin """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     poloniex_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     livecoin_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -236,6 +262,7 @@ class PoloniexLivecoin(models.Model):
 
 
 class PoloniexKraken(models.Model):
+    """ Данные арбитражной торговли между биржами Poloniex - Kraken """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     poloniex_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     kraken_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -245,6 +272,7 @@ class PoloniexKraken(models.Model):
 
 
 class PoloniexOkex(models.Model):
+    """ Данные арбитражной торговли между биржами Poloniex - Okex """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     poloniex_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     okex_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -254,6 +282,7 @@ class PoloniexOkex(models.Model):
 
 
 class PoloniexGateio(models.Model):
+    """ Данные арбитражной торговли между биржами Poloniex - Gateio """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     poloniex_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     gateio_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -263,6 +292,7 @@ class PoloniexGateio(models.Model):
 
 
 class PoloniexBitz(models.Model):
+    """ Данные арбитражной торговли между биржами Poloniex - Bitz """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     poloniex_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     bitz_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -272,6 +302,7 @@ class PoloniexBitz(models.Model):
 
 
 class PoloniexHuobi(models.Model):
+    """ Данные арбитражной торговли между биржами Poloniex - Huobi """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     poloniex_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     huobi_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -281,6 +312,7 @@ class PoloniexHuobi(models.Model):
 
 
 class PoloniexCoinex(models.Model):
+    """ Данные арбитражной торговли между биржами Poloniex - Coinex """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     poloniex_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     coinex_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -290,6 +322,7 @@ class PoloniexCoinex(models.Model):
 
 
 class PoloniexBibox(models.Model):
+    """ Данные арбитражной торговли между биржами Poloniex - Bibox """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     poloniex_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     bibox_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -299,6 +332,7 @@ class PoloniexBibox(models.Model):
 
 
 class HitbtcKucoin(models.Model):
+    """ Данные арбитражной торговли между биржами Hitbtc - Kucoin """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     hitbtc_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     kucoin_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -308,6 +342,7 @@ class HitbtcKucoin(models.Model):
 
 
 class HitbtcLivecoin(models.Model):
+    """ Данные арбитражной торговли между биржами Hitbtc - Livecoin """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     hitbtc_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     livecoin_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -317,6 +352,7 @@ class HitbtcLivecoin(models.Model):
 
 
 class Hitbtckraken(models.Model):
+    """ Данные арбитражной торговли между биржами Hitbtc - kraken """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     hitbtc_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     kraken_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -326,6 +362,7 @@ class Hitbtckraken(models.Model):
 
 
 class HitbtcOkex(models.Model):
+    """ Данные арбитражной торговли между биржами Hitbtc - Okex """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     hitbtc_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     okex_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -335,6 +372,7 @@ class HitbtcOkex(models.Model):
 
 
 class HitbtcGateio(models.Model):
+    """ Данные арбитражной торговли между биржами Hitbtc - Gateio """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     hitbtc_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     gateio_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -344,6 +382,7 @@ class HitbtcGateio(models.Model):
 
 
 class HitbtcBitz(models.Model):
+    """ Данные арбитражной торговли между биржами Hitbtc - Bitz """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     hitbtc_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     bitz_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -353,6 +392,7 @@ class HitbtcBitz(models.Model):
 
 
 class HitbtcHuobi(models.Model):
+    """ Данные арбитражной торговли между биржами Hitbtc - Huobi """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     hitbtc_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     huobi_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -362,6 +402,7 @@ class HitbtcHuobi(models.Model):
 
 
 class HitbtcCoinex(models.Model):
+    """ Данные арбитражной торговли между биржами Hitbtc - Coinex """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     hitbtc_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     coinex_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -371,6 +412,7 @@ class HitbtcCoinex(models.Model):
 
 
 class HitbtcBibox(models.Model):
+    """ Данные арбитражной торговли между биржами Hitbtc - Bibox """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     hitbtc_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     bibox_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -380,6 +422,7 @@ class HitbtcBibox(models.Model):
 
 
 class KucoinLivecoin(models.Model):
+    """ Данные арбитражной торговли между биржами Kucoin - Livecoin """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     kucoin_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     livecoin_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -389,6 +432,7 @@ class KucoinLivecoin(models.Model):
 
 
 class KucoinKraken(models.Model):
+    """ Данные арбитражной торговли между биржами Kucoin - Kraken """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     kucoin_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     kraken_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -398,6 +442,7 @@ class KucoinKraken(models.Model):
 
 
 class KucoinOkex(models.Model):
+    """ Данные арбитражной торговли между биржами Kucoin - Okex """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     kucoin_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     okex_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -407,6 +452,7 @@ class KucoinOkex(models.Model):
 
 
 class KucoinGateio(models.Model):
+    """ Данные арбитражной торговли между биржами Kucoin - Gateio """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     kucoin_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     gateio_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -416,6 +462,7 @@ class KucoinGateio(models.Model):
 
 
 class KucoinBitz(models.Model):
+    """ Данные арбитражной торговли между биржами Kucoin - Bitz """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     kucoin_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     bitz_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -425,6 +472,7 @@ class KucoinBitz(models.Model):
 
 
 class KucoinHuobi(models.Model):
+    """ Данные арбитражной торговли между биржами Kucoin - Huobi """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     kucoin_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     huobi_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -434,6 +482,7 @@ class KucoinHuobi(models.Model):
 
 
 class KucoinCoinex(models.Model):
+    """ Данные арбитражной торговли между биржами Kucoin - Coinex """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     kucoin_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     coinex_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -443,6 +492,7 @@ class KucoinCoinex(models.Model):
 
 
 class KucoinBibox(models.Model):
+    """ Данные арбитражной торговли между биржами Kucoin - Bibox """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     kucoin_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     bibox_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -452,6 +502,7 @@ class KucoinBibox(models.Model):
 
 
 class LivecoinKraken(models.Model):
+    """ Данные арбитражной торговли между биржами Livecoin - Kraken """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     livecoin_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     kraken_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -461,6 +512,7 @@ class LivecoinKraken(models.Model):
 
 
 class LivecoinOkex(models.Model):
+    """ Данные арбитража бирж Livecoin - Okex """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     livecoin_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     okex_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -470,6 +522,7 @@ class LivecoinOkex(models.Model):
 
 
 class LivecoinGateio(models.Model):
+    """ Данные арбитражной торговли между биржами Livecoin - Gateio """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     livecoin_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     gateio_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -479,6 +532,7 @@ class LivecoinGateio(models.Model):
 
 
 class LivecoinBitz(models.Model):
+    """ Данные арбитражной торговли между биржами Livecoin - Bitz """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     livecoin_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     bitz_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -488,6 +542,7 @@ class LivecoinBitz(models.Model):
 
 
 class LivecoinHuobi(models.Model):
+    """ Данные арбитражной торговли между биржами Livecoin - Huobi """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     livecoin_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     huobi_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -497,6 +552,7 @@ class LivecoinHuobi(models.Model):
 
 
 class LivecoinCoinex(models.Model):
+    """ Данные арбитражной торговли между биржами Livecoin - Coinex """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     livecoin_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     coinex_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -506,6 +562,7 @@ class LivecoinCoinex(models.Model):
 
 
 class LivecoinBibox(models.Model):
+    """ Данные арбитражной торговли между биржами Livecoin - Bibox """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     livecoin_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     bibox_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -515,6 +572,7 @@ class LivecoinBibox(models.Model):
 
 
 class KrakenOkex(models.Model):
+    """ Данные арбитражной торговли между биржами Kraken - Okex """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     kraken_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     okex_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -524,6 +582,7 @@ class KrakenOkex(models.Model):
 
 
 class KrakenGateio(models.Model):
+    """ Данные арбитражной торговли между биржами Kraken - Gateio """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     kraken_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     gateio_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -533,6 +592,7 @@ class KrakenGateio(models.Model):
 
 
 class KrakenBitz(models.Model):
+    """ Данные арбитражной торговли между биржами Kraken - Bitz """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     kraken_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     bitz_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -542,6 +602,7 @@ class KrakenBitz(models.Model):
 
 
 class KrakenHuobi(models.Model):
+    """ Данные арбитражной торговли между биржами Kraken - Huobi """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     kraken_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     huobi_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -551,6 +612,7 @@ class KrakenHuobi(models.Model):
 
 
 class KrakenCoinex(models.Model):
+    """ Данные арбитражной торговли между биржами Kraken - Coinex """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     kraken_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     coinex_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -560,6 +622,7 @@ class KrakenCoinex(models.Model):
 
 
 class KrakenBibox(models.Model):
+    """ Данные арбитражной торговли между биржами Kraken - Bibox """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     kraken_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     bibox_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -569,6 +632,7 @@ class KrakenBibox(models.Model):
 
 
 class OkexGateio(models.Model):
+    """ Данные арбитражной торговли между биржами Okex - Gateio """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     okex_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     gateio_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -578,6 +642,7 @@ class OkexGateio(models.Model):
 
 
 class OkexBitz(models.Model):
+    """ Данные арбитражной торговли между биржами Okex - Bitz """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     okex_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     bitz_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -587,6 +652,7 @@ class OkexBitz(models.Model):
 
 
 class OkexHuobi(models.Model):
+    """ Данные арбитражной торговли между биржами Okex - Huobi """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     okex_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     huobi_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -596,6 +662,7 @@ class OkexHuobi(models.Model):
 
 
 class OkexCoinex(models.Model):
+    """ Данные арбитражной торговли между биржами Okex - Coinex """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     okex_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     coinex_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -605,6 +672,7 @@ class OkexCoinex(models.Model):
 
 
 class OkexBibox(models.Model):
+    """ Данные арбитражной торговли между биржами Okex - Bibox """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     okex_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     bibox_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -614,6 +682,7 @@ class OkexBibox(models.Model):
 
 
 class GateioBitz(models.Model):
+    """ Данные арбитражной торговли между биржами Gateio - Bitz """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     gateio_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     bitz_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -623,6 +692,7 @@ class GateioBitz(models.Model):
 
 
 class GateioHuobi(models.Model):
+    """ Данные арбитражной торговли между биржами Gateio - Huobi """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     gateio_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     huobi_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -632,6 +702,7 @@ class GateioHuobi(models.Model):
 
 
 class GateioCoinex(models.Model):
+    """ Данные арбитражной торговли между биржами Gateio - Coinex """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     gateio_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     coinex_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -641,6 +712,7 @@ class GateioCoinex(models.Model):
 
 
 class GateioBibox(models.Model):
+    """ Данные арбитражной торговли между биржами Gateio - Bibox """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     gateio_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     bibox_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -650,6 +722,7 @@ class GateioBibox(models.Model):
 
 
 class BitzHuobi(models.Model):
+    """ Данные арбитражной торговли между биржами Bitz - Huobi """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     bitz_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     huobi_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -659,6 +732,7 @@ class BitzHuobi(models.Model):
 
 
 class BitzCoinex(models.Model):
+    """ Данные арбитражной торговли между биржами Bitz - Coinex """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     bitz_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     coinex_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -668,6 +742,7 @@ class BitzCoinex(models.Model):
 
 
 class BitzBibox(models.Model):
+    """ Данные арбитражной торговли между биржами Bitz - Bibox """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     bitz_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     bibox_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -677,6 +752,7 @@ class BitzBibox(models.Model):
 
 
 class HuobiCoinex(models.Model):
+    """ Данные арбитражной торговли между биржами Huobi - Coinex """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     huobi_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     coinex_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -686,6 +762,7 @@ class HuobiCoinex(models.Model):
 
 
 class HuobiBibox(models.Model):
+    """ Данные арбитражной торговли между биржами Huobi - Bibox """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     huobi_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     bibox_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -695,6 +772,7 @@ class HuobiBibox(models.Model):
 
 
 class CoinexBibox(models.Model):
+    """ Данные арбитражной торговли между биржами Coinex - Bibox """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     coinex_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     bibox_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
@@ -704,6 +782,7 @@ class CoinexBibox(models.Model):
 
 
 class UserBalance(models.Model):
+    """ Данные баланса пользователей """
     user = models.CharField('Имя', max_length=20, default=None, null=True)
     balance = models.TextField('Баланс', default=None, null=True)
     totalbtc = models.FloatField('TotalBTC', default=None, null=True)
@@ -711,12 +790,14 @@ class UserBalance(models.Model):
 
 
 class CoinListing(models.Model):
+    """ Список новых монет, выходящих на биржах """
     exchange = models.CharField('Биржа', max_length=50, default=None, null=True)
     name = models.CharField('Монета', max_length=200, default=None, null=True)
     date = models.DateField('Дата', default=None, null=True)
 
 
-class Binance(models.Model):
+class ExchangeModel(models.Model):
+    """ Базовая модель биржи """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
     id_name = models.CharField('Монета', max_length=50, default=None, null=True)
     price = models.FloatField('Цена', default=None, null=True)
@@ -725,160 +806,84 @@ class Binance(models.Model):
     bid = models.FloatField('Цена покупки', default=None, null=True)
     bid_volume = models.FloatField('Объем покупки', default=None, null=True)
     volume = models.CharField('Объем рынка', max_length=50, default=None, null=True)
+
+    class Meta:
+        abstract = True
+
+
+class Binance(ExchangeModel):
+    """ Данные монет на бирже Binance """
     trading = models.CharField('Объем рынка', max_length=50, default=None, null=True)
     deposit = models.CharField('Пополнение', max_length=55, default=None, null=True)
     withdraw = models.CharField('Вывод', max_length=55, default=None, null=True)
 
 
-class Bittrex(models.Model):
-    name = models.CharField('Имя', max_length=50, default=None, null=True)
-    id_name = models.CharField('Монета', max_length=50, default=None, null=True)
-    price = models.FloatField('Цена', default=None, null=True)
-    ask = models.FloatField('Цена продажи', default=None, null=True)
-    ask_volume = models.FloatField('Объем продажи', default=None, null=True)
-    bid = models.FloatField('Цена покупки', default=None, null=True)
-    bid_volume = models.FloatField('Объем покупки', default=None, null=True)
-    volume = models.CharField('Объем рынка', max_length=50, default=None, null=True)
+class Bittrex(ExchangeModel):
+    """ Данные монет на бирже Bittrex """
     trading = models.CharField('Объем рынка', max_length=50, default=None, null=True)
 
 
-class Bibox(models.Model):
-    name = models.CharField('Имя', max_length=50, default=None, null=True)
-    id_name = models.CharField('Монета', max_length=50, default=None, null=True)
-    price = models.FloatField('Цена', default=None, null=True)
-    ask = models.FloatField('Цена продажи', default=None, null=True)
-    ask_volume = models.FloatField('Объем продажи', default=None, null=True)
-    bid = models.FloatField('Цена покупки', default=None, null=True)
-    bid_volume = models.FloatField('Объем покупки', default=None, null=True)
-    volume = models.CharField('Объем рынка', max_length=50, default=None, null=True)
+class Bibox(ExchangeModel):
+    """ Данные монет на бирже Bibox """
     deposit = models.CharField('Пополнение', max_length=50, default=None, null=True)
     withdraw = models.CharField('Вывод', max_length=50, default=None, null=True)
 
 
-class Bitz(models.Model):
-    name = models.CharField('Имя', max_length=50, default=None, null=True)
-    id_name = models.CharField('Монета', max_length=50, default=None, null=True)
-    price = models.FloatField('Цена', default=None, null=True)
-    ask = models.FloatField('Цена продажи', default=None, null=True)
-    ask_volume = models.FloatField('Объем продажи', default=None, null=True)
-    bid = models.FloatField('Цена покупки', default=None, null=True)
-    bid_volume = models.FloatField('Объем покупки', default=None, null=True)
-    volume = models.CharField('Объем рынка', max_length=50, default=None, null=True)
+class Bitz(ExchangeModel):
+    """ Данные монет на бирже Bitz """
     deposit = models.CharField('Пополнение', max_length=50, default=None, null=True)
     withdraw = models.CharField('Вывод', max_length=50, default=None, null=True)
 
 
-class Coinex(models.Model):
-    name = models.CharField('Имя', max_length=50, default=None, null=True)
-    id_name = models.CharField('Монета', max_length=50, default=None, null=True)
-    price = models.FloatField('Цена', default=None, null=True)
-    ask = models.FloatField('Цена продажи', default=None, null=True)
-    ask_volume = models.FloatField('Объем продажи', default=None, null=True)
-    bid = models.FloatField('Цена покупки', default=None, null=True)
-    bid_volume = models.FloatField('Объем покупки', default=None, null=True)
-    volume = models.CharField('Объем рынка', max_length=50, default=None, null=True)
-
-
-class Gateio(models.Model):
-    name = models.CharField('Имя', max_length=50, default=None, null=True)
-    id_name = models.CharField('Монета', max_length=50, default=None, null=True)
-    price = models.FloatField('Цена', default=None, null=True)
-    ask = models.FloatField('Цена продажи', default=None, null=True)
-    ask_volume = models.FloatField('Объем продажи', default=None, null=True)
-    bid = models.FloatField('Цена покупки', default=None, null=True)
-    bid_volume = models.FloatField('Объем покупки', default=None, null=True)
-    volume = models.CharField('Объем рынка', max_length=50, default=None, null=True)
+class Gateio(ExchangeModel):
+    """ Данные монет на бирже Gateio """
     deposit = models.CharField('Пополнение', max_length=50, default=None, null=True)
     withdraw = models.CharField('Вывод', max_length=50, default=None, null=True)
 
 
-class Hitbtc(models.Model):
-    name = models.CharField('Имя', max_length=50, default=None, null=True)
-    id_name = models.CharField('Монета', max_length=50, default=None, null=True)
-    price = models.FloatField('Цена', default=None, null=True)
-    ask = models.FloatField('Цена продажи', default=None, null=True)
-    ask_volume = models.FloatField('Объем продажи', default=None, null=True)
-    bid = models.FloatField('Цена покупки', default=None, null=True)
-    bid_volume = models.FloatField('Объем покупки', default=None, null=True)
-    volume = models.CharField('Объем рынка', max_length=50, default=None, null=True)
+class Coinex(ExchangeModel):
+    """ Данные монет на бирже Coinex """
+
+
+class Hitbtc(ExchangeModel):
+    """ Данные монет на бирже Hitbtc """
     deposit = models.CharField('Пополнение', max_length=50, default=None, null=True)
     withdraw = models.CharField('Вывод', max_length=50, default=None, null=True)
     blocks = models.IntegerField('Блоки', default=None, null=True)
 
 
-class Okex(models.Model):
-    name = models.CharField('Имя', max_length=50, default=None, null=True)
-    id_name = models.CharField('Монета', max_length=50, default=None, null=True)
-    price = models.FloatField('Цена', default=None, null=True)
-    ask = models.FloatField('Цена продажи', default=None, null=True)
-    ask_volume = models.FloatField('Объем продажи', default=None, null=True)
-    bid = models.FloatField('Цена покупки', default=None, null=True)
-    bid_volume = models.FloatField('Объем покупки', default=None, null=True)
-    volume = models.CharField('Объем рынка', max_length=50, default=None, null=True)
+class Okex(ExchangeModel):
+    """ Данные монет на бирже Okex """
 
 
-class Huobi(models.Model):
-    name = models.CharField('Имя', max_length=50, default=None, null=True)
-    id_name = models.CharField('Монета', max_length=50, default=None, null=True)
-    price = models.FloatField('Цена', default=None, null=True)
-    ask = models.FloatField('Цена продажи', default=None, null=True)
-    ask_volume = models.FloatField('Объем продажи', default=None, null=True)
-    bid = models.FloatField('Цена покупки', default=None, null=True)
-    bid_volume = models.FloatField('Объем покупки', default=None, null=True)
-    volume = models.CharField('Объем рынка', max_length=50, default=None, null=True)
+class Huobi(ExchangeModel):
+    """ Данные монет на бирже Huobi """
     deposit = models.CharField('Пополнение', max_length=50, default=None, null=True)
     withdraw = models.CharField('Вывод', max_length=50, default=None, null=True)
 
 
-class Kraken(models.Model):
-    name = models.CharField('Имя', max_length=50, default=None, null=True)
-    id_name = models.CharField('Монета', max_length=50, default=None, null=True)
-    price = models.FloatField('Цена', default=None, null=True)
-    ask = models.FloatField('Цена продажи', default=None, null=True)
-    ask_volume = models.FloatField('Объем продажи', default=None, null=True)
-    bid = models.FloatField('Цена покупки', default=None, null=True)
-    bid_volume = models.FloatField('Объем покупки', default=None, null=True)
-    volume = models.CharField('Объем рынка', max_length=50, default=None, null=True)
+class Kraken(ExchangeModel):
+    """ Данные монет на бирже Kraken """
 
 
-class Kucoin(models.Model):
-    name = models.CharField('Имя', max_length=50, default=None, null=True)
-    id_name = models.CharField('Монета', max_length=50, default=None, null=True)
-    price = models.FloatField('Цена', default=None, null=True)
-    ask = models.FloatField('Цена продажи', default=None, null=True)
-    ask_volume = models.FloatField('Объем продажи', default=None, null=True)
-    bid = models.FloatField('Цена покупки', default=None, null=True)
-    bid_volume = models.FloatField('Объем покупки', default=None, null=True)
-    volume = models.CharField('Объем рынка', max_length=50, default=None, null=True)
+class Kucoin(ExchangeModel):
+    """ Данные монет на бирже Kucoin """
     trading = models.CharField('Торговля', max_length=50, default=None, null=True)
 
 
-class Livecoin(models.Model):
-    name = models.CharField('Имя', max_length=50, default=None, null=True)
-    id_name = models.CharField('Монета', max_length=50, default=None, null=True)
-    price = models.FloatField('Цена', default=None, null=True)
-    ask = models.FloatField('Цена продажи', default=None, null=True)
-    ask_volume = models.FloatField('Объем продажи', default=None, null=True)
-    bid = models.FloatField('Цена покупки', default=None, null=True)
-    bid_volume = models.FloatField('Объем покупки', default=None, null=True)
-    volume = models.CharField('Объем рынка', max_length=50, default=None, null=True)
+class Livecoin(ExchangeModel):
+    """ Данные монет на бирже Livecoin """
     trading = models.CharField('Торговля', max_length=50, default=None, null=True)
 
 
-class Poloniex(models.Model):
-    name = models.CharField('Имя', max_length=50, default=None, null=True)
-    id_name = models.CharField('Монета', max_length=50, default=None, null=True)
-    price = models.FloatField('Цена', default=None, null=True)
-    ask = models.FloatField('Цена продажи', default=None, null=True)
-    ask_volume = models.FloatField('Объем продажи', default=None, null=True)
-    bid = models.FloatField('Цена покупки', default=None, null=True)
-    bid_volume = models.FloatField('Объем покупки', default=None, null=True)
-    volume = models.CharField('Объем рынка', max_length=50, default=None, null=True)
+class Poloniex(ExchangeModel):
+    """ Данные монет на бирже Poloniex """
     trading = models.CharField('Торговля', max_length=50, default=None, null=True)
     blocks = models.IntegerField('Блоки', default=None, null=True)
 
 
 class Trading(models.Model):
+    """ Сигналы продажи выбранных пар монет по выбранным показателям дохода """
     user = models.CharField('Имя', max_length=20, default=None, null=True)
     exchange = models.CharField('Биржа', max_length=20, default=None, null=True)
     pair = models.CharField('Пара', max_length=20, default=None, null=True)
@@ -897,6 +902,7 @@ class Trading(models.Model):
 
 
 class Tracking(models.Model):
+    """ Отслеживание изменения показателей торговых пар монет на биржах """
     user = models.CharField('Имя', max_length=20, default=None, null=True)
     exchange = models.CharField('Биржа', max_length=20, default=None, null=True)
     pair = models.CharField('Пара', max_length=20, default=None, null=True)

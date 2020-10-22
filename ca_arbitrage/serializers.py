@@ -1789,7 +1789,7 @@ class LivecoinSerializer(serializers.ModelSerializer):
 class HitbtcSerializer(serializers.ModelSerializer):
     class Meta:
         model = Hitbtc
-        fields = ('id', 'id_name',)
+        exclude = ('id', 'id_name',)
 
 
 class PoloniexSerializer(serializers.ModelSerializer):

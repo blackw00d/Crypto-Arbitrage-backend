@@ -69,28 +69,6 @@ class BinanceKucoinSerializer(serializers.ModelSerializer):
         fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
-class BinanceLivecoinSerializer(serializers.ModelSerializer):
-    link_a = serializers.SerializerMethodField('binancelink')
-    link_b = serializers.SerializerMethodField('livecoinlink')
-    price_a = serializers.CharField(source='binance_price')
-    price_b = serializers.CharField(source='livecoin_price')
-
-    def binancelink(self, exchange):
-        name = exchange.name.split('-', 1)
-        namea = "BCC" if name[1] == "BCH" else name[1]
-        link = f'https://www.binance.com/ru/trade/{namea}_{name[0]}'
-        return link
-
-    def livecoinlink(self, exchange):
-        name = exchange.name.split('-', 1)
-        link = f'https://www.livecoin.net/ru/trade/index?currencyPair={name[1]}%2F{name[0]}'
-        return link
-
-    class Meta:
-        model = BinanceLivecoin
-        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
-
-
 class BinancePoloniexSerializer(serializers.ModelSerializer):
     link_a = serializers.SerializerMethodField('binancelink')
     link_b = serializers.SerializerMethodField('poloniexlink')
@@ -308,29 +286,6 @@ class BittrexKucoinSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = BittrexKucoin
-        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
-
-
-class BittrexLivecoinSerializer(serializers.ModelSerializer):
-    link_a = serializers.SerializerMethodField('bittrexlink')
-    link_b = serializers.SerializerMethodField('livecoinlink')
-    price_a = serializers.CharField(source='bittrex_price')
-    price_b = serializers.CharField(source='livecoin_price')
-
-    def bittrexlink(self, exchange):
-        name = exchange.name.split('-', 1)
-        namea = "BCC" if name[1] == "BCH" else name[1]
-        link = f'https://bittrex.com/Market/Index?MarketName={name[0]}-{namea}'
-        return link
-
-    def livecoinlink(self, exchange):
-        name = exchange.name.split('-', 1)
-        namea = "BCC" if name[1] == "BCH" else name[1]
-        link = f'https://www.livecoin.net/ru/trade/index?currencyPair={namea}%2F{name[0]}'
-        return link
-
-    class Meta:
-        model = BittrexLivecoin
         fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
@@ -552,29 +507,6 @@ class PoloniexKucoinSerializer(serializers.ModelSerializer):
         fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
-class PoloniexLivecoinSerializer(serializers.ModelSerializer):
-    link_a = serializers.SerializerMethodField('poloniexlink')
-    link_b = serializers.SerializerMethodField('livecoinlink')
-    price_a = serializers.CharField(source='poloniex_price')
-    price_b = serializers.CharField(source='livecoin_price')
-
-    def poloniexlink(self, exchange):
-        name = exchange.name.split('-', 1)
-        link = f'https://poloniex.com/exchange#{name[0]}_{name[1]}'
-        return link
-
-    def livecoinlink(self, exchange):
-        name = exchange.name.split('-', 1)
-        link = f'https://www.livecoin.net/ru/trade/index?currencyPair={name[1]}%2F{name[0]}'
-        return link
-
-    class Meta:
-        model = PoloniexLivecoin
-        fields = (
-            'name', 'price_a', 'poloniex_volume', 'price_b', 'livecoin_volume', 'profit', 'link_a',
-            'link_b')
-
-
 class PoloniexKrakenSerializer(serializers.ModelSerializer):
     link_a = serializers.SerializerMethodField('poloniexlink')
     link_b = serializers.SerializerMethodField('krakenlink')
@@ -745,27 +677,6 @@ class HitbtcKucoinSerializer(serializers.ModelSerializer):
         fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
-class HitbtcLivecoinSerializer(serializers.ModelSerializer):
-    link_a = serializers.SerializerMethodField('hitbtclink')
-    link_b = serializers.SerializerMethodField('livecoinlink')
-    price_a = serializers.CharField(source='hitbtc_price')
-    price_b = serializers.CharField(source='livecoin_price')
-
-    def hitbtclink(self, exchange):
-        name = exchange.name.split('-', 1)
-        link = f'https://hitbtc.com/exchange/{name[1]}-to-{name[0]}'
-        return link
-
-    def livecoinlink(self, exchange):
-        name = exchange.name.split('-', 1)
-        link = f'https://www.livecoin.net/ru/trade/index?currencyPair={name[1]}%2F{name[0]}'
-        return link
-
-    class Meta:
-        model = HitbtcLivecoin
-        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
-
-
 class HitbtckrakenSerializer(serializers.ModelSerializer):
     link_a = serializers.SerializerMethodField('hitbtclink')
     link_b = serializers.SerializerMethodField('krakenlink')
@@ -913,27 +824,6 @@ class HitbtcBiboxSerializer(serializers.ModelSerializer):
         fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
-class KucoinLivecoinSerializer(serializers.ModelSerializer):
-    link_a = serializers.SerializerMethodField('kucoinlink')
-    link_b = serializers.SerializerMethodField('livecoinlink')
-    price_a = serializers.CharField(source='kucoin_price')
-    price_b = serializers.CharField(source='livecoin_price')
-
-    def kucoinlink(self, exchange):
-        name = exchange.name.split('-', 1)
-        link = f'https://www.kucoin.com/#/trade.pro/{name[1]}-{name[0]}'
-        return link
-
-    def livecoinlink(self, exchange):
-        name = exchange.name.split('-', 1)
-        link = f'https://www.livecoin.net/ru/trade/index?currencyPair={name[1]}%2F{name[0]}'
-        return link
-
-    class Meta:
-        model = KucoinLivecoin
-        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
-
-
 class KucoinKrakenSerializer(serializers.ModelSerializer):
     link_a = serializers.SerializerMethodField('kucoinlink')
     link_b = serializers.SerializerMethodField('krakenlink')
@@ -1078,153 +968,6 @@ class KucoinBiboxSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = KucoinBibox
-        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
-
-
-class LivecoinKrakenSerializer(serializers.ModelSerializer):
-    link_a = serializers.SerializerMethodField('livecoinlink')
-    link_b = serializers.SerializerMethodField('krakenlink')
-    price_a = serializers.CharField(source='livecoin_price')
-    price_b = serializers.CharField(source='kraken_price')
-
-    def livecoinlink(self, exchange):
-        name = exchange.name.split('-', 1)
-        link = f'https://www.livecoin.net/ru/trade/index?currencyPair={name[1]}%2F{name[0]}'
-        return link
-
-    def krakenlink(self, exchange):
-        name = exchange.name.split('-', 1)
-        link = f'https://trade.kraken.com/markets/kraken/{name[1].lower()}/{name[0].lower()}'
-        return link
-
-    class Meta:
-        model = LivecoinKraken
-        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
-
-
-class LivecoinOkexSerializer(serializers.ModelSerializer):
-    link_a = serializers.SerializerMethodField('livecoinlink')
-    link_b = serializers.SerializerMethodField('okexlink')
-    price_a = serializers.CharField(source='livecoin_price')
-    price_b = serializers.CharField(source='okex_price')
-
-    def livecoinlink(self, exchange):
-        name = exchange.name.split('-', 1)
-        link = f'https://www.livecoin.net/ru/trade/index?currencyPair={name[1]}%2F{name[0]}'
-        return link
-
-    def okexlink(self, exchange):
-        name = exchange.name.split('-', 1)
-        link = f'https://www.okex.com/spot/trade#product={name[1].lower()}_{name[0].lower()}'
-        return link
-
-    class Meta:
-        model = LivecoinOkex
-        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
-
-
-class LivecoinGateioSerializer(serializers.ModelSerializer):
-    link_a = serializers.SerializerMethodField('livecoinlink')
-    link_b = serializers.SerializerMethodField('gateiolink')
-    price_a = serializers.CharField(source='livecoin_price')
-    price_b = serializers.CharField(source='gateio_price')
-
-    def livecoinlink(self, exchange):
-        name = exchange.name.split('-', 1)
-        link = f'https://www.livecoin.net/ru/trade/index?currencyPair={name[1]}%2F{name[0]}'
-        return link
-
-    def gateiolink(self, exchange):
-        name = exchange.name.split('-', 1)
-        link = f'https://gate.io/trade/{name[1].lower()}_{name[0].lower()}'
-        return link
-
-    class Meta:
-        model = LivecoinGateio
-        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
-
-
-class LivecoinBitzSerializer(serializers.ModelSerializer):
-    link_a = serializers.SerializerMethodField('livecoinlink')
-    link_b = serializers.SerializerMethodField('bitzlink')
-    price_a = serializers.CharField(source='livecoin_price')
-    price_b = serializers.CharField(source='bitz_price')
-
-    def livecoinlink(self, exchange):
-        name = exchange.name.split('-', 1)
-        link = f'https://www.livecoin.net/ru/trade/index?currencyPair={name[1]}%2F{name[0]}'
-        return link
-
-    def bitzlink(self, exchange):
-        name = exchange.name.split('-', 1)
-        link = f'https://www.bit-z.com/exchange/{name[1].lower()}_{name[0].lower()}'
-        return link
-
-    class Meta:
-        model = LivecoinBitz
-        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
-
-
-class LivecoinHuobiSerializer(serializers.ModelSerializer):
-    link_a = serializers.SerializerMethodField('livecoinlink')
-    link_b = serializers.SerializerMethodField('huobilink')
-    price_a = serializers.CharField(source='livecoin_price')
-    price_b = serializers.CharField(source='huobi_price')
-
-    def livecoinlink(self, exchange):
-        name = exchange.name.split('-', 1)
-        link = f'https://www.livecoin.net/ru/trade/index?currencyPair={name[1]}%2F{name[0]}'
-        return link
-
-    def huobilink(self, exchange):
-        name = exchange.name.split('-', 1)
-        link = f'https://www.huobipro.com/{name[1].lower()}_{name[0].lower()}'
-        return link
-
-    class Meta:
-        model = LivecoinHuobi
-        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
-
-
-class LivecoinCoinexSerializer(serializers.ModelSerializer):
-    link_a = serializers.SerializerMethodField('livecoinlink')
-    link_b = serializers.SerializerMethodField('coinexlink')
-    price_a = serializers.CharField(source='livecoin_price')
-    price_b = serializers.CharField(source='coinex_price')
-
-    def livecoinlink(self, exchange):
-        name = exchange.name.split('-', 1)
-        link = f'https://www.livecoin.net/ru/trade/index?currencyPair={name[1]}%2F{name[0]}'
-        return link
-
-    def coinexlink(self, exchange):
-        name = exchange.name.split('-', 1)
-        link = f'https://www.coinex.com/exchange?currency={name[0].lower()}&dest={name[1].lower()}'
-        return link
-
-    class Meta:
-        model = LivecoinCoinex
-        fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
-
-
-class LivecoinBiboxSerializer(serializers.ModelSerializer):
-    link_a = serializers.SerializerMethodField('livecoinlink')
-    link_b = serializers.SerializerMethodField('biboxlink')
-    price_a = serializers.CharField(source='livecoin_price')
-    price_b = serializers.CharField(source='bibox_price')
-
-    def livecoinlink(self, exchange):
-        name = exchange.name.split('-', 1)
-        link = f'https://www.livecoin.net/ru/trade/index?currencyPair={name[1]}%2F{name[0]}'
-        return link
-
-    def biboxlink(self, exchange):
-        name = exchange.name.split('-', 1)
-        link = f'https://www.bibox.com/exchange?coinPair={name[1]}_{name[0]}'
-        return link
-
-    class Meta:
-        model = LivecoinBibox
         fields = ('name', 'price_a', 'price_b', 'profit', 'link_a', 'link_b')
 
 
@@ -1673,7 +1416,6 @@ class ArbitrageSerializers(serializers.Serializer):
     binance_bittrex = BinanceBittrexSerializer(many=True)
     binance_hitbtc = BinanceHitbtcSerializer(many=True)
     binance_kucoin = BinanceKucoinSerializer(many=True)
-    binance_livecoin = BinanceLivecoinSerializer(many=True)
     binance_poloniex = BinancePoloniexSerializer(many=True)
     binance_kraken = BinanceKrakenSerializer(many=True)
     binance_okex = BinanceOkexSerializer(many=True)
@@ -1684,7 +1426,6 @@ class ArbitrageSerializers(serializers.Serializer):
     binance_bibox = BinanceBiboxSerializer(many=True)
     bittrex_hitbtc = BittrexHitbtcSerializer(many=True)
     bittrex_kucoin = BittrexKucoinSerializer(many=True)
-    bittrex_livecoin = BittrexLivecoinSerializer(many=True)
     bittrex_poloniex = BittrexPoloniexSerializer(many=True)
     bittrex_kraken = BittrexKrakenSerializer(many=True)
     bittrex_okex = BittrexOkexSerializer(many=True)
@@ -1695,7 +1436,6 @@ class ArbitrageSerializers(serializers.Serializer):
     bittrex_bibox = BittrexBiboxSerializer(many=True)
     poloniex_hitbtc = PoloniexHitbtcSerializer(many=True)
     poloniex_kucoin = PoloniexKucoinSerializer(many=True)
-    poloniex_livecoin = PoloniexLivecoinSerializer(many=True)
     poloniex_kraken = PoloniexKrakenSerializer(many=True)
     poloniex_okex = PoloniexOkexSerializer(many=True)
     poloniex_gateio = PoloniexGateioSerializer(many=True)
@@ -1704,7 +1444,6 @@ class ArbitrageSerializers(serializers.Serializer):
     poloniex_coinex = PoloniexCoinexSerializer(many=True)
     poloniex_bibox = PoloniexBiboxSerializer(many=True)
     hitbtc_kucoin = HitbtcKucoinSerializer(many=True)
-    hitbtc_livecoin = HitbtcLivecoinSerializer(many=True)
     hitbtc_kraken = HitbtckrakenSerializer(many=True)
     hitbtc_okex = HitbtcOkexSerializer(many=True)
     hitbtc_gateio = HitbtcGateioSerializer(many=True)
@@ -1712,7 +1451,6 @@ class ArbitrageSerializers(serializers.Serializer):
     hitbtc_huobi = HitbtcHuobiSerializer(many=True)
     hitbtc_coinex = HitbtcCoinexSerializer(many=True)
     hitbtc_bibox = HitbtcBiboxSerializer(many=True)
-    kucoin_livecoin = KucoinLivecoinSerializer(many=True)
     kucoin_kraken = KucoinKrakenSerializer(many=True)
     kucoin_okex = KucoinOkexSerializer(many=True)
     kucoin_gateio = KucoinGateioSerializer(many=True)
@@ -1720,13 +1458,6 @@ class ArbitrageSerializers(serializers.Serializer):
     kucoin_huobi = KucoinHuobiSerializer(many=True)
     kucoin_coinex = KucoinCoinexSerializer(many=True)
     kucoin_bibox = KucoinBiboxSerializer(many=True)
-    livecoin_kraken = LivecoinKrakenSerializer(many=True)
-    livecoin_okex = LivecoinOkexSerializer(many=True)
-    livecoin_gateio = LivecoinGateioSerializer(many=True)
-    livecoin_bitz = LivecoinBitzSerializer(many=True)
-    livecoin_huobi = LivecoinHuobiSerializer(many=True)
-    livecoin_coinex = LivecoinCoinexSerializer(many=True)
-    livecoin_bibox = LivecoinBiboxSerializer(many=True)
     kraken_okex = KrakenOkexSerializer(many=True)
     kraken_gateio = KrakenGateioSerializer(many=True)
     kraken_bitz = KrakenBitzSerializer(many=True)
@@ -1777,12 +1508,6 @@ class BittrexSerializer(serializers.ModelSerializer):
 class KucoinSerializer(serializers.ModelSerializer):
     class Meta:
         model = Kucoin
-        exclude = ('id', 'id_name',)
-
-
-class LivecoinSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Livecoin
         exclude = ('id', 'id_name',)
 
 
@@ -1845,7 +1570,6 @@ class ExchangesSerializers(serializers.Serializer):
     bittrex = BittrexSerializer(many=True)
     poloniex = PoloniexSerializer(many=True)
     hitbtc = HitbtcSerializer(many=True)
-    livecoin = LivecoinSerializer(many=True)
     kucoin = KucoinSerializer(many=True)
     kraken = KrakenSerializer(many=True)
     huobi = HuobiSerializer(many=True)

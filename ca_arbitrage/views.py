@@ -3,8 +3,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializers import *
-from .services import get_user_balance, get_coin_listing, get_exchange_data, get_arbitrage_data, get_trading_coins, \
-    get_tracking_coins
+from .services import get_user_balance, get_coin_listing, get_exchange_data, get_graph_data, get_arbitrage_data, \
+    get_trading_coins, get_tracking_coins
 
 
 class BalanceView(APIView):
@@ -46,7 +46,6 @@ class ExchangeView(APIView):
                 'Bittrex': {'model': Bittrex, 'serializer': BittrexSerializer},
                 'Poloniex': {'model': Poloniex, 'serializer': PoloniexSerializer},
                 'HitBTC': {'model': Hitbtc, 'serializer': HitbtcSerializer},
-                'Livecoin': {'model': Livecoin, 'serializer': LivecoinSerializer},
                 'Kucoin': {'model': Kucoin, 'serializer': KucoinSerializer},
                 'Kraken': {'model': Kraken, 'serializer': KrakenSerializer},
                 'Huobi': {'model': Huobi, 'serializer': HuobiSerializer},
@@ -63,6 +62,14 @@ class ExchangeView(APIView):
         queryset = self.get_object(slug)
         serializer = self.exchange[slug]['serializer'](queryset, many=True)
         return Response(data=serializer.data, status=status.HTTP_201_CREATED)
+
+
+class GraphView(APIView):
+    """ Отображение списка торгуемых монет для пользователя """
+    permission_classes = (IsAuthenticated,)
+
+    def post(self, request, slug):
+        return Response(get_graph_data(slug, request.data))
 
 
 class TradingView(APIView):

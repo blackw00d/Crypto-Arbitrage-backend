@@ -31,16 +31,6 @@ class BinanceKucoin(models.Model):
     profit = models.FloatField('Профит', default=None, null=True)
 
 
-class BinanceLivecoin(models.Model):
-    """ Данные арбитражной торговли между биржами Binance - Livecoin """
-    name = models.CharField('Имя', max_length=50, default=None, null=True)
-    binance_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
-    livecoin_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
-    binance_volume = models.CharField('Объем Binance', max_length=50, default=None, null=True)
-    livecoin_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
-    profit = models.FloatField('Профит', default=None, null=True)
-
-
 class BinancePoloniex(models.Model):
     """ Данные арбитражной торговли между биржами Binance - Poloniex """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
@@ -138,16 +128,6 @@ class BittrexKucoin(models.Model):
     kucoin_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
     bittrex_volume = models.CharField('Объем Binance', max_length=50, default=None, null=True)
     kucoin_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
-    profit = models.FloatField('Профит', default=None, null=True)
-
-
-class BittrexLivecoin(models.Model):
-    """ Данные арбитражной торговли между биржами Bittrex - Livecoin """
-    name = models.CharField('Имя', max_length=50, default=None, null=True)
-    bittrex_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
-    livecoin_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
-    bittrex_volume = models.CharField('Объем Binance', max_length=50, default=None, null=True)
-    livecoin_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
 
 
@@ -251,16 +231,6 @@ class PoloniexKucoin(models.Model):
     profit = models.FloatField('Профит', default=None, null=True)
 
 
-class PoloniexLivecoin(models.Model):
-    """ Данные арбитражной торговли между биржами Poloniex - Livecoin """
-    name = models.CharField('Имя', max_length=50, default=None, null=True)
-    poloniex_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
-    livecoin_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
-    poloniex_volume = models.CharField('Объем Binance', max_length=50, default=None, null=True)
-    livecoin_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
-    profit = models.FloatField('Профит', default=None, null=True)
-
-
 class PoloniexKraken(models.Model):
     """ Данные арбитражной торговли между биржами Poloniex - Kraken """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
@@ -341,16 +311,6 @@ class HitbtcKucoin(models.Model):
     profit = models.FloatField('Профит', default=None, null=True)
 
 
-class HitbtcLivecoin(models.Model):
-    """ Данные арбитражной торговли между биржами Hitbtc - Livecoin """
-    name = models.CharField('Имя', max_length=50, default=None, null=True)
-    hitbtc_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
-    livecoin_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
-    hitbtc_volume = models.CharField('Объем Binance', max_length=50, default=None, null=True)
-    livecoin_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
-    profit = models.FloatField('Профит', default=None, null=True)
-
-
 class Hitbtckraken(models.Model):
     """ Данные арбитражной торговли между биржами Hitbtc - kraken """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
@@ -421,16 +381,6 @@ class HitbtcBibox(models.Model):
     profit = models.FloatField('Профит', default=None, null=True)
 
 
-class KucoinLivecoin(models.Model):
-    """ Данные арбитражной торговли между биржами Kucoin - Livecoin """
-    name = models.CharField('Имя', max_length=50, default=None, null=True)
-    kucoin_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
-    livecoin_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
-    kucoin_volume = models.CharField('Объем Binance', max_length=50, default=None, null=True)
-    livecoin_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
-    profit = models.FloatField('Профит', default=None, null=True)
-
-
 class KucoinKraken(models.Model):
     """ Данные арбитражной торговли между биржами Kucoin - Kraken """
     name = models.CharField('Имя', max_length=50, default=None, null=True)
@@ -497,76 +447,6 @@ class KucoinBibox(models.Model):
     kucoin_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
     bibox_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
     kucoin_volume = models.CharField('Объем Binance', max_length=50, default=None, null=True)
-    bibox_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
-    profit = models.FloatField('Профит', default=None, null=True)
-
-
-class LivecoinKraken(models.Model):
-    """ Данные арбитражной торговли между биржами Livecoin - Kraken """
-    name = models.CharField('Имя', max_length=50, default=None, null=True)
-    livecoin_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
-    kraken_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
-    livecoin_volume = models.CharField('Объем Binance', max_length=50, default=None, null=True)
-    kraken_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
-    profit = models.FloatField('Профит', default=None, null=True)
-
-
-class LivecoinOkex(models.Model):
-    """ Данные арбитража бирж Livecoin - Okex """
-    name = models.CharField('Имя', max_length=50, default=None, null=True)
-    livecoin_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
-    okex_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
-    livecoin_volume = models.CharField('Объем Binance', max_length=50, default=None, null=True)
-    okex_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
-    profit = models.FloatField('Профит', default=None, null=True)
-
-
-class LivecoinGateio(models.Model):
-    """ Данные арбитражной торговли между биржами Livecoin - Gateio """
-    name = models.CharField('Имя', max_length=50, default=None, null=True)
-    livecoin_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
-    gateio_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
-    livecoin_volume = models.CharField('Объем Binance', max_length=50, default=None, null=True)
-    gateio_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
-    profit = models.FloatField('Профит', default=None, null=True)
-
-
-class LivecoinBitz(models.Model):
-    """ Данные арбитражной торговли между биржами Livecoin - Bitz """
-    name = models.CharField('Имя', max_length=50, default=None, null=True)
-    livecoin_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
-    bitz_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
-    livecoin_volume = models.CharField('Объем Binance', max_length=50, default=None, null=True)
-    bitz_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
-    profit = models.FloatField('Профит', default=None, null=True)
-
-
-class LivecoinHuobi(models.Model):
-    """ Данные арбитражной торговли между биржами Livecoin - Huobi """
-    name = models.CharField('Имя', max_length=50, default=None, null=True)
-    livecoin_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
-    huobi_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
-    livecoin_volume = models.CharField('Объем Binance', max_length=50, default=None, null=True)
-    huobi_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
-    profit = models.FloatField('Профит', default=None, null=True)
-
-
-class LivecoinCoinex(models.Model):
-    """ Данные арбитражной торговли между биржами Livecoin - Coinex """
-    name = models.CharField('Имя', max_length=50, default=None, null=True)
-    livecoin_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
-    coinex_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
-    livecoin_volume = models.CharField('Объем Binance', max_length=50, default=None, null=True)
-    coinex_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
-    profit = models.FloatField('Профит', default=None, null=True)
-
-
-class LivecoinBibox(models.Model):
-    """ Данные арбитражной торговли между биржами Livecoin - Bibox """
-    name = models.CharField('Имя', max_length=50, default=None, null=True)
-    livecoin_price = models.CharField('Цена Binance', max_length=50, default=None, null=True)
-    bibox_price = models.CharField('Цена Bibox', max_length=50, default=None, null=True)
-    livecoin_volume = models.CharField('Объем Binance', max_length=50, default=None, null=True)
     bibox_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
 
@@ -868,11 +748,6 @@ class Kraken(ExchangeModel):
 
 class Kucoin(ExchangeModel):
     """ Данные монет на бирже Kucoin """
-    trading = models.CharField('Торговля', max_length=50, default=None, null=True)
-
-
-class Livecoin(ExchangeModel):
-    """ Данные монет на бирже Livecoin """
     trading = models.CharField('Торговля', max_length=50, default=None, null=True)
 
 

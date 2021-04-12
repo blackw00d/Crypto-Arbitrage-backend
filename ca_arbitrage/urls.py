@@ -16,8 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from ca_arbitrage import views
-from ca_arbitrage.views import ArbitrageView, BalanceView, ListingView, ExchangeView, ExchangesView, TradingView, \
-    TradingChangeView, TradingAddView, TrackingView, TrackingAddView, TrackingChangeView
+from ca_arbitrage.views import ArbitrageView, BalanceView, ListingView, ExchangesView, ExchangeView, GraphView, \
+    TradingView, TradingChangeView, TradingAddView, TrackingView, TrackingAddView, TrackingChangeView
 
 urlpatterns = [
     path('arbitrage', ArbitrageView.as_view()),
@@ -25,6 +25,7 @@ urlpatterns = [
     path('listing', ListingView.as_view()),
     path('exchange', ExchangesView.as_view()),
     path('exchange/<slug>', ExchangeView.as_view()),
+    path('graph/<slug>', GraphView.as_view()),
     path('trading', TradingView.as_view()),
     path('trading/add', TradingAddView.as_view()),
     path('trading/change/<int:pk>', TradingChangeView.as_view()),

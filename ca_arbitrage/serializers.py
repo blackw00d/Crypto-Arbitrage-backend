@@ -1581,11 +1581,30 @@ class ExchangesSerializers(serializers.Serializer):
 
 
 class TradingSerializer(serializers.ModelSerializer):
+    price_now = serializers.SerializerMethodField('price_now_value')
+
+    def price_now_value(self, exchange):
+        exchanges = {
+            'Binance': Binance,
+            'Bittrex': Bittrex,
+            'Poloniex': Poloniex,
+            'HitBTC': Hitbtc,
+            'Kucoin': Kucoin,
+            'Kraken': Kraken,
+            'Huobi': Huobi,
+            'OKex': Okex,
+            'Gate.io': Gateio,
+            'Coinex': Coinex,
+            'Bit-Z': Bitz,
+            'Bibox': Bibox
+        }
+        return exchanges[exchange.exchange].objects.get(name=exchange.pair).price
+
     class Meta:
         model = Trading
-        fields = ('id', 'user', 'exchange', 'pair', 'amount', 'price', 'stoploss', 'trailingstoploss', 'takeprofit',
-                  'trailingtakeprofit', 'trailingtakeprofitprocent', 'active', 'stoplossvalue', 'stoplosstrailingvalue',
-                  'takeprofitvalue', 'takeprofittrailingvalue')
+        fields = ('id', 'user', 'exchange', 'pair', 'amount', 'price', 'price_now', 'stoploss', 'trailingstoploss',
+                  'takeprofit', 'trailingtakeprofit', 'trailingtakeprofitprocent', 'active', 'stoplossvalue',
+                  'stoplosstrailingvalue', 'takeprofitvalue', 'takeprofittrailingvalue')
 
 
 class TrackingSerializer(serializers.ModelSerializer):

@@ -316,7 +316,7 @@ def get_tracking_coins(user):
 
 
 def get_user_keys(user):
-    """ Вывод баланса пользователя """
+    """ Получение списка ключей для пользователя """
     keys = UserKeys.objects.get(user=user)
     serializer = UserKeysSerializer(keys)
     return serializer.data

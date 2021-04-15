@@ -792,6 +792,7 @@ class Tracking(models.Model):
 
 
 class UserKeys(models.Model):
+    """ Секретные ключи пользователей для доступа на биржу """
     user = models.CharField('Имя', max_length=80, default=None, null=True)
     binance_key = models.CharField('Binance Key', max_length=80, default=None, null=True)
     binance_secret = models.CharField('Binance Secret', max_length=80, default=None, null=True)

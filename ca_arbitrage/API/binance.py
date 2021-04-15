@@ -31,5 +31,4 @@ class BinanceAPI:
             for k, v in parameters.items():
                 url += str(k) + '=' + str(v) + '&'
             url = url[:-1]
-        print(url)
         return json.loads(requests.get(url).text)

@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializers import *
 from .services import get_user_balance, get_coin_listing, get_exchange_data, get_graph_data, get_arbitrage_data, \
-    get_trading_coins, get_tracking_coins
+    get_trading_coins, get_tracking_coins, get_user_keys
 
 
 class BalanceView(APIView):
@@ -144,3 +144,23 @@ class TrackingAddView(generics.CreateAPIView):
 
     serializer_class = TrackingSerializer
     queryset = Trading.objects.all()
+
+
+class UserView(APIView):
+    """ ПОЛУЧЕНИЕ И ИЗМЕНЕНИЕ API КЛЮЧЕЙ ПОЛЬЗОВАТЕЛЯ """
+    permission_classes = (IsAuthenticated,)
+
+    def get_object(self, user):
+        return UserKeys.objects.get(user=user)
+
+    def patch(self, request):
+        queryset = self.get_object(request.data['user'])
+        del request.data['user']
+        serializer = UserKeysSerializer(queryset, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(data=serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def post(self, request):
+        return Response(get_user_keys(request.user))

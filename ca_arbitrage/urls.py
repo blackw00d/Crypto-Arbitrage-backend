@@ -13,11 +13,9 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path, include
-from ca_arbitrage import views
+from django.urls import path
 from ca_arbitrage.views import ArbitrageView, BalanceView, ListingView, ExchangesView, ExchangeView, GraphView, \
-    TradingView, TradingChangeView, TradingAddView, TrackingView, TrackingAddView, TrackingChangeView
+    TradingView, TradingChangeView, TradingAddView, TrackingView, TrackingAddView, TrackingChangeView, UserView
 
 urlpatterns = [
     path('arbitrage', ArbitrageView.as_view()),
@@ -32,4 +30,5 @@ urlpatterns = [
     path('tracking', TrackingView.as_view()),
     path('tracking/add', TrackingAddView.as_view()),
     path('tracking/change/<int:pk>', TrackingChangeView.as_view()),
+    path('user', UserView.as_view()),
 ]

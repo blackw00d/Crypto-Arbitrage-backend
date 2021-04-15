@@ -313,3 +313,10 @@ def get_tracking_coins(user):
     tracking = Tracking.objects.filter(user=user)
     serializer = TrackingSerializer(tracking, many=True)
     return serializer.data
+
+
+def get_user_keys(user):
+    """ Вывод баланса пользователя """
+    keys = UserKeys.objects.get(user=user)
+    serializer = UserKeysSerializer(keys)
+    return serializer.data

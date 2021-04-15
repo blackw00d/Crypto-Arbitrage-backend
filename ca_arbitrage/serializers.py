@@ -1612,3 +1612,13 @@ class TrackingSerializer(serializers.ModelSerializer):
         model = Tracking
         fields = ('id', 'user', 'exchange', 'pair', 'price', 'pricechangevalue', 'pricechangeprocent', 'priceactive',
                   'volume', 'volumechangevalue', 'volumechangeprocent', 'volumeactive')
+
+
+class UserKeysSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserKeys
+        fields = ('user', 'binance_key', 'binance_secret', 'bittrex_key', 'bittrex_secret', 'poloniex_key',
+                  'poloniex_secret', 'hitbtc_key', 'hitbtc_secret', 'kucoin_key', 'kucoin_secret', 'kraken_key',
+                  'kraken_secret', 'huobi_key', 'huobi_secret', 'okex_key', 'okex_secret', 'gateio_key',
+                  'gateio_secret', 'coinex_key', 'coinex_secret', 'bitz_key', 'bitz_secret', 'bibox_key',
+                  'bibox_secret')

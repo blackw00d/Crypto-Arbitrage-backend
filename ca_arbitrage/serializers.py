@@ -1481,12 +1481,6 @@ class ArbitrageSerializers(serializers.Serializer):
     coinex_bibox = CoinexBiboxSerializer(many=True)
 
 
-class BalanceSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = UserBalance
-        fields = ('balance', 'totalbtc', 'totalusd')
-
-
 class CoinListingSerializer(serializers.ModelSerializer):
     class Meta:
         model = CoinListing
@@ -1602,9 +1596,11 @@ class TradingSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Trading
-        fields = ('id', 'user', 'exchange', 'pair', 'amount', 'price', 'price_now', 'stoploss', 'trailingstoploss',
-                  'takeprofit', 'trailingtakeprofit', 'trailingtakeprofitprocent', 'active', 'stoplossvalue',
-                  'stoplosstrailingvalue', 'takeprofitvalue', 'takeprofittrailingvalue')
+        fields = (
+            'id', 'user', 'exchange', 'pair', 'amount', 'price', 'last_price', 'price_now', 'stoploss',
+            'trailingstoploss',
+            'takeprofit', 'trailingtakeprofit', 'trailingtakeprofitprocent', 'active', 'stoplossvalue',
+            'stoplosstrailingvalue', 'takeprofitvalue', 'takeprofittrailingvalue')
 
 
 class TrackingSerializer(serializers.ModelSerializer):
@@ -1614,11 +1610,17 @@ class TrackingSerializer(serializers.ModelSerializer):
                   'volume', 'volumechangevalue', 'volumechangeprocent', 'volumeactive')
 
 
+class BalanceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserBalance
+        fields = ('balance', 'totalbtc', 'totalusd')
+
+
 class UserKeysSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserKeys
-        fields = ('user', 'binance_key', 'binance_secret', 'bittrex_key', 'bittrex_secret', 'poloniex_key',
-                  'poloniex_secret', 'hitbtc_key', 'hitbtc_secret', 'kucoin_key', 'kucoin_secret', 'kraken_key',
-                  'kraken_secret', 'huobi_key', 'huobi_secret', 'okex_key', 'okex_secret', 'gateio_key',
-                  'gateio_secret', 'coinex_key', 'coinex_secret', 'bitz_key', 'bitz_secret', 'bibox_key',
-                  'bibox_secret')
+        fields = ('user', 'telegram', 'binance_key', 'binance_secret', 'bittrex_key', 'bittrex_secret', 'poloniex_key',
+                  'poloniex_secret', 'hitbtc_key', 'hitbtc_secret', 'kucoin_key', 'kucoin_secret', 'kucoin_password',
+                  'kraken_key', 'kraken_secret', 'huobi_key', 'huobi_secret', 'okex_key', 'okex_secret',
+                  'okex_password', 'gateio_key', 'gateio_secret', 'coinex_key', 'coinex_secret', 'bitz_key',
+                  'bitz_secret', 'bibox_key', 'bibox_secret')

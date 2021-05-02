@@ -661,14 +661,6 @@ class CoinexBibox(models.Model):
     profit = models.FloatField('Профит', default=None, null=True)
 
 
-class UserBalance(models.Model):
-    """ Данные баланса пользователей """
-    user = models.CharField('Имя', max_length=20, default=None, null=True)
-    balance = models.TextField('Баланс', default=None, null=True)
-    totalbtc = models.FloatField('TotalBTC', default=None, null=True)
-    totalusd = models.FloatField('TotalUSD', default=None, null=True)
-
-
 class CoinListing(models.Model):
     """ Список новых монет, выходящих на биржах """
     exchange = models.CharField('Биржа', max_length=50, default=None, null=True)
@@ -764,6 +756,7 @@ class Trading(models.Model):
     pair = models.CharField('Пара', max_length=20, default=None, null=True)
     amount = models.FloatField('Количество', default=0, null=True)
     price = models.FloatField('Цена', default=0, null=True)
+    last_price = models.FloatField('Цена', default=0, null=True)
     stoploss = models.FloatField('StopLoss', default=0, null=True)
     trailingstoploss = models.IntegerField('TrailingStopLoss', default=0, null=True)
     takeprofit = models.FloatField('TakeProfit', default=0, null=True)
@@ -791,30 +784,41 @@ class Tracking(models.Model):
     volumeactive = models.IntegerField('volume_active', default=0, null=True)
 
 
+class UserBalance(models.Model):
+    """ Данные баланса пользователей """
+    user = models.CharField('Имя', max_length=20, default=None, null=True)
+    balance = models.TextField('Баланс', default=None, null=True)
+    totalbtc = models.FloatField('TotalBTC', default=None, null=True)
+    totalusd = models.FloatField('TotalUSD', default=None, null=True)
+
+
 class UserKeys(models.Model):
     """ Секретные ключи пользователей для доступа на биржу """
     user = models.CharField('Имя', max_length=80, default=None, null=True)
-    binance_key = models.CharField('Binance Key', max_length=80, default=None, null=True)
-    binance_secret = models.CharField('Binance Secret', max_length=80, default=None, null=True)
-    bittrex_key = models.CharField('Bittrex Key', max_length=80, default=None, null=True)
-    bittrex_secret = models.CharField('Bittrex Secret', max_length=80, default=None, null=True)
-    poloniex_key = models.CharField('Poloniex Key', max_length=80, default=None, null=True)
-    poloniex_secret = models.CharField('Poloniex Secret', max_length=80, default=None, null=True)
-    hitbtc_key = models.CharField('HitBTC Key', max_length=80, default=None, null=True)
-    hitbtc_secret = models.CharField('HitBTC Secret', max_length=80, default=None, null=True)
-    kucoin_key = models.CharField('Kucoin Key', max_length=80, default=None, null=True)
-    kucoin_secret = models.CharField('Kucoin Secret', max_length=80, default=None, null=True)
-    kraken_key = models.CharField('Kraken Key', max_length=80, default=None, null=True)
-    kraken_secret = models.CharField('Kraken Secret', max_length=80, default=None, null=True)
-    huobi_key = models.CharField('Huobi Key', max_length=80, default=None, null=True)
-    huobi_secret = models.CharField('Huobi Secret', max_length=80, default=None, null=True)
-    okex_key = models.CharField('OKex Key', max_length=80, default=None, null=True)
-    okex_secret = models.CharField('OKex Secret', max_length=80, default=None, null=True)
-    gateio_key = models.CharField('Gate.io Key', max_length=80, default=None, null=True)
-    gateio_secret = models.CharField('Gate.io Secret', max_length=80, default=None, null=True)
-    coinex_key = models.CharField('Coinex Key', max_length=80, default=None, null=True)
-    coinex_secret = models.CharField('Coinex Secret', max_length=80, default=None, null=True)
-    bitz_key = models.CharField('Bit-Z Key', max_length=80, default=None, null=True)
-    bitz_secret = models.CharField('Bit-Z Secret', max_length=80, default=None, null=True)
-    bibox_key = models.CharField('Bibox Key', max_length=80, default=None, null=True)
-    bibox_secret = models.CharField('Bibox Secret', max_length=80, default=None, null=True)
+    telegram = models.CharField('Telegram', max_length=30, default=None, null=True, blank=True)
+    binance_key = models.CharField('Binance Key', max_length=80, default=None, null=True, blank=True)
+    binance_secret = models.CharField('Binance Secret', max_length=80, default=None, null=True, blank=True)
+    bittrex_key = models.CharField('Bittrex Key', max_length=80, default=None, null=True, blank=True)
+    bittrex_secret = models.CharField('Bittrex Secret', max_length=80, default=None, null=True, blank=True)
+    poloniex_key = models.CharField('Poloniex Key', max_length=80, default=None, null=True, blank=True)
+    poloniex_secret = models.CharField('Poloniex Secret', max_length=128, default=None, null=True, blank=True)
+    hitbtc_key = models.CharField('HitBTC Key', max_length=80, default=None, null=True, blank=True)
+    hitbtc_secret = models.CharField('HitBTC Secret', max_length=80, default=None, null=True, blank=True)
+    kucoin_key = models.CharField('Kucoin Key', max_length=80, default=None, null=True, blank=True)
+    kucoin_secret = models.CharField('Kucoin Secret', max_length=80, default=None, null=True, blank=True)
+    kucoin_password = models.CharField('Kucoin Password', max_length=80, default=None, null=True, blank=True)
+    kraken_key = models.CharField('Kraken Key', max_length=80, default=None, null=True, blank=True)
+    kraken_secret = models.CharField('Kraken Secret', max_length=100, default=None, null=True, blank=True)
+    huobi_key = models.CharField('Huobi Key', max_length=80, default=None, null=True, blank=True)
+    huobi_secret = models.CharField('Huobi Secret', max_length=80, default=None, null=True, blank=True)
+    okex_key = models.CharField('OKex Key', max_length=80, default=None, null=True, blank=True)
+    okex_secret = models.CharField('OKex Secret', max_length=80, default=None, null=True, blank=True)
+    okex_password = models.CharField('OKex Password', max_length=80, default=None, null=True, blank=True)
+    gateio_key = models.CharField('Gate.io Key', max_length=80, default=None, null=True, blank=True)
+    gateio_secret = models.CharField('Gate.io Secret', max_length=80, default=None, null=True, blank=True)
+    coinex_key = models.CharField('Coinex Key', max_length=80, default=None, null=True, blank=True)
+    coinex_secret = models.CharField('Coinex Secret', max_length=80, default=None, null=True, blank=True)
+    bitz_key = models.CharField('Bit-Z Key', max_length=80, default=None, null=True, blank=True)
+    bitz_secret = models.CharField('Bit-Z Secret', max_length=80, default=None, null=True, blank=True)
+    bibox_key = models.CharField('Bibox Key', max_length=80, default=None, null=True, blank=True)
+    bibox_secret = models.CharField('Bibox Secret', max_length=80, default=None, null=True, blank=True)

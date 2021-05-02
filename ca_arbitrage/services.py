@@ -4,7 +4,7 @@ from .API.binance import BinanceAPI
 from .API.bittrex import BittrexAPI
 from .API.bitz import BitZAPI
 from .API.coinex import CoinexAPI
-from .API.gateio import GataIOAPI
+from .API.gateio import GateIOAPI
 from .API.hitbtc import HitBTCAPI
 from .API.huobi import HuobiAPI
 from .API.kraken import KrakenAPI
@@ -57,7 +57,7 @@ def get_graph_data(exchange, coin):
         'kraken': {'api': KrakenAPI()},
         'huobi': {'api': HuobiAPI()},
         'okex': {'api': OKexAPI()},
-        'gateio': {'api': GataIOAPI()},
+        'gateio': {'api': GateIOAPI()},
         'coinex': {'api': CoinexAPI()},
         'bitz': {'api': BitZAPI()},
         'bibox': {'api': BiboxAPI()}

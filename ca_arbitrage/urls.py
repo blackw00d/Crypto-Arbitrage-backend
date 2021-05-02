@@ -16,6 +16,7 @@ Including another URLconf
 from django.urls import path
 from ca_arbitrage.views import ArbitrageView, BalanceView, ListingView, ExchangesView, ExchangeView, GraphView, \
     TradingView, TradingChangeView, TradingAddView, TrackingView, TrackingAddView, TrackingChangeView, UserView
+from .Server import update_balance, update_trading
 
 urlpatterns = [
     path('arbitrage', ArbitrageView.as_view()),
@@ -31,4 +32,7 @@ urlpatterns = [
     path('tracking/add', TrackingAddView.as_view()),
     path('tracking/change/<int:pk>', TrackingChangeView.as_view()),
     path('user', UserView.as_view()),
+
+    path('balances', update_balance.main),
+    # path('prices', update_trading.main)
 ]

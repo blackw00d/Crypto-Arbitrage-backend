@@ -56,9 +56,8 @@ class GateIOAPI:
                             btc = float(key[value]) if value == 'BTC' \
                                 else (float(key[value]) / float(prices['BTCUSD']['prices'])
                                       if value == 'USD'
-                                      else (
-                                float(key[value]) * float(prices[value + '_BTC']['prices'])
-                                if value + '_BTC' in prices else 0))
+                                      else (float(key[value]) * float(prices[value + '_BTC']['prices'])
+                                            if value + '_BTC' in prices else 0))
                             price = float(key[value]) if value == 'USD' else btc * float(prices['BTCUSD']['prices'])
                             array[value] = {
                                 'amount': float(key[value]),
@@ -100,5 +99,8 @@ class GateIOAPI:
         signature = hmac.new(self.api_secret.encode('utf-8'), pre_sign.encode('utf-8'), hashlib.sha512).hexdigest()
 
         request = self._init_session(timestamp, signature)
-        response = request.get(self.baseurl + url).text
-        return json.loads(response)
+        response = request.get(self.baseurl + url)
+        if response.status_code == 200:
+            return json.loads(response.text)
+        else:
+            return {}

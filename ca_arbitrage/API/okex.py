@@ -110,9 +110,12 @@ class OKexAPI:
 
         request = self._init_session(timestamp, signature)
         if method == 'GET':
-            response = request.get(self.baseurl + url).text
+            response = request.get(self.baseurl + url)
         elif method == 'POST':
             response = request.post(self.baseurl + url, body)
         elif method == 'DELETE':
             response = request.delete(self.baseurl + url)
-        return json.loads(response)
+        if response.status_code == 200:
+            return json.loads(response.text)
+        else:
+            return {}

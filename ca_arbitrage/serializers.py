@@ -1,6 +1,21 @@
 from rest_framework import serializers
 from .models import *
 
+exchanges = {
+    'Binance': Binance,
+    'Bittrex': Bittrex,
+    'Poloniex': Poloniex,
+    'HitBTC': Hitbtc,
+    'Kucoin': Kucoin,
+    'Kraken': Kraken,
+    'Huobi': Huobi,
+    'OKex': Okex,
+    'Gate.io': Gateio,
+    'Coinex': Coinex,
+    'Bit-Z': Bitz,
+    'Bibox': Bibox
+}
+
 
 class BinanceBittrexSerializer(serializers.ModelSerializer):
     link_a = serializers.SerializerMethodField('binancelink')
@@ -1578,47 +1593,41 @@ class TradingSerializer(serializers.ModelSerializer):
     price_now = serializers.SerializerMethodField('price_now_value')
 
     def price_now_value(self, exchange):
-        exchanges = {
-            'Binance': Binance,
-            'Bittrex': Bittrex,
-            'Poloniex': Poloniex,
-            'HitBTC': Hitbtc,
-            'Kucoin': Kucoin,
-            'Kraken': Kraken,
-            'Huobi': Huobi,
-            'OKex': Okex,
-            'Gate.io': Gateio,
-            'Coinex': Coinex,
-            'Bit-Z': Bitz,
-            'Bibox': Bibox
-        }
         return exchanges[exchange.exchange].objects.get(name=exchange.pair).price
 
     class Meta:
         model = Trading
         fields = (
             'id', 'user', 'exchange', 'pair', 'amount', 'price', 'last_price', 'price_now', 'stoploss',
-            'trailingstoploss',
-            'takeprofit', 'trailingtakeprofit', 'trailingtakeprofitprocent', 'active', 'stoplossvalue',
-            'stoplosstrailingvalue', 'takeprofitvalue', 'takeprofittrailingvalue')
+            'trailingstoploss', 'takeprofit', 'trailingtakeprofit', 'trailingtakeprofitprocent', 'active',
+            'stoplossvalue', 'stoplosstrailingvalue', 'takeprofitvalue', 'takeprofittrailingvalue')
 
 
 class TrackingSerializer(serializers.ModelSerializer):
+    price_now = serializers.SerializerMethodField('price_now_value')
+    volume_now = serializers.SerializerMethodField('volume_now_value')
+
+    def price_now_value(self, exchange):
+        return exchanges[exchange.exchange].objects.get(name=exchange.pair).price
+
+    def volume_now_value(self, exchange):
+        return exchanges[exchange.exchange].objects.get(name=exchange.pair).volume
+
     class Meta:
         model = Tracking
-        fields = ('id', 'user', 'exchange', 'pair', 'price', 'pricechangevalue', 'pricechangeprocent', 'priceactive',
-                  'volume', 'volumechangevalue', 'volumechangeprocent', 'volumeactive')
+        fields = ('id', 'user', 'exchange', 'pair', 'price', 'price_now', 'pricechangevalue', 'pricechangeprocent',
+                  'priceactive', 'volume', 'volume_now', 'volumechangevalue', 'volumechangeprocent', 'volumeactive')
 
 
 class BalanceSerializer(serializers.ModelSerializer):
     class Meta:
-        model = UserBalance
+        model = UsersBalance
         fields = ('balance', 'totalbtc', 'totalusd')
 
 
 class UserKeysSerializer(serializers.ModelSerializer):
     class Meta:
-        model = UserKeys
+        model = UsersKeys
         fields = ('user', 'telegram', 'binance_key', 'binance_secret', 'bittrex_key', 'bittrex_secret', 'poloniex_key',
                   'poloniex_secret', 'hitbtc_key', 'hitbtc_secret', 'kucoin_key', 'kucoin_secret', 'kucoin_password',
                   'kraken_key', 'kraken_secret', 'huobi_key', 'huobi_secret', 'okex_key', 'okex_secret',

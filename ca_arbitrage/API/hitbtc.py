@@ -89,7 +89,7 @@ class HitBTCAPI:
         url = self.baseurl + "2/public/ticker"
         arr = json.loads(requests.get(url).text)
         array = {}
-        if 'error' not in array and arr:
+        if 'error' not in arr and arr:
             for obj in arr:
                 array[obj['symbol']] = {
                     'prices': obj['last'],

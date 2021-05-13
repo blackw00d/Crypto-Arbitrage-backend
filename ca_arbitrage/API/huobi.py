@@ -44,33 +44,55 @@ class HuobiAPI:
         return [x, y]
 
     def parsebalance(self):
-        """ УБРАТЬ КОГДА ПОЧИНЯТ """
-        return {}
-        arr = self._account()
+        arr = self._balance(self._account())
         array = {}
-
         if 'error' not in arr and arr:
             prices = self.pricesdata()
-
-            for key, value in arr.items():
-                if float(value) > 0:
-                    btc = float(value) if key == 'BTC' \
-                        else (float(value) / float(prices['USDT_BTC']['prices'])
-                              if key == 'USDT'
-                              else (float(value) * float(prices['BTC' + key]['prices'])
-                                    if 'BTC' + key in prices else 0))
-                    price = float(value) if key == 'USDT' \
-                        else btc * float(prices['USDT_BTC']['prices'])
-                    array[key] = {
-                        'amount': float(value),
+            for key in arr:
+                if float(key['balance']) > 0:
+                    btc = float(key['balance']) if key['currency'] == 'btc' \
+                        else (float(key['balance']) / float(prices['btcusdt']['prices'])
+                              if key['currency'] == 'usdt'
+                              else (float(key['balance']) * float(prices[key['currency'] + 'btc']['prices'])
+                                    if key['currency'] + 'btc' in prices else 0))
+                    price = float(key['balance']) if key['currency'] == 'usdt' \
+                        else btc * float(prices['btcusdt']['prices'])
+                    array[key['currency'].upper()] = {
+                        'amount': float(key['balance']),
                         'totalbtc': btc,
                         'totalusd': price
                     }
+        return array
 
+    def pricesdata(self):
+        url = 'https://' + self.baseurl + "/market/tickers"
+        arr = json.loads(requests.get(url).text)
+        array = {}
+        if 'status' in arr and arr:
+            if arr['status'] == 'ok':
+                for obj in arr['data']:
+                    array[obj['symbol']] = {
+                        'prices': obj['close'],
+                        'bid': obj['bid'],
+                        'ask': obj['ask']
+                    }
         return array
 
     def _account(self):
-        return self._signed_request("/v1/account/accounts")
+        response = self._signed_request("/v1/account/accounts")
+        account_id = ''
+        if response and 'status' in response:
+            if response['status'] == 'ok':
+                account_id = str(response['data'][0]['id'])
+        return account_id
+
+    def _balance(self, account):
+        response = self._signed_request(f"/v1/account/accounts/{account}/balance")
+        balance = {}
+        if response and 'status' in response:
+            if response['status'] == 'ok':
+                balance = response['data']['list']
+        return balance
 
     def _signed_request(self, url, method='GET', parameters=None):
         if self.api_key == '':
@@ -93,14 +115,11 @@ class HuobiAPI:
         body = '&'.join(['%s=%s' % (key, urllib.parse.quote(header[key], safe='')) for key in keys])
 
         presign = '%s\n%s\n%s\n%s' % (method, self.baseurl, url, body)
-        print(presign)
         signature_sha256 = hmac.new(self.api_secret.encode('utf-8'), presign.encode('utf-8'), hashlib.sha256).digest()
         signature = base64.b64encode(signature_sha256).decode()
         header.update({'Signature': signature})
 
         request = self._init_session()
-        print(header)
         url = 'https://' + self.baseurl + url + '?' + urllib.parse.urlencode(header)
-        print(url)
         response = request.get(url).text
         return json.loads(response)

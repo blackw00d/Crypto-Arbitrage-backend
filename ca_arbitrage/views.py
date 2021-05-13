@@ -1,3 +1,4 @@
+import requests
 from rest_framework import generics, status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -12,7 +13,7 @@ class BalanceView(APIView):
     permission_classes = (IsAuthenticated,)
 
     def post(self, request):
-        return Response(get_user_balance(request.user))
+        return Response(data=get_user_balance(request.user), status=status.HTTP_200_OK)
 
 
 class ListingView(APIView):
@@ -20,7 +21,7 @@ class ListingView(APIView):
     permission_classes = (IsAuthenticated,)
 
     def get(self, request):
-        return Response(get_coin_listing())
+        return Response(data=get_coin_listing(), status=status.HTTP_200_OK)
 
 
 class ExchangesView(APIView):
@@ -28,7 +29,7 @@ class ExchangesView(APIView):
     permission_classes = (IsAuthenticated,)
 
     def get(self, request):
-        return Response(get_exchange_data())
+        return Response(data=get_exchange_data(), status=status.HTTP_200_OK)
 
 
 class ArbitrageView(APIView):
@@ -36,7 +37,7 @@ class ArbitrageView(APIView):
     permission_classes = (IsAuthenticated,)
 
     def get(self, request):
-        return Response(get_arbitrage_data())
+        return Response(data=get_arbitrage_data(), status=status.HTTP_200_OK)
 
 
 class ExchangeView(APIView):
@@ -61,7 +62,7 @@ class ExchangeView(APIView):
     def get(self, request, slug):
         queryset = self.get_object(slug)
         serializer = self.exchange[slug]['serializer'](queryset, many=True)
-        return Response(data=serializer.data, status=status.HTTP_201_CREATED)
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
 
 
 class GraphView(APIView):
@@ -69,7 +70,8 @@ class GraphView(APIView):
     permission_classes = (IsAuthenticated,)
 
     def post(self, request, slug):
-        return Response(get_graph_data(slug, request.data))
+        data, status_code = get_graph_data(slug, request.data)
+        return Response(data=data, status=status_code)
 
 
 class TradingView(APIView):
@@ -77,7 +79,7 @@ class TradingView(APIView):
     permission_classes = (IsAuthenticated,)
 
     def post(self, request):
-        return Response(get_trading_coins(request.data))
+        return Response(data=get_trading_coins(request.data), status=status.HTTP_200_OK)
 
 
 class TradingChangeView(APIView):
@@ -92,8 +94,8 @@ class TradingChangeView(APIView):
         serializer = TradingSerializer(queryset, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
-            return Response(data=serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(data=serializer.data, status=status.HTTP_200_OK)
+        return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk):
         queryset = self.get_object(pk)
@@ -105,8 +107,12 @@ class TradingAddView(generics.CreateAPIView):
     """ ДОБАВЛЕНИЕ МОНЕТЫ В СПИСОК ТОГРУЕМЫХ МОНЕТ """
     permission_classes = (IsAuthenticated,)
 
-    serializer_class = TradingSerializer
     queryset = Trading.objects.all()
+    serializer_class = TradingSerializer
+
+    def post(self, request, *args, **kwargs):
+        request.data['user'] = request.user.id
+        return self.create(request, *args, **kwargs)
 
 
 class TrackingView(APIView):
@@ -114,7 +120,7 @@ class TrackingView(APIView):
     permission_classes = (IsAuthenticated,)
 
     def post(self, request):
-        return Response(get_tracking_coins(request.data))
+        return Response(data=get_tracking_coins(request.data), status=status.HTTP_200_OK)
 
 
 class TrackingChangeView(APIView):
@@ -130,7 +136,7 @@ class TrackingChangeView(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(data=serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk):
         queryset = self.get_object(pk)
@@ -145,22 +151,25 @@ class TrackingAddView(generics.CreateAPIView):
     serializer_class = TrackingSerializer
     queryset = Trading.objects.all()
 
+    def post(self, request, *args, **kwargs):
+        request.data['user'] = request.user.id
+        return self.create(request, *args, **kwargs)
+
 
 class UserView(APIView):
     """ ПОЛУЧЕНИЕ И ИЗМЕНЕНИЕ API КЛЮЧЕЙ ПОЛЬЗОВАТЕЛЯ """
     permission_classes = (IsAuthenticated,)
 
     def get_object(self, user):
-        return UserKeys.objects.get(user=user)
+        return UsersKeys.objects.get(user=user)
 
     def patch(self, request):
-        queryset = self.get_object(request.data['user'])
-        del request.data['user']
+        queryset = self.get_object(request.user)
         serializer = UserKeysSerializer(queryset, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(data=serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def post(self, request):
-        return Response(get_user_keys(request.user))
+        return Response(data=get_user_keys(request.user), status=status.HTTP_200_OK)

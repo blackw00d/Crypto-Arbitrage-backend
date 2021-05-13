@@ -1,6 +1,6 @@
 import hashlib
 import hmac
-import time
+# import time
 import requests
 import json
 
@@ -39,7 +39,7 @@ class BinanceAPI:
     def pricesdata(self):
         arr = self._prices()
         array = {}
-        if 'code' not in array and arr:
+        if 'code' not in arr and arr:
             for obj in arr:
                 array[obj['symbol']] = {
                     'prices': obj['lastPrice'],

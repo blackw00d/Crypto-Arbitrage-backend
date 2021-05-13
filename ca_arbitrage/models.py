@@ -1,4 +1,6 @@
 from django.db import models
+from django.conf import settings
+from django.db.models.signals import post_save
 
 
 class BinanceBittrex(models.Model):
@@ -10,6 +12,9 @@ class BinanceBittrex(models.Model):
     bittrex_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
 
+    class Meta:
+        db_table = 'binance_bittrex'
+
 
 class BinanceHitbtc(models.Model):
     """ Данные арбитражной торговли между биржами Binance - Hitbtc """
@@ -19,6 +24,9 @@ class BinanceHitbtc(models.Model):
     binance_volume = models.CharField('Объем Binance', max_length=50, default=None, null=True)
     hitbtc_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
+
+    class Meta:
+        db_table = 'binance_hitbtc'
 
 
 class BinanceKucoin(models.Model):
@@ -30,6 +38,9 @@ class BinanceKucoin(models.Model):
     kucoin_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
 
+    class Meta:
+        db_table = 'binance_kucoin'
+
 
 class BinancePoloniex(models.Model):
     """ Данные арбитражной торговли между биржами Binance - Poloniex """
@@ -39,6 +50,9 @@ class BinancePoloniex(models.Model):
     binance_volume = models.CharField('Объем Binance', max_length=50, default=None, null=True)
     poloniex_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
+
+    class Meta:
+        db_table = 'binance_poloniex'
 
 
 class BinanceKraken(models.Model):
@@ -50,6 +64,9 @@ class BinanceKraken(models.Model):
     kraken_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
 
+    class Meta:
+        db_table = 'binance_kraken'
+
 
 class BinanceOkex(models.Model):
     """ Данные арбитражной торговли между биржами Binance - Okex """
@@ -59,6 +76,9 @@ class BinanceOkex(models.Model):
     binance_volume = models.CharField('Объем Binance', max_length=50, default=None, null=True)
     okex_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
+
+    class Meta:
+        db_table = 'binance_okex'
 
 
 class BinanceGateio(models.Model):
@@ -70,6 +90,9 @@ class BinanceGateio(models.Model):
     gateio_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
 
+    class Meta:
+        db_table = 'binance_gateio'
+
 
 class BinanceBitz(models.Model):
     """ Данные арбитражной торговли между биржами Binance - Bitz """
@@ -79,6 +102,9 @@ class BinanceBitz(models.Model):
     binance_volume = models.CharField('Объем Binance', max_length=50, default=None, null=True)
     bitz_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
+
+    class Meta:
+        db_table = 'binance_bitz'
 
 
 class BinanceHuobi(models.Model):
@@ -90,6 +116,9 @@ class BinanceHuobi(models.Model):
     huobi_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
 
+    class Meta:
+        db_table = 'binance_huobi'
+
 
 class BinanceCoinex(models.Model):
     """ Данные арбитражной торговли между биржами Binance - Coinex """
@@ -99,6 +128,9 @@ class BinanceCoinex(models.Model):
     binance_volume = models.CharField('Объем Binance', max_length=50, default=None, null=True)
     coinex_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
+
+    class Meta:
+        db_table = 'binance_coinex'
 
 
 class BinanceBibox(models.Model):
@@ -110,6 +142,9 @@ class BinanceBibox(models.Model):
     bibox_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
 
+    class Meta:
+        db_table = 'binance_bibox'
+
 
 class BittrexHitbtc(models.Model):
     """ Данные арбитражной торговли между биржами Bittrex - Hitbtc """
@@ -119,6 +154,9 @@ class BittrexHitbtc(models.Model):
     bittrex_volume = models.CharField('Объем Binance', max_length=50, default=None, null=True)
     hitbtc_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
+
+    class Meta:
+        db_table = 'bittrex_hitbtc'
 
 
 class BittrexKucoin(models.Model):
@@ -130,6 +168,9 @@ class BittrexKucoin(models.Model):
     kucoin_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
 
+    class Meta:
+        db_table = 'bittrex_kucoin'
+
 
 class BittrexPoloniex(models.Model):
     """ Данные арбитражной торговли между биржами Bittrex - Poloniex """
@@ -139,6 +180,9 @@ class BittrexPoloniex(models.Model):
     bittrex_volume = models.CharField('Объем Binance', max_length=50, default=None, null=True)
     poloniex_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
+
+    class Meta:
+        db_table = 'bittrex_poloniex'
 
 
 class BittrexKraken(models.Model):
@@ -150,6 +194,9 @@ class BittrexKraken(models.Model):
     kraken_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
 
+    class Meta:
+        db_table = 'bittrex_kraken'
+
 
 class BittrexOkex(models.Model):
     """ Данные арбитражной торговли между биржами Bittrex - Okex """
@@ -159,6 +206,9 @@ class BittrexOkex(models.Model):
     bittrex_volume = models.CharField('Объем Binance', max_length=50, default=None, null=True)
     okex_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
+
+    class Meta:
+        db_table = 'bittrex_okex'
 
 
 class BittrexGateio(models.Model):
@@ -170,6 +220,9 @@ class BittrexGateio(models.Model):
     gateio_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
 
+    class Meta:
+        db_table = 'bittrex_gateio'
+
 
 class BittrexBitz(models.Model):
     """ Данные арбитражной торговли между биржами Bittrex - Bitz """
@@ -179,6 +232,9 @@ class BittrexBitz(models.Model):
     bittrex_volume = models.CharField('Объем Binance', max_length=50, default=None, null=True)
     bitz_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
+
+    class Meta:
+        db_table = 'bittrex_bitz'
 
 
 class BittrexHuobi(models.Model):
@@ -190,6 +246,9 @@ class BittrexHuobi(models.Model):
     huobi_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
 
+    class Meta:
+        db_table = 'bittrex_huobi'
+
 
 class BittrexCoinex(models.Model):
     """ Данные арбитражной торговли между биржами Bittrex - Coinex """
@@ -199,6 +258,9 @@ class BittrexCoinex(models.Model):
     bittrex_volume = models.CharField('Объем Binance', max_length=50, default=None, null=True)
     coinex_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
+
+    class Meta:
+        db_table = 'bittrex_coinex'
 
 
 class BittrexBibox(models.Model):
@@ -210,6 +272,9 @@ class BittrexBibox(models.Model):
     bibox_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
 
+    class Meta:
+        db_table = 'bittrex_bibox'
+
 
 class PoloniexHitbtc(models.Model):
     """ Данные арбитражной торговли между биржами Poloniex - Hitbtc """
@@ -219,6 +284,9 @@ class PoloniexHitbtc(models.Model):
     poloniex_volume = models.CharField('Объем Binance', max_length=50, default=None, null=True)
     hitbtc_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
+
+    class Meta:
+        db_table = 'poloniex_hitbtc'
 
 
 class PoloniexKucoin(models.Model):
@@ -230,6 +298,9 @@ class PoloniexKucoin(models.Model):
     kucoin_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
 
+    class Meta:
+        db_table = 'poloniex_kucoin'
+
 
 class PoloniexKraken(models.Model):
     """ Данные арбитражной торговли между биржами Poloniex - Kraken """
@@ -239,6 +310,9 @@ class PoloniexKraken(models.Model):
     poloniex_volume = models.CharField('Объем Binance', max_length=50, default=None, null=True)
     kraken_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
+
+    class Meta:
+        db_table = 'poloniex_kraken'
 
 
 class PoloniexOkex(models.Model):
@@ -250,6 +324,9 @@ class PoloniexOkex(models.Model):
     okex_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
 
+    class Meta:
+        db_table = 'poloniex_okex'
+
 
 class PoloniexGateio(models.Model):
     """ Данные арбитражной торговли между биржами Poloniex - Gateio """
@@ -259,6 +336,9 @@ class PoloniexGateio(models.Model):
     poloniex_volume = models.CharField('Объем Binance', max_length=50, default=None, null=True)
     gateio_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
+
+    class Meta:
+        db_table = 'poloniex_gateio'
 
 
 class PoloniexBitz(models.Model):
@@ -270,6 +350,9 @@ class PoloniexBitz(models.Model):
     bitz_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
 
+    class Meta:
+        db_table = 'poloniex_bitz'
+
 
 class PoloniexHuobi(models.Model):
     """ Данные арбитражной торговли между биржами Poloniex - Huobi """
@@ -279,6 +362,9 @@ class PoloniexHuobi(models.Model):
     poloniex_volume = models.CharField('Объем Binance', max_length=50, default=None, null=True)
     huobi_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
+
+    class Meta:
+        db_table = 'poloniex_huobi'
 
 
 class PoloniexCoinex(models.Model):
@@ -290,6 +376,9 @@ class PoloniexCoinex(models.Model):
     coinex_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
 
+    class Meta:
+        db_table = 'poloniex_coinex'
+
 
 class PoloniexBibox(models.Model):
     """ Данные арбитражной торговли между биржами Poloniex - Bibox """
@@ -299,6 +388,9 @@ class PoloniexBibox(models.Model):
     poloniex_volume = models.CharField('Объем Binance', max_length=50, default=None, null=True)
     bibox_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
+
+    class Meta:
+        db_table = 'poloniex_bibox'
 
 
 class HitbtcKucoin(models.Model):
@@ -310,6 +402,9 @@ class HitbtcKucoin(models.Model):
     kucoin_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
 
+    class Meta:
+        db_table = 'hitbtc_kucoin'
+
 
 class Hitbtckraken(models.Model):
     """ Данные арбитражной торговли между биржами Hitbtc - kraken """
@@ -319,6 +414,9 @@ class Hitbtckraken(models.Model):
     hitbtc_volume = models.CharField('Объем Binance', max_length=50, default=None, null=True)
     kraken_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
+
+    class Meta:
+        db_table = 'hitbtc_kraken'
 
 
 class HitbtcOkex(models.Model):
@@ -330,6 +428,9 @@ class HitbtcOkex(models.Model):
     okex_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
 
+    class Meta:
+        db_table = 'hitbtc_okex'
+
 
 class HitbtcGateio(models.Model):
     """ Данные арбитражной торговли между биржами Hitbtc - Gateio """
@@ -339,6 +440,9 @@ class HitbtcGateio(models.Model):
     hitbtc_volume = models.CharField('Объем Binance', max_length=50, default=None, null=True)
     gateio_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
+
+    class Meta:
+        db_table = 'hitbtc_gateio'
 
 
 class HitbtcBitz(models.Model):
@@ -350,6 +454,9 @@ class HitbtcBitz(models.Model):
     bitz_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
 
+    class Meta:
+        db_table = 'hitbtc_bitz'
+
 
 class HitbtcHuobi(models.Model):
     """ Данные арбитражной торговли между биржами Hitbtc - Huobi """
@@ -359,6 +466,9 @@ class HitbtcHuobi(models.Model):
     hitbtc_volume = models.CharField('Объем Binance', max_length=50, default=None, null=True)
     huobi_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
+
+    class Meta:
+        db_table = 'hitbtc_huobi'
 
 
 class HitbtcCoinex(models.Model):
@@ -370,6 +480,9 @@ class HitbtcCoinex(models.Model):
     coinex_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
 
+    class Meta:
+        db_table = 'hitbtc_coinex'
+
 
 class HitbtcBibox(models.Model):
     """ Данные арбитражной торговли между биржами Hitbtc - Bibox """
@@ -379,6 +492,9 @@ class HitbtcBibox(models.Model):
     hitbtc_volume = models.CharField('Объем Binance', max_length=50, default=None, null=True)
     bibox_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
+
+    class Meta:
+        db_table = 'hitbtc_bibox'
 
 
 class KucoinKraken(models.Model):
@@ -390,6 +506,9 @@ class KucoinKraken(models.Model):
     kraken_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
 
+    class Meta:
+        db_table = 'kucoin_kraken'
+
 
 class KucoinOkex(models.Model):
     """ Данные арбитражной торговли между биржами Kucoin - Okex """
@@ -399,6 +518,9 @@ class KucoinOkex(models.Model):
     kucoin_volume = models.CharField('Объем Binance', max_length=50, default=None, null=True)
     okex_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
+
+    class Meta:
+        db_table = 'kucoin_okex'
 
 
 class KucoinGateio(models.Model):
@@ -410,6 +532,9 @@ class KucoinGateio(models.Model):
     gateio_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
 
+    class Meta:
+        db_table = 'kucoin_gateio'
+
 
 class KucoinBitz(models.Model):
     """ Данные арбитражной торговли между биржами Kucoin - Bitz """
@@ -419,6 +544,9 @@ class KucoinBitz(models.Model):
     kucoin_volume = models.CharField('Объем Binance', max_length=50, default=None, null=True)
     bitz_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
+
+    class Meta:
+        db_table = 'kucoin_bitz'
 
 
 class KucoinHuobi(models.Model):
@@ -430,6 +558,9 @@ class KucoinHuobi(models.Model):
     huobi_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
 
+    class Meta:
+        db_table = 'kucoin_huobi'
+
 
 class KucoinCoinex(models.Model):
     """ Данные арбитражной торговли между биржами Kucoin - Coinex """
@@ -439,6 +570,9 @@ class KucoinCoinex(models.Model):
     kucoin_volume = models.CharField('Объем Binance', max_length=50, default=None, null=True)
     coinex_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
+
+    class Meta:
+        db_table = 'kucoin_coinex'
 
 
 class KucoinBibox(models.Model):
@@ -450,6 +584,9 @@ class KucoinBibox(models.Model):
     bibox_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
 
+    class Meta:
+        db_table = 'kucoin_bibox'
+
 
 class KrakenOkex(models.Model):
     """ Данные арбитражной торговли между биржами Kraken - Okex """
@@ -459,6 +596,9 @@ class KrakenOkex(models.Model):
     kraken_volume = models.CharField('Объем Binance', max_length=50, default=None, null=True)
     okex_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
+
+    class Meta:
+        db_table = 'kraken_okex'
 
 
 class KrakenGateio(models.Model):
@@ -470,6 +610,9 @@ class KrakenGateio(models.Model):
     gateio_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
 
+    class Meta:
+        db_table = 'kraken_gateio'
+
 
 class KrakenBitz(models.Model):
     """ Данные арбитражной торговли между биржами Kraken - Bitz """
@@ -479,6 +622,9 @@ class KrakenBitz(models.Model):
     kraken_volume = models.CharField('Объем Binance', max_length=50, default=None, null=True)
     bitz_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
+
+    class Meta:
+        db_table = 'kraken_bitz'
 
 
 class KrakenHuobi(models.Model):
@@ -490,6 +636,9 @@ class KrakenHuobi(models.Model):
     huobi_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
 
+    class Meta:
+        db_table = 'kraken_huobi'
+
 
 class KrakenCoinex(models.Model):
     """ Данные арбитражной торговли между биржами Kraken - Coinex """
@@ -499,6 +648,9 @@ class KrakenCoinex(models.Model):
     kraken_volume = models.CharField('Объем Binance', max_length=50, default=None, null=True)
     coinex_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
+
+    class Meta:
+        db_table = 'kraken_coinex'
 
 
 class KrakenBibox(models.Model):
@@ -510,6 +662,9 @@ class KrakenBibox(models.Model):
     bibox_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
 
+    class Meta:
+        db_table = 'kraken_bibox'
+
 
 class OkexGateio(models.Model):
     """ Данные арбитражной торговли между биржами Okex - Gateio """
@@ -519,6 +674,9 @@ class OkexGateio(models.Model):
     okex_volume = models.CharField('Объем Binance', max_length=50, default=None, null=True)
     gateio_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
+
+    class Meta:
+        db_table = 'okex_gateio'
 
 
 class OkexBitz(models.Model):
@@ -530,6 +688,9 @@ class OkexBitz(models.Model):
     bitz_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
 
+    class Meta:
+        db_table = 'okex_bitz'
+
 
 class OkexHuobi(models.Model):
     """ Данные арбитражной торговли между биржами Okex - Huobi """
@@ -539,6 +700,9 @@ class OkexHuobi(models.Model):
     okex_volume = models.CharField('Объем Binance', max_length=50, default=None, null=True)
     huobi_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
+
+    class Meta:
+        db_table = 'okex_huobi'
 
 
 class OkexCoinex(models.Model):
@@ -550,6 +714,9 @@ class OkexCoinex(models.Model):
     coinex_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
 
+    class Meta:
+        db_table = 'okex_coinex'
+
 
 class OkexBibox(models.Model):
     """ Данные арбитражной торговли между биржами Okex - Bibox """
@@ -559,6 +726,9 @@ class OkexBibox(models.Model):
     okex_volume = models.CharField('Объем Binance', max_length=50, default=None, null=True)
     bibox_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
+
+    class Meta:
+        db_table = 'okex_bibox'
 
 
 class GateioBitz(models.Model):
@@ -570,6 +740,9 @@ class GateioBitz(models.Model):
     bitz_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
 
+    class Meta:
+        db_table = 'gateio_bitz'
+
 
 class GateioHuobi(models.Model):
     """ Данные арбитражной торговли между биржами Gateio - Huobi """
@@ -579,6 +752,9 @@ class GateioHuobi(models.Model):
     gateio_volume = models.CharField('Объем Binance', max_length=50, default=None, null=True)
     huobi_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
+
+    class Meta:
+        db_table = 'gateio_huobi'
 
 
 class GateioCoinex(models.Model):
@@ -590,6 +766,9 @@ class GateioCoinex(models.Model):
     coinex_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
 
+    class Meta:
+        db_table = 'gateio_coinex'
+
 
 class GateioBibox(models.Model):
     """ Данные арбитражной торговли между биржами Gateio - Bibox """
@@ -599,6 +778,9 @@ class GateioBibox(models.Model):
     gateio_volume = models.CharField('Объем Binance', max_length=50, default=None, null=True)
     bibox_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
+
+    class Meta:
+        db_table = 'gateio_bibox'
 
 
 class BitzHuobi(models.Model):
@@ -610,6 +792,9 @@ class BitzHuobi(models.Model):
     huobi_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
 
+    class Meta:
+        db_table = 'bitz_huobi'
+
 
 class BitzCoinex(models.Model):
     """ Данные арбитражной торговли между биржами Bitz - Coinex """
@@ -619,6 +804,9 @@ class BitzCoinex(models.Model):
     bitz_volume = models.CharField('Объем Binance', max_length=50, default=None, null=True)
     coinex_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
+
+    class Meta:
+        db_table = 'bitz_coinex'
 
 
 class BitzBibox(models.Model):
@@ -630,6 +818,9 @@ class BitzBibox(models.Model):
     bibox_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
 
+    class Meta:
+        db_table = 'bitz_bibox'
+
 
 class HuobiCoinex(models.Model):
     """ Данные арбитражной торговли между биржами Huobi - Coinex """
@@ -639,6 +830,9 @@ class HuobiCoinex(models.Model):
     huobi_volume = models.CharField('Объем Binance', max_length=50, default=None, null=True)
     coinex_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
+
+    class Meta:
+        db_table = 'huobi_coinex'
 
 
 class HuobiBibox(models.Model):
@@ -650,6 +844,9 @@ class HuobiBibox(models.Model):
     bibox_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
 
+    class Meta:
+        db_table = 'huobi_bibox'
+
 
 class CoinexBibox(models.Model):
     """ Данные арбитражной торговли между биржами Coinex - Bibox """
@@ -660,12 +857,18 @@ class CoinexBibox(models.Model):
     bibox_volume = models.CharField('Объем Bibox', max_length=50, default=None, null=True)
     profit = models.FloatField('Профит', default=None, null=True)
 
+    class Meta:
+        db_table = 'coinex_bibox'
+
 
 class CoinListing(models.Model):
     """ Список новых монет, выходящих на биржах """
     exchange = models.CharField('Биржа', max_length=50, default=None, null=True)
     name = models.CharField('Монета', max_length=200, default=None, null=True)
     date = models.DateField('Дата', default=None, null=True)
+
+    class Meta:
+        db_table = 'coin_listing'
 
 
 class ExchangeModel(models.Model):
@@ -685,14 +888,20 @@ class ExchangeModel(models.Model):
 
 class Binance(ExchangeModel):
     """ Данные монет на бирже Binance """
-    trading = models.CharField('Объем рынка', max_length=50, default=None, null=True)
+    trading = models.CharField('Торговля', max_length=50, default=None, null=True)
     deposit = models.CharField('Пополнение', max_length=55, default=None, null=True)
     withdraw = models.CharField('Вывод', max_length=55, default=None, null=True)
+
+    class Meta:
+        db_table = 'binance'
 
 
 class Bittrex(ExchangeModel):
     """ Данные монет на бирже Bittrex """
     trading = models.CharField('Объем рынка', max_length=50, default=None, null=True)
+
+    class Meta:
+        db_table = 'bittrex'
 
 
 class Bibox(ExchangeModel):
@@ -700,11 +909,17 @@ class Bibox(ExchangeModel):
     deposit = models.CharField('Пополнение', max_length=50, default=None, null=True)
     withdraw = models.CharField('Вывод', max_length=50, default=None, null=True)
 
+    class Meta:
+        db_table = 'bibox'
+
 
 class Bitz(ExchangeModel):
     """ Данные монет на бирже Bitz """
     deposit = models.CharField('Пополнение', max_length=50, default=None, null=True)
     withdraw = models.CharField('Вывод', max_length=50, default=None, null=True)
+
+    class Meta:
+        db_table = 'bitz'
 
 
 class Gateio(ExchangeModel):
@@ -712,9 +927,15 @@ class Gateio(ExchangeModel):
     deposit = models.CharField('Пополнение', max_length=50, default=None, null=True)
     withdraw = models.CharField('Вывод', max_length=50, default=None, null=True)
 
+    class Meta:
+        db_table = 'gateio'
+
 
 class Coinex(ExchangeModel):
     """ Данные монет на бирже Coinex """
+
+    class Meta:
+        db_table = 'coinex'
 
 
 class Hitbtc(ExchangeModel):
@@ -723,9 +944,15 @@ class Hitbtc(ExchangeModel):
     withdraw = models.CharField('Вывод', max_length=50, default=None, null=True)
     blocks = models.IntegerField('Блоки', default=None, null=True)
 
+    class Meta:
+        db_table = 'hitbtc'
+
 
 class Okex(ExchangeModel):
     """ Данные монет на бирже Okex """
+
+    class Meta:
+        db_table = 'okex'
 
 
 class Huobi(ExchangeModel):
@@ -733,14 +960,23 @@ class Huobi(ExchangeModel):
     deposit = models.CharField('Пополнение', max_length=50, default=None, null=True)
     withdraw = models.CharField('Вывод', max_length=50, default=None, null=True)
 
+    class Meta:
+        db_table = 'huobi'
+
 
 class Kraken(ExchangeModel):
     """ Данные монет на бирже Kraken """
+
+    class Meta:
+        db_table = 'kraken'
 
 
 class Kucoin(ExchangeModel):
     """ Данные монет на бирже Kucoin """
     trading = models.CharField('Торговля', max_length=50, default=None, null=True)
+
+    class Meta:
+        db_table = 'kucoin'
 
 
 class Poloniex(ExchangeModel):
@@ -748,10 +984,13 @@ class Poloniex(ExchangeModel):
     trading = models.CharField('Торговля', max_length=50, default=None, null=True)
     blocks = models.IntegerField('Блоки', default=None, null=True)
 
+    class Meta:
+        db_table = 'poloniex'
+
 
 class Trading(models.Model):
     """ Сигналы продажи выбранных пар монет по выбранным показателям дохода """
-    user = models.CharField('Имя', max_length=20, default=None, null=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='user_trading_name', on_delete=models.CASCADE)
     exchange = models.CharField('Биржа', max_length=20, default=None, null=True)
     pair = models.CharField('Пара', max_length=20, default=None, null=True)
     amount = models.FloatField('Количество', default=0, null=True)
@@ -768,10 +1007,13 @@ class Trading(models.Model):
     takeprofitvalue = models.FloatField('StopLoss', default=0, null=True)
     takeprofittrailingvalue = models.FloatField('StopLoss', default=0, null=True)
 
+    class Meta:
+        db_table = 'trading'
+
 
 class Tracking(models.Model):
     """ Отслеживание изменения показателей торговых пар монет на биржах """
-    user = models.CharField('Имя', max_length=20, default=None, null=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='user_tracking_name', on_delete=models.CASCADE)
     exchange = models.CharField('Биржа', max_length=20, default=None, null=True)
     pair = models.CharField('Пара', max_length=20, default=None, null=True)
     price = models.FloatField('Цена', default=0, null=False)
@@ -783,42 +1025,60 @@ class Tracking(models.Model):
     volumechangeprocent = models.IntegerField('volume_change_procent', default=0, null=True)
     volumeactive = models.IntegerField('volume_active', default=0, null=True)
 
+    class Meta:
+        db_table = 'tracking'
 
-class UserBalance(models.Model):
+
+class UsersBalance(models.Model):
     """ Данные баланса пользователей """
-    user = models.CharField('Имя', max_length=20, default=None, null=True)
-    balance = models.TextField('Баланс', default=None, null=True)
-    totalbtc = models.FloatField('TotalBTC', default=None, null=True)
-    totalusd = models.FloatField('TotalUSD', default=None, null=True)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name='user_balance_name', on_delete=models.CASCADE)
+    balance = models.TextField('Баланс', default=0, null=False)
+    totalbtc = models.FloatField('TotalBTC', default=0, null=False)
+    totalusd = models.FloatField('TotalUSD', default=0, null=False)
+
+    class Meta:
+        db_table = 'users_balance'
 
 
-class UserKeys(models.Model):
+class UsersKeys(models.Model):
     """ Секретные ключи пользователей для доступа на биржу """
-    user = models.CharField('Имя', max_length=80, default=None, null=True)
-    telegram = models.CharField('Telegram', max_length=30, default=None, null=True, blank=True)
-    binance_key = models.CharField('Binance Key', max_length=80, default=None, null=True, blank=True)
-    binance_secret = models.CharField('Binance Secret', max_length=80, default=None, null=True, blank=True)
-    bittrex_key = models.CharField('Bittrex Key', max_length=80, default=None, null=True, blank=True)
-    bittrex_secret = models.CharField('Bittrex Secret', max_length=80, default=None, null=True, blank=True)
-    poloniex_key = models.CharField('Poloniex Key', max_length=80, default=None, null=True, blank=True)
-    poloniex_secret = models.CharField('Poloniex Secret', max_length=128, default=None, null=True, blank=True)
-    hitbtc_key = models.CharField('HitBTC Key', max_length=80, default=None, null=True, blank=True)
-    hitbtc_secret = models.CharField('HitBTC Secret', max_length=80, default=None, null=True, blank=True)
-    kucoin_key = models.CharField('Kucoin Key', max_length=80, default=None, null=True, blank=True)
-    kucoin_secret = models.CharField('Kucoin Secret', max_length=80, default=None, null=True, blank=True)
-    kucoin_password = models.CharField('Kucoin Password', max_length=80, default=None, null=True, blank=True)
-    kraken_key = models.CharField('Kraken Key', max_length=80, default=None, null=True, blank=True)
-    kraken_secret = models.CharField('Kraken Secret', max_length=100, default=None, null=True, blank=True)
-    huobi_key = models.CharField('Huobi Key', max_length=80, default=None, null=True, blank=True)
-    huobi_secret = models.CharField('Huobi Secret', max_length=80, default=None, null=True, blank=True)
-    okex_key = models.CharField('OKex Key', max_length=80, default=None, null=True, blank=True)
-    okex_secret = models.CharField('OKex Secret', max_length=80, default=None, null=True, blank=True)
-    okex_password = models.CharField('OKex Password', max_length=80, default=None, null=True, blank=True)
-    gateio_key = models.CharField('Gate.io Key', max_length=80, default=None, null=True, blank=True)
-    gateio_secret = models.CharField('Gate.io Secret', max_length=80, default=None, null=True, blank=True)
-    coinex_key = models.CharField('Coinex Key', max_length=80, default=None, null=True, blank=True)
-    coinex_secret = models.CharField('Coinex Secret', max_length=80, default=None, null=True, blank=True)
-    bitz_key = models.CharField('Bit-Z Key', max_length=80, default=None, null=True, blank=True)
-    bitz_secret = models.CharField('Bit-Z Secret', max_length=80, default=None, null=True, blank=True)
-    bibox_key = models.CharField('Bibox Key', max_length=80, default=None, null=True, blank=True)
-    bibox_secret = models.CharField('Bibox Secret', max_length=80, default=None, null=True, blank=True)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name='user_keys_name', on_delete=models.CASCADE)
+    telegram = models.CharField('Telegram', max_length=30, default='', null=True, blank=True)
+    binance_key = models.CharField('Binance Key', max_length=80, default='', null=True, blank=True)
+    binance_secret = models.CharField('Binance Secret', max_length=80, default='', null=True, blank=True)
+    bittrex_key = models.CharField('Bittrex Key', max_length=80, default='', null=True, blank=True)
+    bittrex_secret = models.CharField('Bittrex Secret', max_length=80, default='', null=True, blank=True)
+    poloniex_key = models.CharField('Poloniex Key', max_length=80, default='', null=True, blank=True)
+    poloniex_secret = models.CharField('Poloniex Secret', max_length=128, default='', null=True, blank=True)
+    hitbtc_key = models.CharField('HitBTC Key', max_length=80, default='', null=True, blank=True)
+    hitbtc_secret = models.CharField('HitBTC Secret', max_length=80, default='', null=True, blank=True)
+    kucoin_key = models.CharField('Kucoin Key', max_length=80, default='', null=True, blank=True)
+    kucoin_secret = models.CharField('Kucoin Secret', max_length=80, default='', null=True, blank=True)
+    kucoin_password = models.CharField('Kucoin Password', max_length=80, default='', null=True, blank=True)
+    kraken_key = models.CharField('Kraken Key', max_length=80, default='', null=True, blank=True)
+    kraken_secret = models.CharField('Kraken Secret', max_length=100, default='', null=True, blank=True)
+    huobi_key = models.CharField('Huobi Key', max_length=80, default='', null=True, blank=True)
+    huobi_secret = models.CharField('Huobi Secret', max_length=80, default='', null=True, blank=True)
+    okex_key = models.CharField('OKex Key', max_length=80, default='', null=True, blank=True)
+    okex_secret = models.CharField('OKex Secret', max_length=80, default='', null=True, blank=True)
+    okex_password = models.CharField('OKex Password', max_length=80, default='', null=True, blank=True)
+    gateio_key = models.CharField('Gate.io Key', max_length=80, default='', null=True, blank=True)
+    gateio_secret = models.CharField('Gate.io Secret', max_length=80, default='', null=True, blank=True)
+    coinex_key = models.CharField('Coinex Key', max_length=80, default='', null=True, blank=True)
+    coinex_secret = models.CharField('Coinex Secret', max_length=80, default='', null=True, blank=True)
+    bitz_key = models.CharField('Bit-Z Key', max_length=80, default='', null=True, blank=True)
+    bitz_secret = models.CharField('Bit-Z Secret', max_length=80, default='', null=True, blank=True)
+    bibox_key = models.CharField('Bibox Key', max_length=80, default='', null=True, blank=True)
+    bibox_secret = models.CharField('Bibox Secret', max_length=80, default='', null=True, blank=True)
+
+    class Meta:
+        db_table = 'users_keys'
+
+
+def create_profile(sender, **kwargs):
+    if kwargs['created']:
+        UsersKeys.objects.create(user=kwargs['instance'])
+        UsersBalance.objects.create(user=kwargs['instance'])
+
+
+post_save.connect(create_profile, sender=settings.AUTH_USER_MODEL)

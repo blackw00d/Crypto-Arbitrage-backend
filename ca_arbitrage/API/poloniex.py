@@ -46,7 +46,7 @@ class PoloniexAPI:
         arr = self._prices()
         array = {}
 
-        if 'error' not in array and arr:
+        if 'error' not in arr and arr:
             for key, value in arr.items():
                 array[key] = {
                     'prices': value['last'],

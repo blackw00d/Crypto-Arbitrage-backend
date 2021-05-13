@@ -11,11 +11,12 @@ from .API.kraken import KrakenAPI
 from .API.kucoin import KucoinAPI
 from .API.okex import OKexAPI
 from .API.poloniex import PoloniexAPI
+from rest_framework import status
 
 
 def get_user_balance(user):
     """ Вывод баланса пользователя """
-    balance = UserBalance.objects.get(user=user)
+    balance = UsersBalance.objects.get(user__username=user)
     serializer = BalanceSerializer(balance)
     return serializer.data
 
@@ -29,19 +30,20 @@ def get_coin_listing():
 
 def get_exchange_data():
     """ Получение данных с бирж """
-    filters = {}
-    filters['binance'] = Binance.objects.all().order_by('name')
-    filters['bittrex'] = Bittrex.objects.all().order_by('name')
-    filters['poloniex'] = Poloniex.objects.all().order_by('name')
-    filters['hitbtc'] = Hitbtc.objects.all().order_by('name')
-    filters['kucoin'] = Kucoin.objects.all().order_by('name')
-    filters['kraken'] = Kraken.objects.all().order_by('name')
-    filters['huobi'] = Huobi.objects.all().order_by('name')
-    filters['okex'] = Okex.objects.all().order_by('name')
-    filters['gateio'] = Gateio.objects.all().order_by('name')
-    filters['coinex'] = Coinex.objects.all().order_by('name')
-    filters['bitz'] = Bitz.objects.all().order_by('name')
-    filters['bibox'] = Bibox.objects.all().order_by('name')
+    filters = {
+        'binance': Binance.objects.all().order_by('name'),
+        'bittrex': Bittrex.objects.all().order_by('name'),
+        'poloniex': Poloniex.objects.all().order_by('name'),
+        'hitbtc': Hitbtc.objects.all().order_by('name'),
+        'kucoin': Kucoin.objects.all().order_by('name'),
+        'kraken': Kraken.objects.all().order_by('name'),
+        'huobi': Huobi.objects.all().order_by('name'),
+        'okex': Okex.objects.all().order_by('name'),
+        'gateio': Gateio.objects.all().order_by('name'),
+        'coinex': Coinex.objects.all().order_by('name'),
+        'bitz': Bitz.objects.all().order_by('name'),
+        'bibox': Bibox.objects.all().order_by('name')
+    }
     serializer = ExchangesSerializers(filters)
     return serializer.data
 
@@ -66,9 +68,72 @@ def get_graph_data(exchange, coin):
     if exchange in exchanges:
         api = exchanges[exchange]['api']
         quote, base = coin['coin'].split('-')
-        return api.graph(quote, base)
+        return api.graph(quote, base), status.HTTP_200_OK
     else:
-        return []
+        return [], status.HTTP_400_BAD_REQUEST
+
+
+def sort_arbitrage_data(data):
+    temp = {}
+    profit_array = []
+    coin_array = []
+    index = 0
+    i = 1
+
+    for (key, values) in data.items():
+        exchange = key.split('_')
+        for value in values:
+            name = value['name'].split('-')[1]
+            coin_array.append({
+                'name': name,
+                'price_a': value['price_a'],
+                'price_b': value['price_b'],
+                'profit': value['profit'],
+                'link_a': value['link_a'],
+                'link_b': value['link_b'],
+                'exchange_a': exchange[0],
+                'exchange_b': exchange[1],
+                'index': 0,
+                'amount': 1
+            })
+            if name in temp:
+                if temp[name]['profit'] < value['profit']:
+                    temp[name] = {
+                        'price_a': value['price_a'],
+                        'price_b': value['price_b'],
+                        'profit': value['profit'],
+                        'link_a': value['link_a'],
+                        'link_b': value['link_b'],
+                        'exchange_a': exchange[0],
+                        'exchange_b': exchange[1]
+                    }
+            else:
+                temp[name] = {
+                    'price_a': value['price_a'],
+                    'price_b': value['price_b'],
+                    'profit': value['profit'],
+                    'link_a': value['link_a'],
+                    'link_b': value['link_b'],
+                    'exchange_a': exchange[0],
+                    'exchange_b': exchange[1]
+                }
+
+    sorted_coin_array = sorted(coin_array, key=lambda v: (v['name'], -v['profit']))
+
+    temp = dict(sorted(temp.items(), key=lambda v: -v[1]['profit']))
+    for key in temp:
+        profit_array.append({
+            'name': key,
+            'price_a': temp[key]['price_a'],
+            'price_b': temp[key]['price_b'],
+            'profit': temp[key]['profit'],
+            'link_a': temp[key]['link_a'],
+            'link_b': temp[key]['link_b'],
+            'exchange_a': temp[key]['exchange_a'],
+            'exchange_b': temp[key]['exchange_b']
+        })
+
+    return [profit_array, sorted_coin_array]
 
 
 def get_arbitrage_data():
@@ -108,14 +173,16 @@ def get_arbitrage_data():
     filters['binance_bitz'] = BinanceBitz.objects.filter(binance_volume__gt=min_volume, bitz_volume__gt=min_volume,
                                                          profit__gt=min_profit, profit__lt=max_profit).order_by(
         'name').order_by('-profit')
-    filters['binance_huobi'] = BinanceHuobi.objects.filter(binance_volume__gt=min_volume, huobi_volume__gt=min_volume,
+    filters['binance_huobi'] = BinanceHuobi.objects.filter(binance_volume__gt=min_volume,
+                                                           huobi_volume__gt=min_volume,
                                                            profit__gt=min_profit, profit__lt=max_profit).order_by(
         'name').order_by('-profit')
     filters['binance_coinex'] = BinanceCoinex.objects.filter(binance_volume__gt=min_volume,
                                                              coinex_volume__gt=min_volume, profit__gt=min_profit,
                                                              profit__lt=max_profit).order_by('name').order_by(
         '-profit')
-    filters['binance_bibox'] = BinanceBibox.objects.filter(binance_volume__gt=min_volume, bibox_volume__gt=min_volume,
+    filters['binance_bibox'] = BinanceBibox.objects.filter(binance_volume__gt=min_volume,
+                                                           bibox_volume__gt=min_volume,
                                                            profit__gt=min_profit, profit__lt=max_profit).order_by(
         'name').order_by('-profit')
     filters['bittrex_hitbtc'] = BittrexHitbtc.objects.filter(bittrex_volume__gt=min_volume,
@@ -145,14 +212,16 @@ def get_arbitrage_data():
     filters['bittrex_bitz'] = BittrexBitz.objects.filter(bittrex_volume__gt=min_volume, bitz_volume__gt=min_volume,
                                                          profit__gt=min_profit, profit__lt=max_profit).order_by(
         'name').order_by('-profit')
-    filters['bittrex_huobi'] = BittrexHuobi.objects.filter(bittrex_volume__gt=min_volume, huobi_volume__gt=min_volume,
+    filters['bittrex_huobi'] = BittrexHuobi.objects.filter(bittrex_volume__gt=min_volume,
+                                                           huobi_volume__gt=min_volume,
                                                            profit__gt=min_profit, profit__lt=max_profit).order_by(
         'name').order_by('-profit')
     filters['bittrex_coinex'] = BittrexCoinex.objects.filter(bittrex_volume__gt=min_volume,
                                                              coinex_volume__gt=min_volume, profit__gt=min_profit,
                                                              profit__lt=max_profit).order_by('name').order_by(
         '-profit')
-    filters['bittrex_bibox'] = BittrexBibox.objects.filter(bittrex_volume__gt=min_volume, bibox_volume__gt=min_volume,
+    filters['bittrex_bibox'] = BittrexBibox.objects.filter(bittrex_volume__gt=min_volume,
+                                                           bibox_volume__gt=min_volume,
                                                            profit__gt=min_profit, profit__lt=max_profit).order_by(
         'name').order_by('-profit')
     filters['poloniex_hitbtc'] = PoloniexHitbtc.objects.filter(poloniex_volume__gt=min_volume,
@@ -167,14 +236,16 @@ def get_arbitrage_data():
                                                                kraken_volume__gt=min_volume, profit__gt=min_profit,
                                                                profit__lt=max_profit).order_by('name').order_by(
         '-profit')
-    filters['poloniex_okex'] = PoloniexOkex.objects.filter(poloniex_volume__gt=min_volume, okex_volume__gt=min_volume,
+    filters['poloniex_okex'] = PoloniexOkex.objects.filter(poloniex_volume__gt=min_volume,
+                                                           okex_volume__gt=min_volume,
                                                            profit__gt=min_profit, profit__lt=max_profit).order_by(
         'name').order_by('-profit')
     filters['poloniex_gateio'] = PoloniexGateio.objects.filter(poloniex_volume__gt=min_volume,
                                                                gateio_volume__gt=min_volume, profit__gt=min_profit,
                                                                profit__lt=max_profit).order_by('name').order_by(
         '-profit')
-    filters['poloniex_bitz'] = PoloniexBitz.objects.filter(poloniex_volume__gt=min_volume, bitz_volume__gt=min_volume,
+    filters['poloniex_bitz'] = PoloniexBitz.objects.filter(poloniex_volume__gt=min_volume,
+                                                           bitz_volume__gt=min_volume,
                                                            profit__gt=min_profit, profit__lt=max_profit).order_by(
         'name').order_by('-profit')
     filters['poloniex_huobi'] = PoloniexHuobi.objects.filter(poloniex_volume__gt=min_volume,
@@ -189,16 +260,19 @@ def get_arbitrage_data():
                                                              bibox_volume__gt=min_volume, profit__gt=min_profit,
                                                              profit__lt=max_profit).order_by('name').order_by(
         '-profit')
-    filters['hitbtc_kucoin'] = HitbtcKucoin.objects.filter(hitbtc_volume__gt=min_volume, kucoin_volume__gt=min_volume,
+    filters['hitbtc_kucoin'] = HitbtcKucoin.objects.filter(hitbtc_volume__gt=min_volume,
+                                                           kucoin_volume__gt=min_volume,
                                                            profit__gt=min_profit, profit__lt=max_profit).order_by(
         'name').order_by('-profit')
-    filters['hitbtc_kraken'] = Hitbtckraken.objects.filter(hitbtc_volume__gt=min_volume, kraken_volume__gt=min_volume,
+    filters['hitbtc_kraken'] = Hitbtckraken.objects.filter(hitbtc_volume__gt=min_volume,
+                                                           kraken_volume__gt=min_volume,
                                                            profit__gt=min_profit, profit__lt=max_profit).order_by(
         'name').order_by('-profit')
     filters['hitbtc_okex'] = HitbtcOkex.objects.filter(hitbtc_volume__gt=min_volume, okex_volume__gt=min_volume,
                                                        profit__gt=min_profit, profit__lt=max_profit).order_by(
         'name').order_by('-profit')
-    filters['hitbtc_gateio'] = HitbtcGateio.objects.filter(hitbtc_volume__gt=min_volume, gateio_volume__gt=min_volume,
+    filters['hitbtc_gateio'] = HitbtcGateio.objects.filter(hitbtc_volume__gt=min_volume,
+                                                           gateio_volume__gt=min_volume,
                                                            profit__gt=min_profit, profit__lt=max_profit).order_by(
         'name').order_by('-profit')
     filters['hitbtc_bitz'] = HitbtcBitz.objects.filter(hitbtc_volume__gt=min_volume, bitz_volume__gt=min_volume,
@@ -207,19 +281,22 @@ def get_arbitrage_data():
     filters['hitbtc_huobi'] = HitbtcHuobi.objects.filter(hitbtc_volume__gt=min_volume, huobi_volume__gt=min_volume,
                                                          profit__gt=min_profit, profit__lt=max_profit).order_by(
         'name').order_by('-profit')
-    filters['hitbtc_coinex'] = HitbtcCoinex.objects.filter(hitbtc_volume__gt=min_volume, coinex_volume__gt=min_volume,
+    filters['hitbtc_coinex'] = HitbtcCoinex.objects.filter(hitbtc_volume__gt=min_volume,
+                                                           coinex_volume__gt=min_volume,
                                                            profit__gt=min_profit, profit__lt=max_profit).order_by(
         'name').order_by('-profit')
     filters['hitbtc_bibox'] = HitbtcBibox.objects.filter(hitbtc_volume__gt=min_volume, bibox_volume__gt=min_volume,
                                                          profit__gt=min_profit, profit__lt=max_profit).order_by(
         'name').order_by('-profit')
-    filters['kucoin_kraken'] = KucoinKraken.objects.filter(kucoin_volume__gt=min_volume, kraken_volume__gt=min_volume,
+    filters['kucoin_kraken'] = KucoinKraken.objects.filter(kucoin_volume__gt=min_volume,
+                                                           kraken_volume__gt=min_volume,
                                                            profit__gt=min_profit, profit__lt=max_profit).order_by(
         'name').order_by('-profit')
     filters['kucoin_okex'] = KucoinOkex.objects.filter(kucoin_volume__gt=min_volume, okex_volume__gt=min_volume,
                                                        profit__gt=min_profit, profit__lt=max_profit).order_by(
         'name').order_by('-profit')
-    filters['kucoin_gateio'] = KucoinGateio.objects.filter(kucoin_volume__gt=min_volume, gateio_volume__gt=min_volume,
+    filters['kucoin_gateio'] = KucoinGateio.objects.filter(kucoin_volume__gt=min_volume,
+                                                           gateio_volume__gt=min_volume,
                                                            profit__gt=min_profit, profit__lt=max_profit).order_by(
         'name').order_by('-profit')
     filters['kucoin_bitz'] = KucoinBitz.objects.filter(kucoin_volume__gt=min_volume, bitz_volume__gt=min_volume,
@@ -228,7 +305,8 @@ def get_arbitrage_data():
     filters['kucoin_huobi'] = KucoinHuobi.objects.filter(kucoin_volume__gt=min_volume, huobi_volume__gt=min_volume,
                                                          profit__gt=min_profit, profit__lt=max_profit).order_by(
         'name').order_by('-profit')
-    filters['kucoin_coinex'] = KucoinCoinex.objects.filter(kucoin_volume__gt=min_volume, coinex_volume__gt=min_volume,
+    filters['kucoin_coinex'] = KucoinCoinex.objects.filter(kucoin_volume__gt=min_volume,
+                                                           coinex_volume__gt=min_volume,
                                                            profit__gt=min_profit, profit__lt=max_profit).order_by(
         'name').order_by('-profit')
     filters['kucoin_bibox'] = KucoinBibox.objects.filter(kucoin_volume__gt=min_volume, bibox_volume__gt=min_volume,
@@ -237,7 +315,8 @@ def get_arbitrage_data():
     filters['kraken_okex'] = KrakenOkex.objects.filter(kraken_volume__gt=min_volume, okex_volume__gt=min_volume,
                                                        profit__gt=min_profit, profit__lt=max_profit).order_by(
         'name').order_by('-profit')
-    filters['kraken_gateio'] = KrakenGateio.objects.filter(kraken_volume__gt=min_volume, gateio_volume__gt=min_volume,
+    filters['kraken_gateio'] = KrakenGateio.objects.filter(kraken_volume__gt=min_volume,
+                                                           gateio_volume__gt=min_volume,
                                                            profit__gt=min_profit, profit__lt=max_profit).order_by(
         'name').order_by('-profit')
     filters['kraken_bitz'] = KrakenBitz.objects.filter(kraken_volume__gt=min_volume, bitz_volume__gt=min_volume,
@@ -246,7 +325,8 @@ def get_arbitrage_data():
     filters['kraken_huobi'] = KrakenHuobi.objects.filter(kraken_volume__gt=min_volume, huobi_volume__gt=min_volume,
                                                          profit__gt=min_profit, profit__lt=max_profit).order_by(
         'name').order_by('-profit')
-    filters['kraken_coinex'] = KrakenCoinex.objects.filter(kraken_volume__gt=min_volume, coinex_volume__gt=min_volume,
+    filters['kraken_coinex'] = KrakenCoinex.objects.filter(kraken_volume__gt=min_volume,
+                                                           coinex_volume__gt=min_volume,
                                                            profit__gt=min_profit, profit__lt=max_profit).order_by(
         'name').order_by('-profit')
     filters['kraken_bibox'] = KrakenBibox.objects.filter(kraken_volume__gt=min_volume, bibox_volume__gt=min_volume,
@@ -273,7 +353,8 @@ def get_arbitrage_data():
     filters['gateio_huobi'] = GateioHuobi.objects.filter(gateio_volume__gt=min_volume, huobi_volume__gt=min_volume,
                                                          profit__gt=min_profit, profit__lt=max_profit).order_by(
         'name').order_by('-profit')
-    filters['gateio_coinex'] = GateioCoinex.objects.filter(gateio_volume__gt=min_volume, coinex_volume__gt=min_volume,
+    filters['gateio_coinex'] = GateioCoinex.objects.filter(gateio_volume__gt=min_volume,
+                                                           coinex_volume__gt=min_volume,
                                                            profit__gt=min_profit, profit__lt=max_profit).order_by(
         'name').order_by('-profit')
     filters['gateio_bibox'] = GateioBibox.objects.filter(gateio_volume__gt=min_volume, bibox_volume__gt=min_volume,
@@ -298,25 +379,27 @@ def get_arbitrage_data():
                                                          profit__gt=min_profit, profit__lt=max_profit).order_by(
         'name').order_by('-profit')
     serializer = ArbitrageSerializers(filters)
-    return serializer.data
+    table = serializer.data
+    coin_profit = sort_arbitrage_data(table)
+    return [table, coin_profit[0], coin_profit[1]]
 
 
 def get_trading_coins(user):
     """ Получение списка торгуемых монет для пользователя """
-    trading = Trading.objects.filter(user=user)
+    trading = Trading.objects.filter(user__username=user)
     serializer = TradingSerializer(trading, many=True)
     return serializer.data
 
 
 def get_tracking_coins(user):
     """ Получение списка отслеживаемых монет для пользователя """
-    tracking = Tracking.objects.filter(user=user)
+    tracking = Tracking.objects.filter(user__username=user)
     serializer = TrackingSerializer(tracking, many=True)
     return serializer.data
 
 
 def get_user_keys(user):
     """ Получение списка ключей для пользователя """
-    keys = UserKeys.objects.get(user=user)
+    keys = UsersKeys.objects.get(user__username=user)
     serializer = UserKeysSerializer(keys)
     return serializer.data

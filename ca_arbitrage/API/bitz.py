@@ -1,7 +1,6 @@
 import hashlib
 import time
 import random
-import urllib.parse
 import requests
 import json
 
@@ -52,7 +51,7 @@ class BitZAPI:
                 if arr['data']['info']:
                     for key in arr['data']['info']:
                         if float(key['num']) > 0:
-                            array[key] = {
+                            array[key.upper()] = {
                                 'amount': float(key['num']),
                                 'totalbtc': key['btc'],
                                 'totalusd': key['usd']

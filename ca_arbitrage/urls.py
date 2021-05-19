@@ -1,21 +1,13 @@
-"""ca_backend URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/3.1/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
+    ca_backend URL Configuration
+
+"""
+
 from django.urls import path
 from ca_arbitrage.views import ArbitrageView, BalanceView, ListingView, ExchangesView, ExchangeView, GraphView, \
-    TradingView, TradingChangeView, TradingAddView, TrackingView, TrackingAddView, TrackingChangeView, UserView
+    TradingView, TradingChangeView, TradingAddView, TrackingView, TrackingAddView, TrackingChangeView, UserView, \
+    UserAccountView, UsersPaymentsView, PricesView, PayView
 from .Server import update_balance, update_tracking, update_trading, update_arbitrage
 
 urlpatterns = [
@@ -32,6 +24,10 @@ urlpatterns = [
     path('tracking/add', TrackingAddView.as_view()),
     path('tracking/change/<int:pk>', TrackingChangeView.as_view()),
     path('user', UserView.as_view()),
+    path('account', UserAccountView.as_view()),
+    path('payments', UsersPaymentsView.as_view()),
+    path('prices', PricesView.as_view()),
+    path('pay', PayView.as_view()),
 
     path('update_balance', update_balance.main),
     path('update_tracking', update_tracking.main),

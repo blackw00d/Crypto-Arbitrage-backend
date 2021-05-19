@@ -1075,10 +1075,32 @@ class UsersKeys(models.Model):
         db_table = 'users_keys'
 
 
-def create_profile(sender, **kwargs):
+class UsersAccount(models.Model):
+    """ Данные аккаунта пользователей """
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name='user_account_name', on_delete=models.CASCADE)
+    last_pay_time = models.DateField('Дата последней оплаты', auto_now=True)
+    days = models.IntegerField('Кол-во оплаченных дней', default=0, null=False)
+
+    class Meta:
+        db_table = 'users_account'
+
+
+class UsersPayments(models.Model):
+    """ Данные оплаты пользователей """
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='user_payments_name', on_delete=models.CASCADE)
+    pay_time = models.DateField('Дата оплаты', auto_now_add=True)
+    money = models.FloatField('Оплата', default=0, null=False)
+
+    class Meta:
+        db_table = 'users_payments'
+
+
+def create_profile(**kwargs):
+    """ Создание записей в таблицах UsersKeys, UsersBalance при регистрации пользователя """
     if kwargs['created']:
         UsersKeys.objects.create(user=kwargs['instance'])
         UsersBalance.objects.create(user=kwargs['instance'])
+        UsersAccount.objects.create(user=kwargs['instance'])
 
 
 post_save.connect(create_profile, sender=settings.AUTH_USER_MODEL)

@@ -15,21 +15,21 @@ from rest_framework import status
 
 
 def get_user_balance(user):
-    """ Вывод баланса пользователя """
+    """ ПОЛУЧЕНИЕ БАЛАНСА ПОЛЬЗОВАТЕЛЯ """
     balance = UsersBalance.objects.get(user__username=user)
     serializer = BalanceSerializer(balance)
     return serializer.data
 
 
 def get_coin_listing():
-    """ Вывод списка появившихся монет """
+    """ ПОЛУЧЕНИЕ СПИСКА ДОБАВЛЕННЫХ НА БИРЖИ МОНЕТ """
     listing = CoinListing.objects.all().order_by('date')
     serializer = CoinListingSerializer(listing, many=True)
     return serializer.data
 
 
 def get_exchange_data():
-    """ Получение данных с бирж """
+    """ ПОЛУЧЕНИЕ ДАННЫХ СО ВСЕХ БИРЖ """
     filters = {
         'binance': Binance.objects.all().order_by('name'),
         'bittrex': Bittrex.objects.all().order_by('name'),
@@ -49,8 +49,8 @@ def get_exchange_data():
 
 
 def get_graph_data(exchange, coin):
-    """ Создание графика монеты """
-    exchanges = {
+    """ ПОЛУЧЕНИЕ ГРАФИКА ЦЕНЫ И ОБЪЕМА МОНЕТЫ """
+    exchanges_list = {
         'binance': {'api': BinanceAPI()},
         'bittrex': {'api': BittrexAPI()},
         'poloniex': {'api': PoloniexAPI()},
@@ -65,8 +65,8 @@ def get_graph_data(exchange, coin):
         'bibox': {'api': BiboxAPI()}
     }
 
-    if exchange in exchanges:
-        api = exchanges[exchange]['api']
+    if exchange in exchanges_list:
+        api = exchanges_list[exchange]['api']
         quote, base = coin['coin'].split('-')
         return api.graph(quote, base), status.HTTP_200_OK
     else:
@@ -74,11 +74,10 @@ def get_graph_data(exchange, coin):
 
 
 def sort_arbitrage_data(data):
+    """ ПРЕОБРАЗОВАНИЕ ДАННЫХ АРБИТРАЖА НА МАССИВЫ ДАННЫХ ПО ПРОФИТУ И МОНЕТАМ """
     temp = {}
     profit_array = []
     coin_array = []
-    index = 0
-    i = 1
 
     for (key, values) in data.items():
         exchange = key.split('_')
@@ -137,7 +136,7 @@ def sort_arbitrage_data(data):
 
 
 def get_arbitrage_data():
-    """ Получение арбитражных данных о биржах """
+    """ ПОЛУЧЕНИЕ ДАННЫХ АРБИТРАЖА НА БИРЖАХ """
     filters = {}
     min_volume = 30000
     min_profit = 0.01
@@ -385,21 +384,58 @@ def get_arbitrage_data():
 
 
 def get_trading_coins(user):
-    """ Получение списка торгуемых монет для пользователя """
+    """ ПОЛУЧЕНИЕ СПИСКА ТОРГУЕМЫХ МОНЕТ ДЛЯ ПОЛЬЗОВАТЕЛЯ """
     trading = Trading.objects.filter(user__username=user)
     serializer = TradingSerializer(trading, many=True)
     return serializer.data
 
 
 def get_tracking_coins(user):
-    """ Получение списка отслеживаемых монет для пользователя """
+    """ ПОЛУЧЕНИЕ СПИСКА ОТСЛЕЖИВАЕМЫХ МОНЕТ ДЛЯ ПОЛЬЗОВАТЕЛЯ """
     tracking = Tracking.objects.filter(user__username=user)
     serializer = TrackingSerializer(tracking, many=True)
     return serializer.data
 
 
 def get_user_keys(user):
-    """ Получение списка ключей для пользователя """
+    """ ПОЛУЧЕНИЕ СПИСКА КЛЮЧЕЙ ДЛЯ ПОЛЬЗОВАТЕЛЯ """
     keys = UsersKeys.objects.get(user__username=user)
     serializer = UserKeysSerializer(keys)
     return serializer.data
+
+
+def get_user_account(user):
+    """ ПОЛУЧЕНИЕ СПИСКА КЛЮЧЕЙ ДЛЯ ПОЛЬЗОВАТЕЛЯ """
+    account = UsersAccount.objects.get(user__username=user)
+    serializer = UsersAccountSerializer(account)
+    return serializer.data
+
+
+def get_user_payments(user):
+    """ ПОЛУЧЕНИЕ СПИСКА КЛЮЧЕЙ ДЛЯ ПОЛЬЗОВАТЕЛЯ """
+    payments = UsersPayments.objects.filter(user__username=user).order_by('-pay_time', '-id')
+    if not payments:
+        return []
+    serializer = UsersPaymentsSerializer(payments, many=True)
+    return serializer.data
+
+
+def days_value(money):
+    """ РАСЧЕТ КОЛИЧЕСТВА ОПЛАЧЕННЫХ ДНЕЙ ПО СУММЕ ПЛАТЕЖА """
+    if money == settings.PAYMENT:
+        return 30
+    elif money == settings.PAYMENT * 2.75:
+        return 3 * 30
+    elif money == settings.PAYMENT * 5:
+        return 6 * 30
+    return money / settings.PAYMENT * 30
+
+
+def set_user_account(data):
+    """ ОБНОВЛЕНИЕ ДАННЫХ АККАУНТА ПОЛЬЗОВАТЕЛЯ """
+    queryset = UsersAccount.objects.get(user=data['user'])
+    days_to_deadline = UsersAccountSerializer(queryset).data['days_to_deadline']
+    days = {'days': days_to_deadline + days_value(int(data['money']))}
+    serializer = UsersAccountSerializer(queryset, data=days, partial=True)
+    if serializer.is_valid():
+        serializer.save()

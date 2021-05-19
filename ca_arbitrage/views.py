@@ -1,15 +1,15 @@
-import requests
 from rest_framework import generics, status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializers import *
 from .services import get_user_balance, get_coin_listing, get_exchange_data, get_graph_data, get_arbitrage_data, \
-    get_trading_coins, get_tracking_coins, get_user_keys
+    get_trading_coins, get_tracking_coins, get_user_keys, get_user_account, get_user_payments, set_user_account
+from django.conf import settings
 
 
 class BalanceView(APIView):
-    """ Отображение баланса пользователя """
+    """ ПОЛУЧЕНИЕ БАЛАНСА ПОЛЬЗОВАТЕЛЯ """
     permission_classes = (IsAuthenticated,)
 
     def post(self, request):
@@ -17,7 +17,7 @@ class BalanceView(APIView):
 
 
 class ListingView(APIView):
-    """ Отображение списка появившихся монет """
+    """ ПОЛУЧЕНИЕ СПИСКА ДОБАВЛЕННЫХ НА БИРЖИ МОНЕТ """
     permission_classes = (IsAuthenticated,)
 
     def get(self, request):
@@ -25,7 +25,7 @@ class ListingView(APIView):
 
 
 class ExchangesView(APIView):
-    """ Отображение данных с бирж """
+    """ ПОЛУЧЕНИЕ ДАННЫХ СО ВСЕХ БИРЖ """
     permission_classes = (IsAuthenticated,)
 
     def get(self, request):
@@ -33,7 +33,7 @@ class ExchangesView(APIView):
 
 
 class ArbitrageView(APIView):
-    """ Отображение данных арбитража о биржах """
+    """ ПОЛУЧЕНИЕ ДАННЫХ АРБИТРАЖА НА БИРЖАХ """
     permission_classes = (IsAuthenticated,)
 
     def get(self, request):
@@ -41,7 +41,7 @@ class ArbitrageView(APIView):
 
 
 class ExchangeView(APIView):
-    """ Отображение данных одной биржи """
+    """ ПОЛУЧЕНИЕ ДАННЫХ ОДНОЙ БИРЖИ """
     permission_classes = (IsAuthenticated,)
     exchange = {'Binance': {'model': Binance, 'serializer': BinanceSerializer},
                 'Bittrex': {'model': Bittrex, 'serializer': BittrexSerializer},
@@ -66,7 +66,7 @@ class ExchangeView(APIView):
 
 
 class GraphView(APIView):
-    """ Отображение списка торгуемых монет для пользователя """
+    """ ПОЛУЧЕНИЕ ГРАФИКА ЦЕНЫ И ОБЪЕМА МОНЕТЫ НА БИРЖЕ """
     permission_classes = (IsAuthenticated,)
 
     def post(self, request, slug):
@@ -75,11 +75,11 @@ class GraphView(APIView):
 
 
 class TradingView(APIView):
-    """ Отображение списка торгуемых монет для пользователя """
+    """ ПОЛУЧЕНИЕ СПИСКА ТОРГУЕМЫХ МОНЕТ ДЛЯ ПОЛЬЗОВАТЕЛЯ """
     permission_classes = (IsAuthenticated,)
 
     def post(self, request):
-        return Response(data=get_trading_coins(request.data), status=status.HTTP_200_OK)
+        return Response(data=get_trading_coins(request.user), status=status.HTTP_200_OK)
 
 
 class TradingChangeView(APIView):
@@ -116,11 +116,11 @@ class TradingAddView(generics.CreateAPIView):
 
 
 class TrackingView(APIView):
-    """ Отображение списка отслеживаемых монет для пользователя """
+    """ ПОЛУЧЕНИЕ СПИСКА ОТСЛЕЖИВАЕМЫХ МОНЕТ ДЛЯ ПОЛЬЗОВАТЕЛЯ """
     permission_classes = (IsAuthenticated,)
 
     def post(self, request):
-        return Response(data=get_tracking_coins(request.data), status=status.HTTP_200_OK)
+        return Response(data=get_tracking_coins(request.user), status=status.HTTP_200_OK)
 
 
 class TrackingChangeView(APIView):
@@ -157,7 +157,7 @@ class TrackingAddView(generics.CreateAPIView):
 
 
 class UserView(APIView):
-    """ ПОЛУЧЕНИЕ И ИЗМЕНЕНИЕ API КЛЮЧЕЙ ПОЛЬЗОВАТЕЛЯ """
+    """ ПОЛУЧЕНИЕ И ИЗМЕНЕНИЕ API КЛЮЧЕЙ, TELEGRAM NICKNAME ПОЛЬЗОВАТЕЛЯ """
     permission_classes = (IsAuthenticated,)
 
     def get_object(self, user):
@@ -173,3 +173,45 @@ class UserView(APIView):
 
     def post(self, request):
         return Response(data=get_user_keys(request.user), status=status.HTTP_200_OK)
+
+
+class UserAccountView(APIView):
+    """ ПОЛУЧЕНИЕ ДАННЫХ АККАУНТА ПОЛЬЗОВАТЕЛЯ """
+    permission_classes = (IsAuthenticated,)
+
+    def get(self, request):
+        return Response(data=get_user_account(request.user), status=status.HTTP_200_OK)
+
+
+class UsersPaymentsView(APIView):
+    """ ПОЛУЧЕНИЕ СПИСКА ТРАНЗАКЦИЙ ПОЛЬЗОВАТЕЛЯ """
+    permission_classes = (IsAuthenticated,)
+
+    def get(self, request):
+        return Response(data=get_user_payments(request.user), status=status.HTTP_200_OK)
+
+
+class PricesView(APIView):
+    """ ПОЛУЧЕНИЕ ТАРИФОВ ДЛЯ ПОЛЬЗОВАТЕЛЯ """
+
+    def get(self, request):
+        price = {
+            'try': settings.PAYMENT,
+            'begginer': settings.PAYMENT * 2.75,
+            'trader': settings.PAYMENT * 5
+        }
+        return Response(data=price, status=status.HTTP_200_OK)
+
+
+class PayView(APIView):
+    """ ДОБАВЛЕНИЕ ТРАНЗАКЦИИ ПОЛЬЗОВАТЕЛЮ """
+    permission_classes = (IsAuthenticated,)
+
+    def post(self, request, *args, **kwargs):
+        request.data['user'] = request.user.id
+        serializer = UsersPaymentsSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            set_user_account(request.data)
+            return Response(status=status.HTTP_200_OK)
+        return Response(status=status.HTTP_400_BAD_REQUEST)

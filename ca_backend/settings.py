@@ -169,3 +169,5 @@ SIMPLE_JWT = {
 
 CORS_ORIGIN_WHITELIST = os.environ.get('CORS_ORIGIN_WHITELIST', 'http://127.0.0.1:8000 http://localhost:8080').split(
     ' ')
+
+PAYMENT = int(os.environ.get('PAYMENT', 20))

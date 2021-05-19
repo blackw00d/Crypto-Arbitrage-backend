@@ -1,5 +1,7 @@
+from datetime import timedelta, date
 from rest_framework import serializers
 from .models import *
+from django.conf import settings
 
 exchanges = {
     'Binance': Binance,
@@ -1633,3 +1635,36 @@ class UserKeysSerializer(serializers.ModelSerializer):
                   'kraken_key', 'kraken_secret', 'huobi_key', 'huobi_secret', 'okex_key', 'okex_secret',
                   'okex_password', 'gateio_key', 'gateio_secret', 'coinex_key', 'coinex_secret', 'bitz_key',
                   'bitz_secret', 'bibox_key', 'bibox_secret')
+
+
+class UsersAccountSerializer(serializers.ModelSerializer):
+    deadline = serializers.SerializerMethodField('deadline_value')
+    days_to_deadline = serializers.SerializerMethodField('days_to_deadline_value')
+
+    def deadline_value(self, data):
+        return data.last_pay_time + timedelta(days=data.days)
+
+    def days_to_deadline_value(self, data):
+        difference = data.last_pay_time - date.today() + timedelta(days=data.days + 1)
+        return difference.days if difference.days > 0 else 0
+
+    class Meta:
+        model = UsersAccount
+        fields = ('last_pay_time', 'days_to_deadline', 'deadline', 'days')
+
+
+class UsersPaymentsSerializer(serializers.ModelSerializer):
+    pay_days = serializers.SerializerMethodField('days_value')
+
+    def days_value(self, data):
+        if data.money == settings.PAYMENT:
+            return 30
+        elif data.money == settings.PAYMENT * 2.75:
+            return 3 * 30
+        elif data.money == settings.PAYMENT * 5:
+            return 6 * 30
+        return data.money / settings.PAYMENT * 30
+
+    class Meta:
+        model = UsersPayments
+        fields = ('user', 'pay_time', 'money', 'pay_days')

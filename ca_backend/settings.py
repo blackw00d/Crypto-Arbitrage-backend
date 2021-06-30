@@ -171,3 +171,4 @@ CORS_ORIGIN_WHITELIST = os.environ.get('CORS_ORIGIN_WHITELIST', 'http://127.0.0.
     ' ')
 
 PAYMENT = int(os.environ.get('PAYMENT', 20))
+ASK_VOLUME = int(os.environ.get('ASK_VOLUME', 200))

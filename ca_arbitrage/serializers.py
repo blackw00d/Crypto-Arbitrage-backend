@@ -78,7 +78,7 @@ class BinanceKucoinSerializer(serializers.ModelSerializer):
 
     def kucoinlink(self, exchange):
         name = exchange.name.split('-', 1)
-        link = f'https://www.kucoin.com/#/trade.pro/{name[1]}-{name[0]}'
+        link = f'https://trade.kucoin.com/{name[1]}-{name[0]}'
         return link
 
     class Meta:
@@ -298,7 +298,7 @@ class BittrexKucoinSerializer(serializers.ModelSerializer):
 
     def kucoinlink(self, exchange):
         name = exchange.name.split('-', 1)
-        link = f'https://www.kucoin.com/#/trade.pro/{name[1]}-{name[0]}'
+        link = f'https://trade.kucoin.com/{name[1]}-{name[0]}'
         return link
 
     class Meta:
@@ -516,7 +516,7 @@ class PoloniexKucoinSerializer(serializers.ModelSerializer):
 
     def kucoinlink(self, exchange):
         name = exchange.name.split('-', 1)
-        link = f'https://www.kucoin.com/#/trade.pro/{name[1]}-{name[0]}'
+        link = f'https://trade.kucoin.com/{name[1]}-{name[0]}'
         return link
 
     class Meta:
@@ -686,7 +686,7 @@ class HitbtcKucoinSerializer(serializers.ModelSerializer):
 
     def kucoinlink(self, exchange):
         name = exchange.name.split('-', 1)
-        link = f'https://www.kucoin.com/#/trade.pro/{name[1]}-{name[0]}'
+        link = f'https://trade.kucoin.com/{name[1]}-{name[0]}'
         return link
 
     class Meta:
@@ -849,7 +849,7 @@ class KucoinKrakenSerializer(serializers.ModelSerializer):
 
     def kucoinlink(self, exchange):
         name = exchange.name.split('-', 1)
-        link = f'https://www.kucoin.com/#/trade.pro/{name[1]}-{name[0]}'
+        link = f'https://trade.kucoin.com/{name[1]}-{name[0]}'
         return link
 
     def krakenlink(self, exchange):
@@ -870,7 +870,7 @@ class KucoinOkexSerializer(serializers.ModelSerializer):
 
     def kucoinlink(self, exchange):
         name = exchange.name.split('-', 1)
-        link = f'https://www.kucoin.com/#/trade.pro/{name[1]}-{name[0]}'
+        link = f'https://trade.kucoin.com/{name[1]}-{name[0]}'
         return link
 
     def okexlink(self, exchange):
@@ -891,7 +891,7 @@ class KucoinGateioSerializer(serializers.ModelSerializer):
 
     def kucoinlink(self, exchange):
         name = exchange.name.split('-', 1)
-        link = f'https://www.kucoin.com/#/trade.pro/{name[1]}-{name[0]}'
+        link = f'https://trade.kucoin.com/{name[1]}-{name[0]}'
         return link
 
     def gateiolink(self, exchange):
@@ -912,7 +912,7 @@ class KucoinBitzSerializer(serializers.ModelSerializer):
 
     def kucoinlink(self, exchange):
         name = exchange.name.split('-', 1)
-        link = f'https://www.kucoin.com/#/trade.pro/{name[1]}-{name[0]}'
+        link = f'https://trade.kucoin.com/{name[1]}-{name[0]}'
         return link
 
     def bitzlink(self, exchange):
@@ -933,7 +933,7 @@ class KucoinHuobiSerializer(serializers.ModelSerializer):
 
     def kucoinlink(self, exchange):
         name = exchange.name.split('-', 1)
-        link = f'https://www.kucoin.com/#/trade.pro/{name[1]}-{name[0]}'
+        link = f'https://trade.kucoin.com/{name[1]}-{name[0]}'
         return link
 
     def huobilink(self, exchange):
@@ -954,7 +954,7 @@ class KucoinCoinexSerializer(serializers.ModelSerializer):
 
     def kucoinlink(self, exchange):
         name = exchange.name.split('-', 1)
-        link = f'https://www.kucoin.com/#/trade.pro/{name[1]}-{name[0]}'
+        link = f'https://trade.kucoin.com/{name[1]}-{name[0]}'
         return link
 
     def coinexlink(self, exchange):
@@ -975,7 +975,7 @@ class KucoinBiboxSerializer(serializers.ModelSerializer):
 
     def kucoinlink(self, exchange):
         name = exchange.name.split('-', 1)
-        link = f'https://www.kucoin.com/#/trade.pro/{name[1]}-{name[0]}'
+        link = f'https://trade.kucoin.com/{name[1]}-{name[0]}'
         return link
 
     def biboxlink(self, exchange):

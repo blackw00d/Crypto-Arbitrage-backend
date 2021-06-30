@@ -1,3 +1,5 @@
+import pandas as pd
+
 from ca_arbitrage.serializers import *
 from .API.bibox import BiboxAPI
 from .API.binance import BinanceAPI
@@ -12,6 +14,7 @@ from .API.kucoin import KucoinAPI
 from .API.okex import OKexAPI
 from .API.poloniex import PoloniexAPI
 from rest_framework import status
+import pandas
 
 
 def get_user_balance(user):
@@ -68,7 +71,22 @@ def get_graph_data(exchange, coin):
     if exchange in exchanges_list:
         api = exchanges_list[exchange]['api']
         quote, base = coin['coin'].split('-')
-        return api.graph(quote, base), status.HTTP_200_OK
+        x_y = api.graph(quote, base)
+        candles = pd.DataFrame().from_dict(x_y[0])
+
+        sma10 = []
+        sma10_dataframe = candles.rolling(window=10).mean().dropna()
+        if not sma10_dataframe.empty:
+            sma10 = sma10_dataframe.to_dict('records')
+        x_y.append(sma10)
+
+        sma30 = []
+        sma30_dataframe = candles.rolling(window=30).mean().dropna()
+        if not sma30_dataframe.empty:
+            sma30 = sma30_dataframe.to_dict('records')
+        x_y.append(sma30)
+
+        return x_y, status.HTTP_200_OK
     else:
         return [], status.HTTP_400_BAD_REQUEST
 

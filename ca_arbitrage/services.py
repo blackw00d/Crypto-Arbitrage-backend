@@ -1,5 +1,3 @@
-import pandas as pd
-
 from ca_arbitrage.serializers import *
 from .API.bibox import BiboxAPI
 from .API.binance import BinanceAPI
@@ -14,7 +12,7 @@ from .API.kucoin import KucoinAPI
 from .API.okex import OKexAPI
 from .API.poloniex import PoloniexAPI
 from rest_framework import status
-import pandas
+import pandas as pd
 
 
 def get_user_balance(user):
@@ -74,17 +72,44 @@ def get_graph_data(exchange, coin):
         x_y = api.graph(quote, base)
         candles = pd.DataFrame().from_dict(x_y[0])
 
-        sma10 = []
-        sma10_dataframe = candles.rolling(window=10).mean().dropna()
-        if not sma10_dataframe.empty:
-            sma10 = sma10_dataframe.to_dict('records')
-        x_y.append(sma10)
+        # ''' SMA DATA '''
+        # sma10 = []
+        # candles.ewm()
+        # sma10_dataframe = candles.rolling(window=10).mean().dropna()
+        # if not sma10_dataframe.empty:
+        #     sma10 = sma10_dataframe.to_dict('records')
+        # x_y.append(sma10)
+        #
+        # sma30 = []
+        # sma30_dataframe = candles.rolling(window=30).mean().dropna()
+        # if not sma30_dataframe.empty:
+        #     sma30 = sma30_dataframe.to_dict('records')
+        # x_y.append(sma30)
 
-        sma30 = []
-        sma30_dataframe = candles.rolling(window=30).mean().dropna()
-        if not sma30_dataframe.empty:
-            sma30 = sma30_dataframe.to_dict('records')
-        x_y.append(sma30)
+        ''' MACD DATA '''
+        macd12 = []
+        macd12_dataframe = candles.ewm(span=12, adjust=False).mean().dropna()
+        if not macd12_dataframe.empty:
+            macd12 = macd12_dataframe.to_dict('records')
+        x_y.append(macd12)
+
+        macd26 = []
+        macd26_dataframe = candles.ewm(span=26, adjust=False).mean().dropna()
+        if not macd26_dataframe.empty:
+            macd26 = macd26_dataframe.to_dict('records')
+        x_y.append(macd26)
+
+        ''' CMO DATA '''
+        cmo14 = []
+        closest = candles['y'].diff(1)
+        positive = closest.copy().clip(lower=0)
+        negative = closest.copy().clip(upper=0).abs()
+        pos_ = positive.rolling(14).sum()
+        neg_ = negative.rolling(14).sum()
+        cmo14_dataframe = 100 * (pos_ - neg_) / (pos_ + neg_)
+        if not cmo14_dataframe.empty:
+            cmo14 = pd.DataFrame({'x': candles['x'], 'y': cmo14_dataframe}).dropna().to_dict('records')
+        x_y.append(cmo14)
 
         return x_y, status.HTTP_200_OK
     else:
@@ -431,7 +456,7 @@ def get_user_account(user):
 
 def get_user_payments(user):
     """ ПОЛУЧЕНИЕ СПИСКА КЛЮЧЕЙ ДЛЯ ПОЛЬЗОВАТЕЛЯ """
-    payments = UsersPayments.objects.filter(user__username=user).order_by('-pay_time', '-id')
+    payments = UsersPayments.objects.filter(user__username=user).order_by('-pay_time', '-id')[:5]
     if not payments:
         return []
     serializer = UsersPaymentsSerializer(payments, many=True)

@@ -65,11 +65,13 @@ def get_graph_data(exchange, coin):
         'bitz': {'api': BitZAPI()},
         'bibox': {'api': BiboxAPI()}
     }
+    graph = {}
 
     if exchange in exchanges_list:
         api = exchanges_list[exchange]['api']
         quote, base = coin['coin'].split('-')
         x_y = api.graph(quote, base)
+        graph = {'exchange': {'price': x_y[0], 'volume': x_y[1]}}
         candles = pd.DataFrame().from_dict(x_y[0])
 
         # ''' SMA DATA '''
@@ -91,13 +93,13 @@ def get_graph_data(exchange, coin):
         macd12_dataframe = candles.ewm(span=12, adjust=False).mean().dropna()
         if not macd12_dataframe.empty:
             macd12 = macd12_dataframe.to_dict('records')
-        x_y.append(macd12)
+        graph['macd12'] = macd12
 
         macd26 = []
         macd26_dataframe = candles.ewm(span=26, adjust=False).mean().dropna()
         if not macd26_dataframe.empty:
             macd26 = macd26_dataframe.to_dict('records')
-        x_y.append(macd26)
+        graph['macd26'] = macd26
 
         ''' CMO DATA '''
         cmo14 = []
@@ -109,11 +111,11 @@ def get_graph_data(exchange, coin):
         cmo14_dataframe = 100 * (pos_ - neg_) / (pos_ + neg_)
         if not cmo14_dataframe.empty:
             cmo14 = pd.DataFrame({'x': candles['x'], 'y': cmo14_dataframe}).dropna().to_dict('records')
-        x_y.append(cmo14)
+        graph['cmo14'] = cmo14
 
-        return x_y, status.HTTP_200_OK
+        return graph, status.HTTP_200_OK
     else:
-        return [], status.HTTP_400_BAD_REQUEST
+        return graph, status.HTTP_400_BAD_REQUEST
 
 
 def sort_arbitrage_data(data):

@@ -1507,73 +1507,73 @@ class CoinListingSerializer(serializers.ModelSerializer):
 class BinanceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Binance
-        exclude = ('id', 'id_name',)
+        exclude = ('id', 'id_name', 'ask_volume', 'bid_volume', 'trading', 'deposit', 'withdraw',)
 
 
 class BittrexSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bittrex
-        exclude = ('id', 'id_name',)
+        exclude = ('id', 'id_name', 'ask_volume', 'bid_volume', 'trading',)
 
 
 class KucoinSerializer(serializers.ModelSerializer):
     class Meta:
         model = Kucoin
-        exclude = ('id', 'id_name',)
+        exclude = ('id', 'id_name', 'ask_volume', 'bid_volume', 'trading',)
 
 
 class HitbtcSerializer(serializers.ModelSerializer):
     class Meta:
         model = Hitbtc
-        exclude = ('id', 'id_name',)
+        exclude = ('id', 'id_name', 'ask_volume', 'bid_volume', 'deposit', 'withdraw', 'blocks',)
 
 
 class PoloniexSerializer(serializers.ModelSerializer):
     class Meta:
         model = Poloniex
-        exclude = ('id', 'id_name',)
+        exclude = ('id', 'id_name', 'ask_volume', 'bid_volume', 'trading', 'blocks',)
 
 
 class KrakenSerializer(serializers.ModelSerializer):
     class Meta:
         model = Kraken
-        exclude = ('id', 'id_name',)
+        exclude = ('id', 'id_name', 'ask_volume', 'bid_volume',)
 
 
 class HuobiSerializer(serializers.ModelSerializer):
     class Meta:
         model = Huobi
-        exclude = ('id', 'id_name',)
+        exclude = ('id', 'id_name', 'ask_volume', 'bid_volume', 'deposit', 'withdraw',)
 
 
 class OkexSerializer(serializers.ModelSerializer):
     class Meta:
         model = Okex
-        exclude = ('id', 'id_name',)
+        exclude = ('id', 'id_name', 'ask_volume', 'bid_volume',)
 
 
 class GateioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Gateio
-        exclude = ('id', 'id_name',)
+        exclude = ('id', 'id_name', 'ask_volume', 'bid_volume', 'deposit', 'withdraw',)
 
 
 class CoinexSerializer(serializers.ModelSerializer):
     class Meta:
         model = Coinex
-        exclude = ('id', 'id_name',)
+        exclude = ('id', 'id_name', 'ask_volume', 'bid_volume',)
 
 
 class BitzSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bitz
-        exclude = ('id', 'id_name',)
+        exclude = ('id', 'id_name', 'ask_volume', 'bid_volume', 'deposit', 'withdraw',)
 
 
 class BiboxSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bibox
-        exclude = ('id', 'id_name',)
+        exclude = ('id', 'id_name', 'ask_volume', 'bid_volume', 'deposit', 'withdraw',)
 
 
 class ExchangesSerializers(serializers.Serializer):

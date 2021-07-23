@@ -29,6 +29,36 @@ def get_coin_listing():
     return serializer.data
 
 
+def represent_exchange_data(exchange_data):
+    """ ПРИВЕДЕНИЕ ДАННЫХ С БИРЖИ / БИРЖ К ФОРМАТУ ВАЛЮТА -> МОНЕТЫ """
+    exchange = {}
+    if isinstance(exchange_data, dict):
+        for (key, values) in exchange_data.items():
+            exchange[key] = {}
+            for value in values:
+                coin = value['name'].split('-')[0]
+                if coin not in exchange[key]:
+                    exchange[key][coin] = []
+                exchange[key][coin].append({
+                    'name': value['name'],
+                    'price': value['price'],
+                    'ask': value['ask'],
+                    'bid': value['bid'],
+                    'volume': value['volume'],
+                })
+    elif isinstance(exchange_data, list):
+        for value in exchange_data:
+            coin = value['name'].split('-')[0]
+            if coin not in exchange:
+                exchange[coin] = []
+            exchange[coin].append({
+                'name': value['name'],
+                'price': value['price'],
+                'volume': value['volume'],
+            })
+    return exchange
+
+
 def get_exchange_data():
     """ ПОЛУЧЕНИЕ ДАННЫХ СО ВСЕХ БИРЖ """
     filters = {
@@ -46,7 +76,7 @@ def get_exchange_data():
         'bibox': Bibox.objects.all().order_by('name')
     }
     serializer = ExchangesSerializers(filters)
-    return serializer.data
+    return represent_exchange_data(serializer.data)
 
 
 def get_graph_data(exchange, coin):

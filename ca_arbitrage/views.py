@@ -4,7 +4,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializers import *
 from .services import get_user_balance, get_coin_listing, get_exchange_data, get_graph_data, get_arbitrage_data, \
-    get_trading_coins, get_tracking_coins, get_user_keys, get_user_account, get_user_payments, set_user_account
+    get_trading_coins, get_tracking_coins, get_user_keys, get_user_account, get_user_payments, set_user_account, \
+    represent_exchange_data
 from django.conf import settings
 
 
@@ -62,7 +63,7 @@ class ExchangeView(APIView):
     def get(self, request, slug):
         queryset = self.get_object(slug)
         serializer = self.exchange[slug]['serializer'](queryset, many=True)
-        return Response(data=serializer.data, status=status.HTTP_200_OK)
+        return Response(data=represent_exchange_data(serializer.data), status=status.HTTP_200_OK)
 
 
 class GraphView(APIView):

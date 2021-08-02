@@ -1043,7 +1043,7 @@ class UsersBalance(models.Model):
 class UsersKeys(models.Model):
     """ Секретные ключи пользователей для доступа на биржу """
     user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name='user_keys_name', on_delete=models.CASCADE)
-    telegram = models.CharField('Telegram', max_length=30, default='', null=True, blank=True)
+    telegram = models.BigIntegerField('Telegram', default=0, null=False, blank=True)
     binance_key = models.CharField('Binance Key', max_length=80, default='', null=True, blank=True)
     binance_secret = models.CharField('Binance Secret', max_length=80, default='', null=True, blank=True)
     bittrex_key = models.CharField('Bittrex Key', max_length=80, default='', null=True, blank=True)

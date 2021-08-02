@@ -146,8 +146,8 @@ def get_graph_data(exchange, coin):
         graph['cmo14'] = cmo14
 
         return graph, status.HTTP_200_OK
-    else:
-        return graph, status.HTTP_400_BAD_REQUEST
+
+    return graph, status.HTTP_400_BAD_REQUEST
 
 
 def sort_arbitrage_data(data):
@@ -512,7 +512,9 @@ def set_user_account(data):
     """ ОБНОВЛЕНИЕ ДАННЫХ АККАУНТА ПОЛЬЗОВАТЕЛЯ """
     queryset = UsersAccount.objects.get(user=data['user'])
     days_to_deadline = UsersAccountSerializer(queryset).data['days_to_deadline']
-    days = {'days': days_to_deadline + days_value(int(data['money']))}
+    days = {
+        'days': days_to_deadline + days_value(int(data['money']))
+    }
     serializer = UsersAccountSerializer(queryset, data=days, partial=True)
     if serializer.is_valid():
         serializer.save()
@@ -523,6 +525,8 @@ def send(user, txt):
     telegram_bot = Telegram(token=TELEGRAM_BOT)
     send_status = telegram_bot.send_message_to_user(user, txt)
     if send_status['ok']:
-        print('Send to {0} (ID {1})'.format(send_status['result']['chat']['username'], send_status['result']['chat']['id']))
+        print('Send to {0} (ID {1})'.format(
+            send_status['result']['chat']['username'],
+            send_status['result']['chat']['id']))
     else:
         print('Not Send. Error {0}. {1}'.format(send_status['error_code'], send_status['description']))

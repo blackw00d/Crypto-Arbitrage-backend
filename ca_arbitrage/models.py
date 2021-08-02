@@ -880,7 +880,7 @@ class ExchangeModel(models.Model):
     ask_volume = models.FloatField('Объем продажи', default=None, null=True)
     bid = models.FloatField('Цена покупки', default=None, null=True)
     bid_volume = models.FloatField('Объем покупки', default=None, null=True)
-    volume = models.CharField('Объем рынка', max_length=50, default=None, null=True)
+    volume = models.FloatField('Объем рынка', default=None, null=True)
 
     class Meta:
         abstract = True

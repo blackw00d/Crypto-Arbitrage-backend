@@ -1,3 +1,5 @@
+from ca_backend.settings import TELEGRAM_BOT
+from ca_arbitrage.API.telegram import Telegram
 from ca_arbitrage.serializers import *
 from .API.bibox import BiboxAPI
 from .API.binance import BinanceAPI
@@ -514,3 +516,13 @@ def set_user_account(data):
     serializer = UsersAccountSerializer(queryset, data=days, partial=True)
     if serializer.is_valid():
         serializer.save()
+
+
+def send(user, txt):
+    """ ОТПРАВКА СООБЩЕНИЯ ПОЛЬЗОВАТЕЛЮ В ТЕЛЕГРАММ """
+    telegram_bot = Telegram(token=TELEGRAM_BOT)
+    send_status = telegram_bot.send_message_to_user(user, txt)
+    if send_status['ok']:
+        print('Send to {0} (ID {1})'.format(send_status['result']['chat']['username'], send_status['result']['chat']['id']))
+    else:
+        print('Not Send. Error {0}. {1}'.format(send_status['error_code'], send_status['description']))

@@ -1593,21 +1593,26 @@ class ExchangesSerializers(serializers.Serializer):
 
 class TradingSerializer(serializers.ModelSerializer):
     price_now = serializers.SerializerMethodField('price_now_value')
+    user_telegram = serializers.SerializerMethodField('user_telegram_value')
 
     def price_now_value(self, exchange):
         return exchanges[exchange.exchange].objects.get(name=exchange.pair).price
 
+    def user_telegram_value(self, exchange):
+        return UsersKeys.objects.get(user_id=exchange.user_id).telegram
+
     class Meta:
         model = Trading
         fields = (
-            'id', 'user', 'exchange', 'pair', 'amount', 'price', 'last_price', 'price_now', 'stoploss',
-            'trailingstoploss', 'takeprofit', 'trailingtakeprofit', 'trailingtakeprofitprocent', 'active',
-            'stoplossvalue', 'stoplosstrailingvalue', 'takeprofitvalue', 'takeprofittrailingvalue')
+            'id', 'user', 'user_telegram', 'exchange', 'pair', 'amount', 'price', 'last_price', 'price_now',
+            'stoploss', 'trailingstoploss', 'takeprofit', 'trailingtakeprofit', 'trailingtakeprofitprocent',
+            'active', 'stoplossvalue', 'stoplosstrailingvalue', 'takeprofitvalue', 'takeprofittrailingvalue')
 
 
 class TrackingSerializer(serializers.ModelSerializer):
     price_now = serializers.SerializerMethodField('price_now_value')
     volume_now = serializers.SerializerMethodField('volume_now_value')
+    user_telegram = serializers.SerializerMethodField('user_telegram_value')
 
     def price_now_value(self, exchange):
         return exchanges[exchange.exchange].objects.get(name=exchange.pair).price
@@ -1615,10 +1620,14 @@ class TrackingSerializer(serializers.ModelSerializer):
     def volume_now_value(self, exchange):
         return exchanges[exchange.exchange].objects.get(name=exchange.pair).volume
 
+    def user_telegram_value(self, exchange):
+        return UsersKeys.objects.get(user_id=exchange.user_id).telegram
+
     class Meta:
         model = Tracking
-        fields = ('id', 'user', 'exchange', 'pair', 'price', 'price_now', 'pricechangevalue', 'pricechangeprocent',
-                  'priceactive', 'volume', 'volume_now', 'volumechangevalue', 'volumechangeprocent', 'volumeactive')
+        fields = ('id', 'user', 'user_telegram', 'exchange', 'pair', 'price', 'price_now', 'pricechangevalue',
+                  'pricechangeprocent', 'priceactive', 'volume', 'volume_now', 'volumechangevalue',
+                  'volumechangeprocent', 'volumeactive')
 
 
 class BalanceSerializer(serializers.ModelSerializer):

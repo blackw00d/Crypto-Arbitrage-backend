@@ -1592,6 +1592,15 @@ class ExchangesSerializers(serializers.Serializer):
 
 
 class TradingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Trading
+        fields = (
+            'id', 'user', 'exchange', 'pair', 'amount', 'price', 'last_price', 'stoploss', 'trailingstoploss',
+            'takeprofit', 'trailingtakeprofit', 'trailingtakeprofitprocent', 'active', 'stoplossvalue',
+            'stoplosstrailingvalue', 'takeprofitvalue', 'takeprofittrailingvalue')
+
+
+class TradingServerSerializer(serializers.ModelSerializer):
     price_now = serializers.SerializerMethodField('price_now_value')
     user_telegram = serializers.SerializerMethodField('user_telegram_value')
 
@@ -1610,6 +1619,14 @@ class TradingSerializer(serializers.ModelSerializer):
 
 
 class TrackingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tracking
+        fields = ('id', 'user', 'exchange', 'pair', 'price', 'pricechangevalue',
+                  'pricechangeprocent', 'priceactive', 'volume', 'volumechangevalue',
+                  'volumechangeprocent', 'volumeactive')
+
+
+class TrackingServerSerializer(serializers.ModelSerializer):
     price_now = serializers.SerializerMethodField('price_now_value')
     volume_now = serializers.SerializerMethodField('volume_now_value')
     user_telegram = serializers.SerializerMethodField('user_telegram_value')

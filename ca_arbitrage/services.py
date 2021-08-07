@@ -462,14 +462,14 @@ def get_arbitrage_data():
 
 def get_trading_coins(user):
     """ ПОЛУЧЕНИЕ СПИСКА ТОРГУЕМЫХ МОНЕТ ДЛЯ ПОЛЬЗОВАТЕЛЯ """
-    trading = Trading.objects.filter(user__username=user)
+    trading = Trading.objects.filter(user__username=user).order_by('-id')
     serializer = TradingSerializer(trading, many=True)
     return serializer.data
 
 
 def get_tracking_coins(user):
     """ ПОЛУЧЕНИЕ СПИСКА ОТСЛЕЖИВАЕМЫХ МОНЕТ ДЛЯ ПОЛЬЗОВАТЕЛЯ """
-    tracking = Tracking.objects.filter(user__username=user)
+    tracking = Tracking.objects.filter(user__username=user).order_by('-id')
     serializer = TrackingSerializer(tracking, many=True)
     return serializer.data
 

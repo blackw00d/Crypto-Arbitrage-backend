@@ -13,7 +13,7 @@ class BalanceView(APIView):
     """ ПОЛУЧЕНИЕ БАЛАНСА ПОЛЬЗОВАТЕЛЯ """
     permission_classes = (IsAuthenticated,)
 
-    def post(self, request):
+    def get(self, request):
         return Response(data=get_user_balance(request.user), status=status.HTTP_200_OK)
 
 

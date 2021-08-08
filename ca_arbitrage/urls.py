@@ -4,7 +4,9 @@
 
 """
 
+from django.views.decorators.cache import cache_page
 from django.urls import path
+from ca_backend.settings import TIMEOUT
 from ca_arbitrage.views import ArbitrageView, BalanceView, ListingView, ExchangesView, ExchangeView, GraphView, \
     TradingView, TradingChangeView, TradingAddView, TrackingView, TrackingAddView, TrackingChangeView, UserView, \
     UserAccountView, UsersPaymentsView, PricesView, PayView
@@ -12,10 +14,10 @@ from .Server import update_balance, update_tracking, update_trading, update_arbi
 
 urlpatterns = [
     path('arbitrage', ArbitrageView.as_view()),
-    path('balance', BalanceView.as_view()),
-    path('listing', ListingView.as_view()),
-    path('exchange', ExchangesView.as_view()),
-    path('exchange/<slug>', ExchangeView.as_view()),
+    path('balance', cache_page(TIMEOUT)(BalanceView.as_view())),
+    path('listing', cache_page(TIMEOUT)(ListingView.as_view())),
+    path('exchange', cache_page(TIMEOUT)(ExchangesView.as_view())),
+    path('exchange/<slug>', cache_page(TIMEOUT)(ExchangeView.as_view())),
     path('graph/<slug>', GraphView.as_view()),
     path('trading', TradingView.as_view()),
     path('trading/add', TradingAddView.as_view()),

@@ -136,10 +136,14 @@ REST_FRAMEWORK = {
     ),
 }
 
+# DJOSER settings
+
 DJOSER = {
     'SERIALIZERS': {},
     'TOKEN_MODEL': None
 }
+
+# JWT settings
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
@@ -167,9 +171,23 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
 
+# CACHE settings
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': os.path.join(BASE_DIR, 'dir_cache'),
+    }
+}
+
+# CORS settings
+
 CORS_ORIGIN_WHITELIST = os.environ.get('CORS_ORIGIN_WHITELIST', 'http://127.0.0.1:8000 http://localhost:8080').split(
     ' ')
 
+# Arbitrage settings
+
+TIMEOUT = int(os.environ.get('CACHE_TIMEOUT', 60 * 15))
 PAYMENT = int(os.environ.get('PAYMENT', 20))
 ASK_VOLUME = int(os.environ.get('ASK_VOLUME', 200))
 TELEGRAM_BOT = os.environ.get('TELEGRAM_BOT', '')

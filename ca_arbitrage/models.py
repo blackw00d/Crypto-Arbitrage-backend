@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.db.models.signals import post_save
+from django.contrib import admin
 
 
 class BinanceBittrex(models.Model):
@@ -1009,6 +1010,8 @@ class Trading(models.Model):
 
     class Meta:
         db_table = 'trading'
+        verbose_name = 'Trading'
+        verbose_name_plural = 'Trading'
 
 
 class Tracking(models.Model):
@@ -1027,6 +1030,8 @@ class Tracking(models.Model):
 
     class Meta:
         db_table = 'tracking'
+        verbose_name = 'Tracking'
+        verbose_name_plural = 'Tracking'
 
 
 class UsersBalance(models.Model):
@@ -1038,6 +1043,8 @@ class UsersBalance(models.Model):
 
     class Meta:
         db_table = 'users_balance'
+        verbose_name = 'Users Balance'
+        verbose_name_plural = 'Users Balance'
 
 
 class UsersKeys(models.Model):
@@ -1073,6 +1080,8 @@ class UsersKeys(models.Model):
 
     class Meta:
         db_table = 'users_keys'
+        verbose_name = 'Users Keys'
+        verbose_name_plural = 'Users Keys'
 
 
 class UsersAccount(models.Model):
@@ -1083,6 +1092,8 @@ class UsersAccount(models.Model):
 
     class Meta:
         db_table = 'users_account'
+        verbose_name = 'Users Account'
+        verbose_name_plural = 'Users Account'
 
 
 class UsersPayments(models.Model):
@@ -1093,6 +1104,8 @@ class UsersPayments(models.Model):
 
     class Meta:
         db_table = 'users_payments'
+        verbose_name = 'Users Payments'
+        verbose_name_plural = 'Users Payments'
 
 
 def create_profile(**kwargs):
@@ -1104,3 +1117,45 @@ def create_profile(**kwargs):
 
 
 post_save.connect(create_profile, sender=settings.AUTH_USER_MODEL)
+
+
+@admin.register(UsersPayments)
+class UsersPaymentsAdmin(admin.ModelAdmin):
+    list_display = ('user', 'pay_time', 'money')
+
+
+@admin.register(UsersAccount)
+class UsersAccountAdmin(admin.ModelAdmin):
+    list_display = ('user', 'last_pay_time', 'days')
+
+
+@admin.register(UsersBalance)
+class UsersBalanceAdmin(admin.ModelAdmin):
+    list_display = ('user', 'balance', 'totalbtc', 'totalusd')
+
+
+@admin.register(Tracking)
+class TrackingAdmin(admin.ModelAdmin):
+    list_display = ('user', 'exchange', 'pair', 'price', 'pricechangevalue', 'pricechangeprocent', 'priceactive',
+                    'volume', 'volumechangevalue', 'volumechangeprocent', 'volumeactive')
+
+
+@admin.register(Trading)
+class TradingAdmin(admin.ModelAdmin):
+    list_display = ('user', 'exchange', 'pair', 'amount', 'price', 'last_price', 'stoploss', 'trailingstoploss',
+                    'takeprofit', 'trailingtakeprofit', 'trailingtakeprofitprocent', 'active', 'stoplossvalue',
+                    'stoplosstrailingvalue', 'takeprofitvalue', 'takeprofittrailingvalue')
+
+
+@admin.register(UsersKeys)
+class UsersKeysAdmin(admin.ModelAdmin):
+    list_display = ('user', 'telegram', 'binance_key', 'binance_secret', 'bittrex_key', 'bittrex_secret',
+                    'poloniex_key', 'poloniex_secret', 'hitbtc_key', 'hitbtc_secret', 'kucoin_key', 'kucoin_secret',
+                    'kucoin_password', 'kraken_key', 'kraken_secret', 'huobi_key', 'huobi_secret', 'okex_key',
+                    'okex_secret', 'okex_password', 'gateio_key', 'gateio_secret', 'coinex_key', 'coinex_secret',
+                    'bitz_key', 'bitz_secret', 'bibox_key', 'bibox_secret')
+
+
+admin.site.site_header = "Crypto Arbitrage"
+admin.site.site_title = "Admin Panel"
+admin.site.index_title = "Welcome to Crypto Arbitrage Admin Panel"

@@ -13,7 +13,7 @@ from ca_arbitrage.views import ArbitrageView, BalanceView, ListingView, Exchange
 from .Server import update_balance, update_tracking, update_trading, update_arbitrage
 
 urlpatterns = [
-    path('arbitrage', ArbitrageView.as_view()),
+    path('arbitrage', cache_page(TIMEOUT)(ArbitrageView.as_view())),
     path('balance', cache_page(TIMEOUT)(BalanceView.as_view())),
     path('listing', cache_page(TIMEOUT)(ListingView.as_view())),
     path('exchange', cache_page(TIMEOUT)(ExchangesView.as_view())),

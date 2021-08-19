@@ -25,14 +25,15 @@ class KrakenAPI:
         return session
 
     def graph(self, quote, base):
+        base = base.replace('BTC', 'XBT')
+        quote = quote.replace('BTC', 'XBT')
         url = self.baseurl + '/0/public/OHLC?pair=' + base + quote + '&interval=21600'
         ticks = json.loads(requests.get(url).text)
         x = []
         y = []
         if ticks['error']:
             return []
-        for tick in ticks['result'][base + quote]:
-            print(tick)
+        for tick in ticks['result'][base.replace('XBT', 'XXBTZ') + quote]:
             x.append({
                 'x': tick[0] * 1000,
                 'y': float(tick[4])

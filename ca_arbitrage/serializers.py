@@ -1525,7 +1525,7 @@ class KucoinSerializer(serializers.ModelSerializer):
 class HitbtcSerializer(serializers.ModelSerializer):
     class Meta:
         model = Hitbtc
-        exclude = ('id', 'id_name', 'ask_volume', 'bid_volume', 'deposit', 'withdraw', 'blocks',)
+        exclude = ('id', 'id_name', 'ask_volume', 'bid_volume', 'deposit', 'withdraw',)
 
 
 class PoloniexSerializer(serializers.ModelSerializer):
@@ -1574,6 +1574,12 @@ class BiboxSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bibox
         exclude = ('id', 'id_name', 'ask_volume', 'bid_volume', 'deposit', 'withdraw',)
+
+
+class ExchangeUpdateSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = ExchangeUpdate
+        fields = ('last_update',)
 
 
 class ExchangesSerializers(serializers.Serializer):
@@ -1671,8 +1677,8 @@ class UsersAccountSerializer(serializers.ModelSerializer):
         return data.last_pay_time + timedelta(days=data.days)
 
     def days_to_deadline_value(self, data):
-        difference = data.last_pay_time - date.today() + timedelta(days=data.days + 1)
-        return difference.days if difference.days > 0 else 0
+        difference = data.last_pay_time - date.today() + timedelta(days=data.days)
+        return difference.days if data.days > 0 else 0
 
     class Meta:
         model = UsersAccount

@@ -943,7 +943,6 @@ class Hitbtc(ExchangeModel):
     """ Данные монет на бирже Hitbtc """
     deposit = models.CharField('Пополнение', max_length=50, default=None, null=True)
     withdraw = models.CharField('Вывод', max_length=50, default=None, null=True)
-    blocks = models.IntegerField('Блоки', default=None, null=True)
 
     class Meta:
         db_table = 'hitbtc'
@@ -987,6 +986,16 @@ class Poloniex(ExchangeModel):
 
     class Meta:
         db_table = 'poloniex'
+
+
+class ExchangeUpdate(models.Model):
+    """ Обновление бирж """
+    exchange = models.CharField('Биржа', max_length=20, default=None, null=True)
+    last_update = models.DateTimeField('Дата обновления', auto_now_add=True)
+    status = models.BooleanField('Статус', default=False)
+
+    class Meta:
+        db_table = 'exchange_update'
 
 
 class Trading(models.Model):

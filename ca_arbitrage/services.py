@@ -33,15 +33,35 @@ def get_coin_listing():
 
 def represent_exchange_data(exchange_data):
     """ ПРИВЕДЕНИЕ ДАННЫХ С БИРЖИ / БИРЖ К ФОРМАТУ ВАЛЮТА -> МОНЕТЫ """
+
+    exchanges = {
+        'binance': 'Binance',
+        'bittrex': 'Bittrex',
+        'poloniex': 'Poloniex',
+        'hitbtc': 'HitBTC',
+        'kucoin': 'Kucoin',
+        'kraken': 'Kraken',
+        'huobi': 'Huobi',
+        'okex': 'OKex',
+        'gateio': 'Gate.io',
+        'coinex': 'Coinex',
+        'bitz': 'Bit-Z',
+        'bibox': 'Bibox'
+    }
+
     exchange = {}
     if isinstance(exchange_data, dict):
         for (key, values) in exchange_data.items():
-            exchange[key] = {}
+            query = ExchangeUpdate.objects.filter(exchange=exchanges[key], status=True).order_by('-last_update').last()
+            exchange[key] = {
+                'data': {},
+                'update': ExchangeUpdateSerializers(query).data
+            }
             for value in values:
                 coin = value['name'].split('-')[0]
-                if coin not in exchange[key]:
-                    exchange[key][coin] = []
-                exchange[key][coin].append({
+                if coin not in exchange[key]['data']:
+                    exchange[key]['data'][coin] = []
+                exchange[key]['data'][coin].append({
                     'name': value['name'],
                     'price': value['price'],
                     'ask': value['ask'],
@@ -457,7 +477,9 @@ def get_arbitrage_data():
     serializer = ArbitrageSerializers(filters)
     table = serializer.data
     coin_profit = sort_arbitrage_data(table)
-    return [table, coin_profit[0], coin_profit[1]]
+    query = ExchangeUpdate.objects.filter(exchange='Arbitrage', status=True).order_by('-last_update').last()
+    update = ExchangeUpdateSerializers(query).data
+    return [table, coin_profit[0], coin_profit[1], update]
 
 
 def get_trading_coins(user):
@@ -522,6 +544,11 @@ def set_user_account(data):
 
 def send(user, txt):
     """ ОТПРАВКА СООБЩЕНИЯ ПОЛЬЗОВАТЕЛЮ В ТЕЛЕГРАММ """
+
+    if user == 0:
+        print('Telegram not specified')
+        return None
+
     telegram_bot = Telegram(token=TELEGRAM_BOT)
     send_status = telegram_bot.send_message_to_user(user, txt)
     if send_status['ok']:
